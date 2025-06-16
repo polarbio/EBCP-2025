@@ -1,9 +1,9 @@
 title: "Workshop SynBio 2025"
 author: "Jennyfer Arismendiz y equipo"
-logo: images/logot.svg   # Crea luego una carpeta 'images' con tu logo
+logo: images/logot.svg   
 html:
   favicon: images/favicon.svg
-  extra_css: [custom.css]   # ⬅️ Añadiremos este archivo en el siguiente paso
+  extra_css: [custom.css]   
   theme:
     name: sphinx_book_theme
     options:
