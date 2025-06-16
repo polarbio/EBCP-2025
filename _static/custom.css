@@ -99,6 +99,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding: 2rem 1rem;
 }
 
 .hero::before {
@@ -118,6 +119,7 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
+    width: 100%;
 }
 
 /* Logo en hero */
@@ -132,12 +134,16 @@ body {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 2rem;
     border-radius: 50px;
     color: white;
     font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 2rem;
+    white-space: nowrap;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-title {
@@ -442,6 +448,23 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    .hero {
+        padding: 1rem 0.5rem; /* Más padding en móviles */
+    }
+
+    .hero-content {
+        padding: 1rem;
+    }
+
+    .hero-badge {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.8rem;
+        max-width: 95%;
+        white-space: normal; 
+        line-height: 1.3;
+    }
+
     .container {
         padding: 0 1rem;
     }
@@ -492,5 +515,12 @@ body {
 @media (max-width: 768px) {
     .workshop-logo {
         max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
 }
