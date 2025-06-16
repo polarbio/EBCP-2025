@@ -1,39 +1,22 @@
+/* Fondo degradado para la página */
 body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  font-size: 16.5px;
-  background-color: #fcfcff;
+  background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-/* Header con toque juvenil */
-.bd-header {
-  background: linear-gradient(to right, #b2fefa, #0ed2f7);
-  color: #00303d;
-  font-weight: bold;
+/* Fondo blanco y limpio para el contenido */
+.bd-main .bd-content .bd-article {
+  background-color: white;
+  padding: 2em;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Links agradables */
-a {
-  color: #0077b6;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-/* Footer bonito */
-#jb-footer {
-  background-color: #f1f1f1;
-  color: #555;
-  font-size: 0.9em;
-  padding: 1em;
-  text-align: center;
-}
-
-/* Imagen full-width */
+/* Estilo para imágenes full-width */
 img.full-width {
   width: 100%;
   border-radius: 12px;
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
