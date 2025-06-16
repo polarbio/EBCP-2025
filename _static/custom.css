@@ -83,6 +83,12 @@ body {
     color: var(--primary-blue);
 }
 
+/* Logo en navbar */
+.nav-logo {
+    height: 32px;
+    width: auto;
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
