@@ -1,22 +1,32 @@
-/* Fondo degradado para la página */
+/* Fondo degradado suave y pantalla completa */
 body {
-  background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   background-attachment: fixed;
   background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Fondo blanco y limpio para el contenido */
+/* Expandir todo el layout horizontalmente */
+.bd-container {
+  max-width: 100% !important;
+  padding: 0 2rem;
+}
+
 .bd-main .bd-content .bd-article {
-  background-color: white;
-  padding: 2em;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
 }
 
-/* Estilo para imágenes full-width */
+/* Full-width banner image */
 img.full-width {
   width: 100%;
   border-radius: 12px;
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
