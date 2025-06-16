@@ -1,0 +1,13 @@
+title: "Workshop SynBio 2025"
+author: "Christian Cuba Samaniego y equipo"
+logo: images/logo.png
+html:
+  favicon: images/logo.png
+  theme:
+    name: sphinx_book_theme
+    options:
+      path_to_docs: "."
+      repository_url: https://github.com/polarbio/wsynbio-2025
+      use_repository_button: true
+      use_issues_button: true
+      navigation_with_keys: true

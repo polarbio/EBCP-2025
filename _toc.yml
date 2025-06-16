@@ -1,0 +1,7 @@
+format: jb-book
+root: intro
+
+chapters:
+  - file: notebooks/01_toggle_switch
+  - file: notebooks/02_tristability
+  - file: markdown/03_aplicaciones
