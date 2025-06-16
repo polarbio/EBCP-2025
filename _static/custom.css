@@ -114,6 +114,13 @@ body {
     padding: 2rem;
 }
 
+/* Logo en hero */
+.hero-logo {
+    margin-bottom: 2rem;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+
 .hero-badge {
     display: inline-block;
     background: rgba(255, 255, 255, 0.2);
@@ -459,5 +466,25 @@ body {
     
     .card-actions {
         flex-direction: column;
+    }
+}
+
+.workshop-logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* Animación sutil para el logo */
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsive para el logo */
+@media (max-width: 768px) {
+    .workshop-logo {
+        max-width: 250px;
     }
 }
