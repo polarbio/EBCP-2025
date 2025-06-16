@@ -30,3 +30,40 @@ img.full-width {
   margin-bottom: 1em;
 }
 
+/* Diseño de grid moderno */
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Tarjetas coloridas */
+.card {
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* Colores únicos por card */
+.card-1 { background: #4a90e2; }   /* Azul */
+.card-2 { background: #7b1fa2; }   /* Púrpura */
+.card-3 { background: #009688; }   /* Verde azulado */
+.card-4 { background: #f57c00; }   /* Naranja */
+
+.card a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
