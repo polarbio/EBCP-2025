@@ -15,7 +15,7 @@ html:
   extra_navbar: ¡Bienvenid@ al Workshop SynBio 2025!
   extra_footer: Hecho con ❤️ por RELU.
   extra_css:
-    - styles/custom.css
+    - _static/custom.cssC
   favicon: images/favicon.svg
   logo: images/logot.svg 
 
