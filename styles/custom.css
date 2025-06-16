@@ -1,0 +1,21 @@
+/* Fondo degradado del encabezado */
+.bd-header {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+/* Colores de botones y links */
+a {
+  color: #2ec4b6;
+}
+a:hover {
+  color: #ff9f1c;
+}
+
+/* Caja con sombra para notebooks */
+.bd-main .cell {
+  border-radius: 12px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  margin-bottom: 1.5em;
+}

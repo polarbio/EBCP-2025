@@ -1,14 +1,34 @@
-title: "Workshop SynBio 2025"
-author: "Jennyfer Arismendiz y equipo"
-logo: images/logot.svg   
+
+title: Workshop SynBio 2025
+author: Laboratorio del Dr.Christian Cuba Samaniego
+logo: images/logot.svg 
+favicon: images/favicon.svg
+
+only_build_toc_files: true
+
+repository:
+  url: https://github.com/polarbio/wsynbio-2025
+  path_to_book: ""
+  branch: main
+
 html:
+  extra_navbar: ¡Bienvenid@ al Workshop SynBio 2025!
+  extra_footer: Hecho con ❤️ por RELU.
+  extra_css:
+    - styles/custom.css
   favicon: images/favicon.svg
-  extra_css: [custom.css]   
-  theme:
-    name: sphinx_book_theme
-    options:
-      path_to_docs: "."
-      repository_url: https://github.com/polarbio/wsynbio-2025
-      use_repository_button: true
-      use_issues_button: true
-      navigation_with_keys: true
+  logo: images/logot.svg 
+
+theme:
+  name: sphinx_book_theme
+  options:
+    path_to_docs: ""
+    repository_url: https://github.com/polarbio/wsynbio-2025
+    repository_branch: main
+    home_page_in_toc: true
+    show_navbar_depth: 2
+    use_repository_button: true
+    use_issues_button: false
+    show_toc_level: 2
+    extra_navbar: ¡Bienvenid@ al Workshop SynBio 2025!
+    extra_footer: Hecho con ❤️ por RELU.
