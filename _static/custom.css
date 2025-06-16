@@ -1,65 +1,38 @@
-/* Fondo degradado para todo el libro */
 body {
-  background: linear-gradient(to right, #fceabb, #f8b500);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 16.5px;
+  background-color: #fcfcff;
 }
 
-/* Color de la barra lateral */
-.bd-sidebar {
-  background: linear-gradient(to bottom, #f8b500, #fceabb);
-  color: #222;
-}
-
-/* Color para enlaces */
-a {
-  color: #e74c3c;
-}
-a:hover {
-  color: #c0392b;
-}
-
-/* Estilo para títulos */
-h1, h2, h3, h4 {
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-/* Encabezado principal */
-header.navbar {
-  background: linear-gradient(to right, #e74c3c, #f39c12);
-  color: white;
-}
-
-/* Pie de página */
-.footer {
-  background-color: #f8b500;
-  color: white;
-  font-size: 0.9em;
-  padding: 10px;
-}
-
-/* Código con fondo suave */
-.highlight {
-  background-color: #fff8e1;
-  border: 1px solid #f0c36d;
-  border-radius: 5px;
-}
-
-/* Botones y detalles interactivos */
-button,
-input[type="submit"],
-input[type="button"] {
-  background-color: #ffb347;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  color: #fff;
+/* Header con toque juvenil */
+.bd-header {
+  background: linear-gradient(to right, #b2fefa, #0ed2f7);
+  color: #00303d;
   font-weight: bold;
 }
 
-button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover {
-  background-color: #f39c12;
+/* Links agradables */
+a {
+  color: #0077b6;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer bonito */
+#jb-footer {
+  background-color: #f1f1f1;
+  color: #555;
+  font-size: 0.9em;
+  padding: 1em;
+  text-align: center;
+}
+
+/* Imagen full-width */
+img.full-width {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
