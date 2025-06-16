@@ -1,21 +1,65 @@
-/* Fondo degradado del encabezado */
-.bd-header {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+/* Fondo degradado para todo el libro */
+body {
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Color de la barra lateral */
+.bd-sidebar {
+  background: linear-gradient(to bottom, #f8b500, #fceabb);
+  color: #222;
+}
+
+/* Color para enlaces */
+a {
+  color: #e74c3c;
+}
+a:hover {
+  color: #c0392b;
+}
+
+/* Estilo para títulos */
+h1, h2, h3, h4 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Encabezado principal */
+header.navbar {
+  background: linear-gradient(to right, #e74c3c, #f39c12);
   color: white;
 }
 
-/* Colores de botones y links */
-a {
-  color: #2ec4b6;
-}
-a:hover {
-  color: #ff9f1c;
+/* Pie de página */
+.footer {
+  background-color: #f8b500;
+  color: white;
+  font-size: 0.9em;
+  padding: 10px;
 }
 
-/* Caja con sombra para notebooks */
-.bd-main .cell {
-  border-radius: 12px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-  padding: 1em;
-  margin-bottom: 1.5em;
+/* Código con fondo suave */
+.highlight {
+  background-color: #fff8e1;
+  border: 1px solid #f0c36d;
+  border-radius: 5px;
+}
+
+/* Botones y detalles interactivos */
+button,
+input[type="submit"],
+input[type="button"] {
+  background-color: #ffb347;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #f39c12;
 }
