@@ -99,7 +99,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding: 2rem 1rem;
+    padding: 4rem 2rem;
 }
 
 .hero::before {
@@ -141,7 +141,7 @@ body {
     font-weight: 500;
     margin-bottom: 2rem;
     white-space: nowrap;
-    max-width: 90%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -450,7 +450,8 @@ body {
 @media (max-width: 768px) {
 
     .hero {
-        padding: 1rem 0.5rem; /* Más padding en móviles */
+        padding: 3rem 1rem; /* Más padding en móviles */
+        min-height: 90vh;
     }
 
     .hero-content {
@@ -499,7 +500,7 @@ body {
 }
 
 .workshop-logo {
-    max-width: 300px;
+    max-width: 280px;
     width: 100%;
     height: auto;
     filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
