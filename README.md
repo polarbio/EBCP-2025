@@ -12,7 +12,7 @@
 
 ## 📋 Descripción
 
-**lectures SynBio LATAM 2025** es una plataforma web interactiva que contiene materiales de preparación para el workshop de **Biología Sintética** organizado por el laboratorio del Dr.Christian Cuba Samaniego. 
+**Lectures SynBio LATAM 2025** es una plataforma web interactiva que contiene materiales de preparación para el workshop de **Biología Sintética** organizado por el laboratorio del Dr.Christian Cuba Samaniego. 
 
 Este sitio web ofrece contenido teórico, simulaciones interactivas y ejemplos prácticos para dominar el diseño de circuitos en biología sintética, dirigido a investigadores, estudiantes y profesionales de América Latina.
 
