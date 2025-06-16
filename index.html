@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynBio LatAm 2025 - Lecture Notes</title>
+    <link rel="stylesheet" href="_static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <span class="brand-icon">🧬</span>
+                <span class="brand-text">SynBio LatAm 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="#lectures">Lectures</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">📁 GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                🔬 Workshop de Biología Sintética 2025
+            </div>
+            
+            <h1 class="hero-title">
+                Lecture Notes de<br>
+                <span class="highlight">Circuitos Biológicos</span>
+            </h1>
+            
+            <p class="hero-description">
+                Materiales de preparación para el workshop. Contenido teórico, 
+                simulaciones interactivas y ejemplos prácticos para dominar 
+                el diseño de circuitos en biología sintética.
+            </p>
+            
+            <div class="hero-buttons">
+                <a href="#lectures" class="btn-primary">
+                    📚 Ver Lectures
+                </a>
+                <a href="#about" class="btn-secondary">
+                    ℹ️ Sobre el Workshop
+                </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Lectures</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Estudiantes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">Workshop</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lectures Section -->
+    <section id="lectures" class="lectures-section">
+        <div class="container">
+            <h2 class="section-title">Contenido del Workshop</h2>
+            
+            <!-- Search and Filters -->
+            <div class="search-filters">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar lectures, temas, conceptos...">
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active">Todos</button>
+                    <button class="filter-btn">Básicos</button>
+                    <button class="filter-btn">Avanzados</button>
+                    <button class="filter-btn">Prácticos</button>
+                </div>
+            </div>
+            
+            <!-- Lectures Grid -->
+            <div class="lectures-grid">
+                <div class="lecture-card" data-level="basico">
+                    <div class="card-header">
+                        <div class="card-icon">🔄</div>
+                        <div class="card-badge">Básico</div>
+                    </div>
+                    <h3 class="card-title">Lecture 01: Toggle Switch</h3>
+                    <p class="card-description">
+                        Fundamentos de circuitos bistables. Aprende sobre 
+                        sistemas con dos estados estables y sus aplicaciones.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Bistabilidad</span>
+                        <span class="tag">Modelado</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="lectures/lecture-01/" class="btn-card-primary">Ver Lecture</a>
+                        <a href="lectures/lecture-01/toggle_switch.ipynb" class="btn-card-secondary">📓 Notebook</a>
+                    </div>
+                </div>
+
+                <div class="lecture-card" data-level="intermedio">
+                    <div class="card-header">
+                        <div class="card-icon">⚖️</div>
+                        <div class="card-badge">Intermedio</div>
+                    </div>
+                    <h3 class="card-title">Lecture 02: Tristability</h3>
+                    <p class="card-description">
+                        Sistemas con múltiples estados estables. Explora 
+                        circuitos más complejos con tres puntos de equilibrio.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Multistabilidad</span>
+                        <span class="tag">Dinámica</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="lectures/lecture-02/" class="btn-card-primary">Ver Lecture</a>
+                        <a href="lectures/lecture-02/tristability.ipynb" class="btn-card-secondary">📓 Notebook</a>
+                    </div>
+                </div>
+
+                <div class="lecture-card" data-level="avanzado">
+                    <div class="card-header">
+                        <div class="card-icon">🌊</div>
+                        <div class="card-badge">Avanzado</div>
+                    </div>
+                    <h3 class="card-title">Lecture 03: Oscillators</h3>
+                    <p class="card-description">
+                        Circuitos oscilatorios en biología sintética. 
+                        Diseño de sistemas periódicos y relojes biológicos.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Oscilaciones</span>
+                        <span class="tag">Relojes</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="lectures/lecture-03/" class="btn-card-primary">Ver Lecture</a>
+                        <a href="lectures/lecture-03/oscillators.ipynb" class="btn-card-secondary">📓 Notebook</a>
+                    </div>
+                </div>
+
+                <div class="lecture-card" data-level="practico">
+                    <div class="card-header">
+                        <div class="card-icon">🧬</div>
+                        <div class="card-badge">Práctico</div>
+                    </div>
+                    <h3 class="card-title">Lecture 04: Aplicaciones</h3>
+                    <p class="card-description">
+                        Casos de uso reales y aplicaciones prácticas. 
+                        Implementación de circuitos en sistemas biológicos.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">Casos de uso</span>
+                        <span class="tag">Implementación</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="lectures/lecture-04/" class="btn-card-primary">Ver Lecture</a>
+                        <a href="markdown/03_aplicaciones.html" class="btn-card-secondary">📖 Leer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 SynBio LatAm Workshop. Preparado con ❤️ para la comunidad científica.</p>
+        </div>
+    </footer>
+</body>
+</html>
