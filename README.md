@@ -1,4 +1,4 @@
-# 🧬 SynBio LATAM 2025 - Workshop Lecture Notes
+# 🧬 EBCP LATAM 2025 - Workshop Lecture Notes
 
 <div align="center">
   <img src="./images/logoc.svg" alt="SynBio LATAM 2025" width="300">
