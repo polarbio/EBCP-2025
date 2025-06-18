@@ -350,12 +350,12 @@ body {
     letter-spacing: 0.5px;
 }
 
-.lecture-card[data-level="basico"] .card-badge {
+.lecture-card[data-level="tecnico"] .card-badge {
     background: #dcfce7;
     color: #166534;
 }
 
-.lecture-card[data-level="intermedio"] .card-badge {
+.lecture-card[data-level="teorico"] .card-badge {
     background: #fef3c7;
     color: #92400e;
 }
