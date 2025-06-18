@@ -1,7 +1,7 @@
 # 🧬 EBCP LATAM 2025 - Workshop Lecture Notes
 
 <div align="center">
-  <img src="./images/logoc.svg" alt="SynBio LATAM 2025" width="300">
+  <img src="./images/logoc1.svg" alt="SynBio LATAM 2025" width="300">
   
   [![Website](https://img.shields.io/badge/Website-Live-brightgreen?style=for-the-badge)](https://polarbio.github.io/wsynbio-2025/)
   [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
