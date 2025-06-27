@@ -423,7 +423,7 @@ body {
 }
 
 .btn-card-primary:hover {
-    background: #1e40af;
+    background: black;
     transform: translateY(-1px);
 }
 
