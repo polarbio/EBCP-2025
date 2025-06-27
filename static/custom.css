@@ -526,49 +526,60 @@ body {
     }
 }
 
-.people-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+.person-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 2rem;
 }
 
-.person-card {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.profile-role {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.8rem;
+}
+
+.profile-detail {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .person-profile {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 2rem 1.5rem;
-    transition: transform 0.3s ease;
-}
+  }
 
-.person-card:hover {
-    transform: translateY(-5px);
-}
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+  }
 
-.person-photo {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    border: 3px solid var(--primary-green);
-}
-
-.person-name {
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-}
-
-.person-role {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-}
-
-.person-details {
-    font-size: 0.95rem;
-    line-height: 1.6;
+  .profile-info {
+    margin-top: 1rem;
+  }
 }
