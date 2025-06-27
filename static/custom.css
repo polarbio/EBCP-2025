@@ -136,7 +136,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0.75rem 2rem;
     border-radius: 50px;
-    color: white;
+    color: black;
     font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 2rem;
@@ -149,7 +149,7 @@ body {
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
-    color: white;
+    color: black;
     margin-bottom: 1.5rem;
     line-height: 1.1;
 }
