@@ -92,7 +92,7 @@ body {
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    background: var(--gradient-main);
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
