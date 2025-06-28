@@ -1,7 +1,7 @@
 # 🧬 EBCP LATAM 2025 - Workshop Lecture Notes
 
 <div align="center">
-  <img src="./images/logoc1.svg" alt="SynBio LATAM 2025" width="300">
+  <img src="./images/Engineering.svg" alt="SynBio Workshop 2025" width="300">
   
   [![Website](https://img.shields.io/badge/Website-Live-brightgreen?style=for-the-badge)](https://polarbio.github.io/wsynbio-2025/)
   [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -10,23 +10,15 @@
 
 ---
 
-## 📋 Descripción
+## Acerca del sitio web
 
 **Lectures EBCP LATAM 2025** es una plataforma web interactiva que contiene materiales de preparación para el workshop de **Biología Sintética** organizado por el laboratorio del Dr.Christian Cuba Samaniego. 
 
 Este sitio web ofrece contenido teórico, simulaciones interactivas y ejemplos prácticos para dominar el diseño de circuitos en biología sintética, dirigido a investigadores, estudiantes y profesionales de América Latina.
 
-## 🌟 Características
-
-- **📚 Contenido Educativo Estructurado**: Materiales organizados por niveles (Básico, Intermedio, Avanzado, Práctico)
-- **🔍 Búsqueda y Filtrado**: Sistema de búsqueda inteligente para encontrar contenido específico
-- **📱 Diseño Responsivo**: Optimizado para dispositivos móviles y desktop
-- **🎨 Interfaz Moderna**: Diseño limpio con gradientes y animaciones suaves
-- **🚀 Carga Rápida**: Optimizado para rendimiento web
-
 ## 📖 Contenido del Workshop
 
-### 🔬 Módulos Disponibles
+###  Módulos Disponibles
 
 1. **Fundamentos de Circuitos Bistables**
    - Sistemas con dos estados estables
