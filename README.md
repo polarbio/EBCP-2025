@@ -1,4 +1,4 @@
-# 🧬 EBCP LATAM 2025 - Workshop Lecture Notes
+# EBCP LATAM 2025
 
 <div align="center">
   <img src="./images/Engineering.svg" alt="SynBio Workshop 2025" width="300">
@@ -40,11 +40,11 @@ Este sitio web ofrece contenido teórico, simulaciones interactivas y ejemplos p
    - Implementación en laboratorio
    - Troubleshooting común
 
-## 🚀 Ver el Sitio Web
+## Ver el Sitio Web
 
 👉 **[polarbio.github.io/wsynbio-2025](https://polarbio.github.io/wsynbio-2025/)**
 
-## 🛠️ Desarrollo Local
+## Desarrollo Local
 
 Si quieres ejecutar el sitio localmente para desarrollo:
 
