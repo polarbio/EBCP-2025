@@ -440,8 +440,8 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--text-dark);
-    color: white;
+    background: white;
+    color: gray;
     text-align: center;
     padding: 2rem 0;
 }
