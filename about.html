@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,10 +21,16 @@
       <span class="brand-text">EBCP Latam 2025</span>
     </div>
     <div class="nav-links">
-      <a href="index.html">Inicio</a>
-      <a href="#lectures">Lectures</a>
-      <a href="#proyectos_pasados">Proyectos anteriores</a>
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="index.html#lectures" data-es="Lectures" data-en="Lectures">Lectures</a>
+      <a href="index.html#proyectos_pasados" data-es="Proyectos anteriores" data-en="Previous Projects">Proyectos anteriores</a>
       <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+      
+      <!-- Language Toggle -->
+      <div class="language-toggle">
+        <button class="lang-btn active" data-lang="es">ESP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
     </div>
   </nav>
 </header>
@@ -32,21 +38,37 @@
 <!-- Main Content -->
 <main style="margin-top: 120px; padding: 2rem 0;">
   <div class="container">
-    <h1 class="section-title">Sobre Nosotros</h1>
+    <h1 class="section-title" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</h1>
 
     <!-- Instructores -->
     <section style="margin-bottom: 3rem;">
-      <h2 class="section-subtitle">Instructores</h2>
+      <h2 class="section-subtitle" data-es="Instructores" data-en="Instructors">Instructores</h2>
       <br>
 
       <div class="person-profile">
         <img src="./images/nosotros/Christian.jpeg" alt="Christian Cuba" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Christian Cuba Samaniego</div>
-          <div class="profile-role">Assistant Professor – Carnegie Mellon University</div>
-          <div class="profile-detail">Postdocs: MIT, UCLA y Harvard</div>
-          <div class="profile-detail">PhD University of Califoria  Riverside 2017</div>
-          <div class="profile-detail">BSc Universidad Nacional de Ingenieria 2009</div>
+          <div class="profile-role" 
+               data-es="Assistant Professor – Carnegie Mellon University"
+               data-en="Assistant Professor – Carnegie Mellon University">
+               Assistant Professor – Carnegie Mellon University
+          </div>
+          <div class="profile-detail" 
+               data-es="Postdocs: MIT, UCLA y Harvard"
+               data-en="Postdocs: MIT, UCLA and Harvard">
+               Postdocs: MIT, UCLA y Harvard
+          </div>
+          <div class="profile-detail" 
+               data-es="PhD University of California Riverside 2017"
+               data-en="PhD University of California Riverside 2017">
+               PhD University of California Riverside 2017
+          </div>
+          <div class="profile-detail" 
+               data-es="BSc Universidad Nacional de Ingeniería 2009"
+               data-en="BSc Universidad Nacional de Ingeniería 2009">
+               BSc Universidad Nacional de Ingeniería 2009
+          </div>
         </div>
       </div>
 
@@ -54,23 +76,47 @@
         <img src="./images/nosotros/Frank.png" alt="Frank Britto" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Frank Britto Bisso</div>
-          <div class="profile-role">Incoming PhD – Carnegie Mellon University</div>
-          <div class="profile-detail">Bsc Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia 2024</div>
+          <div class="profile-role" 
+               data-es="Incoming PhD – Carnegie Mellon University"
+               data-en="Incoming PhD – Carnegie Mellon University">
+               Incoming PhD – Carnegie Mellon University
+          </div>
+          <div class="profile-detail" 
+               data-es="BSc Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia 2024"
+               data-en="BSc Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia 2024">
+               BSc Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia 2024
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Tercera edición – 2024 -->
     <section style="margin-bottom: 3rem;">
-      <h2 class="section-subtitle">Tercera edición – 2024</h2>
+      <h2 class="section-subtitle" 
+          data-es="Tercera edición – 2024" 
+          data-en="Third Edition – 2024">
+          Tercera edición – 2024
+      </h2>
       <br>
       <div class="person-profile">
         <img src="./images/nosotros/Rodrigo.png" alt="Rodrigo Aguilar" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Rodrigo Aguilar</div>
-          <div class="profile-role">Universidad Nacional Autónoma de México</div>
-          <div class="profile-detail">Publicación como primer autor en Open Biology.</div>
-          <div class="profile-detail">Synthetic Biology Summer School at CSHL Asia 2025.</div>
+          <div class="profile-role" 
+               data-es="Universidad Nacional Autónoma de México"
+               data-en="Universidad Nacional Autónoma de México">
+               Universidad Nacional Autónoma de México
+          </div>
+          <div class="profile-detail" 
+               data-es="Publicación como primer autor en Open Biology."
+               data-en="First-author publication in Open Biology.">
+               Publicación como primer autor en Open Biology.
+          </div>
+          <div class="profile-detail" 
+               data-es="Synthetic Biology Summer School at CSHL Asia 2025."
+               data-en="Synthetic Biology Summer School at CSHL Asia 2025.">
+               Synthetic Biology Summer School at CSHL Asia 2025.
+          </div>
         </div>
       </div>
 
@@ -78,9 +124,21 @@
         <img src="./images/nosotros/Jennyfer.jpeg" alt="Jennyfer Arismendiz" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Jennyfer Arismendiz Millones</div>
-          <div class="profile-role">Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia</div>
-          <div class="profile-detail">Escribiendo un artículo como primera autora.</div>
-          <div class="profile-detail">Synthetic Biology Summer School at CSHL Asia 2025.</div>
+          <div class="profile-role" 
+               data-es="Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia"
+               data-en="Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia">
+               Pontificia Universidad Católica del Perú / Universidad Peruana Cayetano Heredia
+          </div>
+          <div class="profile-detail" 
+               data-es="Escribiendo un artículo como primera autora."
+               data-en="Writing a first-author paper.">
+               Escribiendo un artículo como primera autora.
+          </div>
+          <div class="profile-detail" 
+               data-es="Synthetic Biology Summer School at CSHL Asia 2025."
+               data-en="Synthetic Biology Summer School at CSHL Asia 2025.">
+               Synthetic Biology Summer School at CSHL Asia 2025.
+          </div>
         </div>
       </div>
 
@@ -88,9 +146,21 @@
         <img src="./images/nosotros/Mijael.jpg" alt="Mijael Leo Espinoza" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Mijael Leo Espinoza</div>
-          <div class="profile-role">Universidad Nacional Mayor de San Marcos</div>
-          <div class="profile-detail">Escribiendo un artículo como primer autor.</div>
-          <div class="profile-detail">Synthetic Biology Summer School at CSHL Asia 2025.</div>
+          <div class="profile-role" 
+               data-es="Universidad Nacional Mayor de San Marcos"
+               data-en="Universidad Nacional Mayor de San Marcos">
+               Universidad Nacional Mayor de San Marcos
+          </div>
+          <div class="profile-detail" 
+               data-es="Escribiendo un artículo como primer autor."
+               data-en="Writing a first-author paper.">
+               Escribiendo un artículo como primer autor.
+          </div>
+          <div class="profile-detail" 
+               data-es="Synthetic Biology Summer School at CSHL Asia 2025."
+               data-en="Synthetic Biology Summer School at CSHL Asia 2025.">
+               Synthetic Biology Summer School at CSHL Asia 2025.
+          </div>
         </div>
       </div>
 
@@ -98,41 +168,79 @@
         <img src="./images/nosotros/Cesar.jpg" alt="Cesar Castro" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">César Antonio Castro Pareja</div>
-          <div class="profile-role">Universidad Nacional Mayor de San Marcos</div>
-          <div class="profile-detail">Escribiendo un artículo como primer autor.</div>
+          <div class="profile-role" 
+               data-es="Universidad Nacional Mayor de San Marcos"
+               data-en="Universidad Nacional Mayor de San Marcos">
+               Universidad Nacional Mayor de San Marcos
+          </div>
+          <div class="profile-detail" 
+               data-es="Escribiendo un artículo como primer autor."
+               data-en="Writing a first-author paper.">
+               Escribiendo un artículo como primer autor.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Segunda edición – 2023 -->
-    <section>
-      <h2 class="section-subtitle">Segunda edición – 2023</h2>
+    <section style="margin-bottom: 3rem;">
+      <h2 class="section-subtitle" 
+          data-es="Segunda edición – 2023" 
+          data-en="Second Edition – 2023">
+          Segunda edición – 2023
+      </h2>
       <br>
       <div class="person-profile">
-        <!-- Puedes usar la misma foto de Frank o dejar sin imagen -->
         <img src="./images/nosotros/Benjamin.jpeg" alt="Benjamin Diaz" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Benjamin Díaz Zamora</div>
-          <div class="profile-role">Bsc Universidad Nacional Mayor de San Marcos 2024</div>
-          <div class="profile-detail">Pasantía de Investigación en Biología Sintética de DFCI.</div>
-          <div class="profile-detail">Contribuyó a un artículo.</div>
-          <div class="profile-detail">Annual Workshop on Advanced Microscopy and Biophotonics 2025.</div>
+          <div class="profile-role" 
+               data-es="BSc Universidad Nacional Mayor de San Marcos 2024"
+               data-en="BSc Universidad Nacional Mayor de San Marcos 2024">
+               BSc Universidad Nacional Mayor de San Marcos 2024
+          </div>
+          <div class="profile-detail" 
+               data-es="Pasantía de Investigación en Biología Sintética de DFCI."
+               data-en="Research Internship in Synthetic Biology at DFCI.">
+               Pasantía de Investigación en Biología Sintética de DFCI.
+          </div>
+          <div class="profile-detail" 
+               data-es="Contribuyó a un artículo."
+               data-en="Contributed to a paper.">
+               Contribuyó a un artículo.
+          </div>
+          <div class="profile-detail" 
+               data-es="Annual Workshop on Advanced Microscopy and Biophotonics 2025."
+               data-en="Annual Workshop on Advanced Microscopy and Biophotonics 2025.">
+               Annual Workshop on Advanced Microscopy and Biophotonics 2025.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Primera edición – 2022 -->
     <section>
-      <h2 class="section-subtitle">Primera edición – 2022</h2>
+      <h2 class="section-subtitle" 
+          data-es="Primera edición – 2022" 
+          data-en="First Edition – 2022">
+          Primera edición – 2022
+      </h2>
       <br>
       <div class="person-profile">
-        <!-- Puedes usar la misma foto de Frank o dejar sin imagen -->
         <img src="./images/nosotros/Frank.png" alt="Frank Britto" class="profile-photo">
         <div class="profile-info">
           <div class="profile-name">Frank Britto Bisso</div>
           <div class="profile-role">PUCP-UPCH</div>
-          <div class="profile-detail">Publicó cuatro artículos como primer autor.</div>
-          <div class="profile-detail">Synthetic Biology Summer School at CSHL New York 2024.</div>
+          <div class="profile-detail" 
+               data-es="Publicó cuatro artículos como primer autor."
+               data-en="Published four papers as first author.">
+               Publicó cuatro artículos como primer autor.
+          </div>
+          <div class="profile-detail" 
+               data-es="Synthetic Biology Summer School at CSHL New York 2024."
+               data-en="Synthetic Biology Summer School at CSHL New York 2024.">
+               Synthetic Biology Summer School at CSHL New York 2024.
+          </div>
         </div>
       </div>
     </section>
@@ -143,9 +251,74 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego</p>
+    <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+       data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+       &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+    </p>
   </div>
 </footer>
+
+<!-- JavaScript for language switching -->
+<script>
+    class LanguageManager {
+        constructor() {
+            this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+            this.init();
+        }
+
+        init() {
+            this.setupEventListeners();
+            this.setLanguage(this.currentLang);
+        }
+
+        setupEventListeners() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.target.getAttribute('data-lang');
+                    this.setLanguage(lang);
+                });
+            });
+        }
+
+        setLanguage(lang) {
+            this.currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // Update HTML lang attribute
+            document.getElementById('html-root').setAttribute('lang', lang);
+            
+            // Update all elements with data attributes
+            const elements = document.querySelectorAll('[data-es][data-en]');
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.innerHTML = text;
+                }
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update page title
+            const titles = {
+                es: 'Sobre Nosotros - EBCP LATAM 2025',
+                en: 'About Us - EBCP LATAM 2025'
+            };
+            document.title = titles[lang];
+        }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        new LanguageManager();
+    });
+</script>
 
 </body>
 </html>
