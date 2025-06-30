@@ -16,30 +16,6 @@
 
 Este sitio web ofrece contenido teórico, simulaciones interactivas y ejemplos prácticos para dominar el diseño de circuitos en biología sintética, dirigido a investigadores, estudiantes y profesionales de América Latina.
 
-## 📖 Contenido del Workshop
-
-###  Módulos Disponibles
-
-1. **Fundamentos de Circuitos Bistables**
-   - Sistemas con dos estados estables
-   - Toggle switches biológicos
-   - Aplicaciones prácticas
-
-2. **Sistemas Multiestables**
-   - Circuitos con múltiples puntos de equilibrio
-   - Diseño de memorias biológicas
-   - Análisis de estabilidad
-
-3. **Circuitos Oscilatorios**
-   - Relojes biológicos
-   - Sistemas periódicos
-   - Control temporal en células
-
-4. **Aplicaciones Prácticas**
-   - Casos de uso reales
-   - Implementación en laboratorio
-   - Troubleshooting común
-
 ## Ver el Sitio Web
 
 👉 **[polarbio.github.io/wsynbio-2025](https://polarbio.github.io/wsynbio-2025/)**
