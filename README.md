@@ -18,12 +18,12 @@ Este sitio web ofrece contenido teórico, simulaciones interactivas y ejemplos p
 
 ## Ver el Sitio Web
 
-👉 **[polarbio.github.io/wsynbio-2025](https://polarbio.github.io/wsynbio-2025/)**
+👉 **[polarbio.github.io/EBCP-2025](https://polarbio.github.io/EBCP-2025/)**
 
 ## Desarrollo Local
 
 Si quieres ejecutar el sitio localmente para desarrollo:
-
+                         
 ### Prerrequisitos
 - Python 3.x (para servidor local)
 - Git
