@@ -32,5 +32,5 @@ Si quieres ejecutar el sitio localmente para desarrollo:
 
 1. **Clona el repositorio:**
 ```bash
-git clone https://github.com/polarbio/wsynbio-2025.git
-cd wsynbio-2025
+git clone https://github.com/polarbio/EBCP-2025.git
+cd EBCP-2025
