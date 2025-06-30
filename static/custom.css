@@ -583,3 +583,65 @@ body {
     margin-top: 1rem;
   }
 }
+
+/* Language Toggle Styles */
+.language-toggle {
+    display: flex;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 4px;
+    margin-left: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.lang-btn.active {
+    background: var(--primary-blue);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn:hover:not(.active) {
+    color: var(--text-dark);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile responsive adjustments for language toggle */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .language-toggle {
+        order: 1;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        flex-basis: 100%;
+        justify-content: center;
+    }
+    
+    .lang-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
+
+/* Language transition effects */
+[data-es], [data-en] {
+    transition: opacity 0.2s ease-in-out;
+}
