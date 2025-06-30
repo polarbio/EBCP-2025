@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +23,15 @@
                 <span class="brand-text">EBCP Latam 2025</span>
             </div>
             <div class="nav-links">
-                <a href="#lectures">Lectures</a>
-                <a href="#proyectos_pasados">Proyectos anteriores</a>
+                <a href="#lectures" data-es="Lectures" data-en="Lectures">Lectures</a>
+                <a href="#proyectos_pasados" data-es="Proyectos anteriores" data-en="Previous Projects">Proyectos anteriores</a>
                 <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -34,18 +40,22 @@
     <section class="hero">
         <div class="hero-content">
             <!-- Logo del workshop -->
-            <div class="hero-badge">
+            <div class="hero-badge" 
+                 data-es="Engineering Biological Circuits Program LATAM"
+                 data-en="Engineering Biological Circuits Program LATAM">
                 Engineering Biological Circuits Program LATAM
             </div>
             
             <h1 class="hero-title">
-                Curso 2025<br>
-                <span class="highlight">Workshop SynBio</span>
+                <span data-es="Curso 2025" data-en="Course 2025">Curso 2025</span><br>
+                <span class="highlight" data-es="Workshop SynBio" data-en="SynBio Workshop">Workshop SynBio</span>
             </h1>
             
-            <p class="hero-description">
+            <p class="hero-description" 
+               data-es="Te damos la bienvenida desde el laboratorio del Dr. Christian Cuba Samaniego situado en Carnegie Mellon University (CMU), donde trabajamos en el diseño, análisis matemático y aplicaciones de sistemas de control y redes neuronales moleculares para el reconocimiento de patrones, y en su implementación en células vivas mediante circuitos genéticos.<br><br>Como parte de este esfuerzo, hemos creado la iniciativa <strong>Engineering Biological Circuits Program (EBCP)</strong>, un espacio para explorar, aprender y desarrollar circuitos biológicos avanzados con aplicaciones en salud, biotecnología y más."
+               data-en="Welcome from Dr. Christian Cuba Samaniego's laboratory at Carnegie Mellon University (CMU), where we work on the design, mathematical analysis, and applications of control systems and molecular neural networks for pattern recognition, and their implementation in living cells through genetic circuits.<br><br>As part of this effort, we have created the <strong>Engineering Biological Circuits Program (EBCP)</strong> initiative, a space to explore, learn, and develop advanced biological circuits with applications in health, biotechnology, and more.">
                 Te damos la bienvenida desde el laboratorio del Dr. Christian Cuba Samaniego 
-                situado en Carniege Mellon University (CMU), donde trabajamos en el diseño, 
+                situado en Carnegie Mellon University (CMU), donde trabajamos en el diseño, 
                 análisis matemático y aplicaciones de sistemas de control y redes neuronales 
                 moleculares para el reconocimiento de patrones, y en su implementación en células
                 vivas mediante circuitos genéticos.<br><br>
@@ -55,13 +65,16 @@
             </p>
             
             <div class="hero-buttons">
-                <a href="#lectures" class="btn-primary">
+                <a href="#lectures" class="btn-primary" 
+                   data-es="Ver Lectures" data-en="View Lectures">
                     Ver Lectures
                 </a>
-                <a href="about.html" class="btn-primary">
+                <a href="about.html" class="btn-primary" 
+                   data-es="Sobre Nosotros" data-en="About Us">
                     Sobre Nosotros
                 </a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYuGtHIcFvwv-HSyuGpqddxChVHgHGmnp1-ATtC5nev_KRHg/viewform?usp=sharing&ouid=107770966576405056972" class="btn-primary">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYuGtHIcFvwv-HSyuGpqddxChVHgHGmnp1-ATtC5nev_KRHg/viewform?usp=sharing&ouid=107770966576405056972" 
+                   class="btn-primary" data-es="Inscribirse" data-en="Register">
                     Inscribirse
                 </a>
             </div>
@@ -70,11 +83,11 @@
             <div class="hero-stats">
                 <div class="stat">
                     <div class="stat-number">4</div>
-                    <div class="stat-label">Lectures</div>
+                    <div class="stat-label" data-es="Lectures" data-en="Lectures">Lectures</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">100+</div>
-                    <div class="stat-label">Estudiantes</div>
+                    <div class="stat-label" data-es="Estudiantes" data-en="Students">Estudiantes</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">2025</div>
@@ -84,115 +97,76 @@
         </div>
     </section>
 
-    <!-- Lectures Sect
-    <section id="lectures" class="lectures-section">
-        <div class="container">
-            <h2 class="section-title">Contenido del Workshop</h2>
-        -->
-            <!-- Search and Filters 
-            <div class="search-filters">
-                <div class="search-box">
-                    <input type="text" placeholder="Buscar lectures, temas, conceptos...">
-                </div>
-                <div class="filters">
-                    <button class="filter-btn active">Todos</button>
-                    <button class="filter-btn">Teórico</button>
-                    <button class="filter-btn">Técnico</button>
-                </div>
-            </div>
-        -->
-            <!-- Lectures Grid 
-            <div class="lectures-grid">
-                <div class="lecture-card" data-level="teorico">
-                    <div class="card-header">
-                        <div class="card-icon">🔄</div>
-                        <div class="card-badge">Teórico</div>
-                    </div>
-                    <h3 class="card-title">Lecture 01: Toggle Switch</h3>
-                    <p class="card-description">
-                        Fundamentos de circuitos bistables. Aprende sobre 
-                        sistemas con dos estados estables y sus aplicaciones.
-                    </p>
-                    <div class="card-tags">
-                        <span class="tag">Bistabilidad</span>
-                        <span class="tag">Modelado</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="lectures/lecture-01/" class="btn-card-primary">📝 Ver Lecture</a>
-                        <a href="lectures/lecture-01/toggle_switch.ipynb" class="btn-card-secondary">📓 Notebook</a>
-                    </div>
-                </div>
-
-                <div class="lecture-card" data-level="tecnico">
-                    <div class="card-header">
-                        <div class="card-icon">⚖️</div>
-                        <div class="card-badge">Técnico</div>
-                    </div>
-                    <h3 class="card-title">Lecture 02: Tristability</h3>
-                    <p class="card-description">
-                        Sistemas con múltiples estados estables. Explora 
-                        circuitos más complejos con tres puntos de equilibrio.
-                    </p>
-                    <div class="card-tags">
-                        <span class="tag">Multistabilidad</span>
-                        <span class="tag">Dinámica</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="lectures/lecture-02/" class="btn-card-primary">📝 Ver Lecture</a>
-                        <a href="lectures/lecture-02/tristability.ipynb" class="btn-card-secondary">📓 Notebook</a>
-                    </div>
-                </div>
-
-                <div class="lecture-card" data-level="teorico">
-                    <div class="card-header">
-                        <div class="card-icon">🌊</div>
-                        <div class="card-badge">Teórico</div>
-                    </div>
-                    <h3 class="card-title">Lecture 03: Oscillators</h3>
-                    <p class="card-description">
-                        Circuitos oscilatorios en biología sintética. 
-                        Diseño de sistemas periódicos y relojes biológicos.
-                    </p>
-                    <div class="card-tags">
-                        <span class="tag">Oscilaciones</span>
-                        <span class="tag">Relojes</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="lectures/lecture-03/" class="btn-card-primary">📝 Ver Lecture</a>
-                        <a href="lectures/lecture-03/oscillators.ipynb" class="btn-card-secondary">📓 Notebook</a>
-                    </div>
-                </div>
-
-                <div class="lecture-card" data-level="tecnico">
-                    <div class="card-header">
-                        <div class="card-icon">🧬</div>
-                        <div class="card-badge">Técnico</div>
-                    </div>
-                    <h3 class="card-title">Lecture 04: Aplicaciones</h3>
-                    <p class="card-description">
-                        Casos de uso reales y aplicaciones prácticas. 
-                        Implementación de circuitos en sistemas biológicos.
-                    </p>
-                    <div class="card-tags">
-                        <span class="tag">Casos de uso</span>
-                        <span class="tag">Implementación</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="lectures/lecture-04/" class="btn-card-primary">📝 Ver Lecture</a>
-                        <a href="lectures/lecture-04/aplicaciones.ipynb" class="btn-card-secondary">📓 Notebook</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
--->
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr.Christian Cuba Samaniego</p>
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
         </div>
     </footer>
+
+    <!-- JavaScript for language switching -->
+    <script>
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setLanguage(this.currentLang);
+            }
+
+            setupEventListeners() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang');
+                        this.setLanguage(lang);
+                    });
+                });
+            }
+
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+                
+                // Update HTML lang attribute
+                document.getElementById('html-root').setAttribute('lang', lang);
+                
+                // Update all elements with data attributes
+                const elements = document.querySelectorAll('[data-es][data-en]');
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        element.innerHTML = text;
+                    }
+                });
+
+                // Update active button
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update page title
+                const titles = {
+                    es: 'EBCP Latam 2025 - Workshop SynBio',
+                    en: 'EBCP Latam 2025 - SynBio Workshop'
+                };
+                document.title = titles[lang];
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new LanguageManager();
+        });
+    </script>
 </body>
 </html>
-
-<!--end--->
