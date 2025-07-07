@@ -605,6 +605,9 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+main.content {
+    flex: 1; /* Ocupa todo el espacio disponible entre header y footer */
+}
 
 /* Language Toggle Styles */
 .language-toggle {
