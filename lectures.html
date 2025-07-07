@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lectures - EBCP Latam 2025</title>
-  <link rel="icon" type="image/svg+xml" href="./images/bacteria favicon.svg">
-  <link rel="stylesheet" href="./static/custom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBCP Latam 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./images/bacteria favicon.svg">
+
+    <link rel="stylesheet" href="./static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <header class="header">
-    <nav class="navbar">
-      <div class="nav-brand">
-        <img src="./images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
-        <span class="brand-text">EBCP Latam 2025</span>
+<!-- Header -->
+<header class="header">
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="./images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+      <span class="brand-text">EBCP Latam 2025</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="#lectures" data-es="Lectures" data-en="Lectures">Lectures</a>
+      <a href="#proyectos_pasados" data-es="Proyectos anteriores" data-en="Previous Projects">Proyectos anteriores</a>
+      <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+      
+      <!-- Language Toggle -->
+      <div class="language-toggle">
+        <button class="lang-btn active" data-lang="es">ESP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
-      <div class="nav-links">
-        <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-        <a href="about.html" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
-        <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
-        <div class="language-toggle">
-          <button class="lang-btn active" data-lang="es">ESP</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-      </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
 
   <main class="content">
     <section class="notice-section">
@@ -37,14 +48,15 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
-         data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
-         &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
-      </p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
+        </div>
+    </footer>
 
   <!-- Language Switcher -->
   <script>
