@@ -584,19 +584,27 @@ body {
   }
 }
 
-/* Update Message Styles */ 
+.notice-section {
+    padding: 4rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Para que tenga altura visible */
+}
+
 .update-message {
     background-color: #fff3cd;
     color: #856404;
     border: 1px solid #ffeeba;
     padding: 1.5rem 2rem;
-    margin: 2rem auto;
-    max-width: 800px;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 500;
+    max-width: 700px;
     text-align: center;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
+
 
 /* Language Toggle Styles */
 .language-toggle {
