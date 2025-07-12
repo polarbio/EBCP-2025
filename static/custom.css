@@ -831,7 +831,7 @@ main.content {
 }
 
 .cell-markdown p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     line-height: 1.7;
     color: var(--text-dark);
     text-align: justify;
