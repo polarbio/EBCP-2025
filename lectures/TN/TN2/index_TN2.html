@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title id="page-title">Algoritmo de Gillespie - EBCP Latam 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../../images/bacteria favicon.svg">
+
+    <link rel="stylesheet" href="../../../static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax para matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Prism.js para sintaxis highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- Header - exactamente igual a tu index -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../../../images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+                <span class="brand-text">EBCP Latam 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="../../../lectures.html" data-es="Lectures" data-en="Lectures">Lectures</a>
+                <a href="../../../about.html" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Notebook Section -->
+    <section class="notebook-section">
+        <div class="notebook-container">
+
+            <!-- Header del notebook -->
+            <div class="notebook-header">
+                <h1 class="notebook-title"
+                    data-es="Simulaciones estocásticas utilizando el algoritmo de Gillespie"
+                    data-en="Implementing stochastic simulations using the Gillespie algorithm">
+                    Simulaciones estocásticas utilizando el algoritmo de Gillespie
+                </h1>
+                <p class="notebook-subtitle"
+                   data-es="2025 Workshop en Modelamiento de Sistemas Biológicos"
+                   data-en="2025 Workshop on Biological Systems Modeling">
+                    2025 Workshop en Modelamiento de Sistemas Biológicos
+                </p>
+                <div class="notebook-meta">
+                    <div data-es="Autor: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego"
+                         data-en="Author: Bsc. Frank Britto Bisso | Reviewed by: PhD. Christian Cuba Samaniego">
+                        Autor: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego
+                    </div>
+                    <div data-es="Última fecha de modificación: 06 de Julio, 2025"
+                         data-en="Last modified: July 06, 2025">
+                        Última fecha de modificación: 06 de Julio, 2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del notebook -->
+            
+            <!-- Celda 1: Introducción -->
+            <div class="cell cell-markdown">
+                
+                <p data-es="En esta sección vamos a explorar cómo implementar simulaciones estocásticas usando el paquete <code>biocircuits</code>. Para una revisión y más detalles sobre la lógica y las matemáticas detrás del algoritmo, los autores del paquete tienen una excelente explicación que se puede consultar <a href='https://biocircuits.github.io/technical_appendices/16a_gillespie.html'>aquí</a>."
+                data-en="Here we will explore how to implement stochastic simulations using the <code>biocircuits</code> package. For a review and details on the rationale and math behind the algorithm, the authors of the package have a great explanation that can be accessed <a href='https://biocircuits.github.io/technical_appendices/16a_gillespie.html'>here</a>.">
+                    En esta sección vamos a explorar cómo implementar simulaciones estocásticas usando el paquete <code>biocircuits</code>. Para una revisión y más detalles sobre la lógica y las matemáticas detrás del algoritmo, los autores del paquete tienen una excelente explicación que se puede consultar <a href="https://biocircuits.github.io/technical_appendices/16a_gillespie.html">aquí</a>.
+                </p>
+
+                <h2 data-es="La matriz de probabilidades (propensities)"
+                    data-en="The propensities matrix">
+                    La matriz de probabilidades (propensities)
+                </h2>
+
+                <p data-es="La <strong>matriz de probabilidades</strong>, como bien describe su nombre, representa las probabilidades de que cada reacción química ocurra en un determinado instante de tiempo. Para entender cómo escribir esta matriz, recordemos nuestro modelo de transcripción-traducción (TXTL) de un gen reportero del Technical Note #1. Si $m_{\text{gfp}}$ representa el producto de la transcripción (es decir, el ARNm), y ${\text{gfp}}$ es el producto de la traducción (es decir, la proteína), las EDOs que describen el sistema TXTL eran las siguientes:"
+                   data-en="The <strong>propensities matrix</strong> describes the probabilities of each chemical reaction to occur in a certain time step. To understand how to write this matrix, let's recall our transcription-translation (TXTL) model of a reporter gene from the Technical Note #1. If $m_{\text{gfp}}$ is the production of transcription (i.e., the mRNA), and ${\text{gfp}}$ is the product of translation (i.e., the protein), the ODEs that described the TXTL system were the following:">
+                   La <strong>matriz de probabilidades</strong>, como bien describe su nombre, representa las probabilidades de que cada reacción química ocurra en un determinado instante de tiempo. Para entender cómo escribir esta matriz, recordemos nuestro modelo de transcripción-traducción (TXTL) de un gen reportero del Technical Note #1. Si $m_{\text{gfp}}$ representa el producto de la transcripción (es decir, el ARNm), y ${\text{gfp}}$ es el producto de la traducción (es decir, la proteína), las EDOs que describen el sistema TXTL eran las siguientes: 
+                </p>
+            </div>
+
+            <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{d}{dt}m_{\text{gfp}} &=& \theta - \delta m_{\text{gfp}} \\
+                    \frac{d}{dt} \text{gfp} &=& \rho  m_{\text{gfp}} - \phi \text{gfp}
+                    \end{eqnarray}$$
+            </div>
+            
+            <div class="cell cell-markdown">    
+                <p data-es="Una buena práctica antes de escribir la matriz de propensiones es analizar la <strong>dimensionalidad</strong> de nuestras EDOs. Para el sistema TXTL, las unidades son concentración ($\mu$M)  y horas (h)."
+                data-en="A good practice before writing the propensities matrix is to analyze the <strong>dimensionality</strong> of our ODEs. For the TXTL system, the units are concentration ($\mu$M) and hours (h).">
+                    Una buena práctica antes de escribir la matriz de propensiones es analizar la <strong>dimensionalidad</strong> de nuestras EDOs. Para el sistema TXTL, las unidades son concentración ($\mu$M)  y horas (h).
+                </p>
+            </div>
+
+            <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{d}{dt}m_{\text{gfp}} &=& \theta \left [\frac{\mu M}{h} \right ] - \delta \left [\frac{1}{h} \right ] m_{\text{gfp}} [\mu M] \\
+                    \frac{d}{dt} \text{gfp} &=& \rho \left [\frac{1}{h} \right ] m_{\text{gfp}} [\mu M] - \phi \left [\frac{1}{h} \right ] \text{gfp} [\mu M]
+                    \end{eqnarray}$$
+            </div>
+
+            <div class="cell cell-markdown">
+                
+                <p data-es="Cuando usamos el algoritmo de Gillespie del paquete <code>biocircuits</code>, todas las concentraciones se interpretan como número de moléculas. Esto significa que debemos asegurarnos de que los parámetros de nuestro modelo estén expresados en las unidades correctas. Las tasas de traducción, degradación del ARNm y degradación de la proteína ($\rho$, $\delta$ y $\phi$) ya tienen unidades de <em>''por tiempo''</em> ($1/h$), por lo que no necesitan convertirse. Sin embargo, la tasa de transcripción $\theta$ está definida en unidades de concentración por tiempo ($\mu M/h$), así que necesitamos convertirla a <em>''moléculas por unidad de tiempo''</em>. Para hacer esto, debemos multiplicar $\theta$ por un factor de volumen llamado $\Omega$. Su valor depende del volumen efectivo de la célula, y garantiza que la simulación estocástica sea coherente con la escala física del sistema."
+                   data-en="When we use the Gillespie algorithm from the <code>biocircuits</code> package, all concentrations are interpreted as number of molecules. This means we need to make sure our model parameters are expressed in the right units. The rates for translation, mRNA degradation, and protein degradation ($\rho$, $\delta$, and $\phi$) already have units of <em>''per time''</em> ($1/h$), so they don’t need to be converted. However, the transcription rate $\theta$ is defined in concentration units per time ($\mu M/h$), so we need to convert it into <em>''molecules per unit time''</em>. To do this, we should multiply $\theta$ by a volume factor named $\Omega$. Its value depends on the effective cell volume, and it ensures that the stochastic simulation stays consistent with the physical scale of the system.">
+                   Cuando usamos el algoritmo de Gillespie del paquete <code>biocircuits</code>, todas las concentraciones se interpretan como número de moléculas. Esto significa que debemos asegurarnos de que los parámetros de nuestro modelo estén expresados en las unidades correctas. Las tasas de traducción, degradación del ARNm y degradación de la proteína ($\rho$, $\delta$ y $\phi$) ya tienen unidades de <em>''por tiempo''</em> ($1/h$), por lo que no necesitan convertirse. Sin embargo, la tasa de transcripción $\theta$ está definida en unidades de concentración por tiempo ($\mu M/h$), así que necesitamos convertirla a <em>''moléculas por unidad de tiempo''</em>. Para hacer esto, debemos multiplicar $\theta$ por un factor de volumen llamado $\Omega$. Su valor depende del volumen efectivo de la célula, y garantiza que la simulación estocástica sea coherente con la escala física del sistema.
+                </p>
+
+                <p data-es="Para escribir su matriz de estequiometría, básicamente debemos <em>''separar''</em> cada término que produce o degrada una variable de estado en una matriz. Una buena práctica es escribir todas las reacciones que involucran una determinada variable de estado una tras otra."
+                   data-en="To write its stoichiometry matrix, we should basically <em>‘'decouple’'</em> each term that either produces or degrades each state variable into a matrix. A good practice is to write all reactions involving certain state variable one after the other.">
+                   Para escribir su matriz de estequiometría, básicamente debemos <em>''separar''</em> cada término que produce o degrada una variable de estado en una matriz. Una buena práctica es escribir todas las reacciones que involucran una determinada variable de estado una tras otra.
+                </p>
+            </div>
+                <div class="cell cell-code">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+# Propensities matrix
+def simple_propensity(propensities, population, t, th, rho, d, p, Omega):
+  mgfp, gfp = population
+
+  propensities[0] = th * Omega
+  propensities[1] = d * mgfp
+  propensities[2] = rho * mgfp
+  propensities[3] = p * gfp
+                    </code></pre>
+                    </div>
+                </div>
+            <div class="cell cell-markdown">
+                <p data-es="<strong>Importante</strong>: El <strong>orden</strong> en el que se escriben las probabilidades es relevante, ya que la matriz de estequiometría debe coincidir con las probabilidades de cada reacción y reflejar correctamente el cambio en el número de moléculas."
+                   data-en="<strong>Important</strong>: The <strong>order</strong> propensities were written is important, since the stoichiometry matrix should match the propensities of each reaction and correctly reflect the change in the number of molecules.">
+                    <strong>Importante</strong>: El <strong>orden</strong> en el que se escriben las probabilidades es relevante, ya que la matriz de estequiometría debe coincidir con las probabilidades de cada reacción y reflejar correctamente el cambio en el número de moléculas.
+                </p>
+            </div>
+
+            <div class="cell cell-markdown">
+                <h2 data-es="Matriz de estequiometría"
+                    data-en="The stoichiometry matrix">
+                    Matriz de estequiometría
+                </h2>
+
+                <p data-es="La <strong>matriz de estequiometría</strong> describe cómo cambia el número de moléculas de cada especie química involucrada en la reacción. Para escribir esta matriz, debemos recordar que cada término en el lado derecho de las EDOs nos indica cómo está cambiando la concentración de la variable de estado."
+                   data-en="The <strong>stoichiomatry matrix</strong> describes how the number of molecules of each chemical species involved in the reaction should change. To write this matrix, we should remember that each term at the right-hand side of the ODEs tell us how does the concentration of the state variable is changing.">
+                    La <strong>matriz de estequiometría</strong> describe cómo cambia el número de moléculas de cada especie química involucrada en la reacción. Para escribir esta matriz, debemos recordar que cada término en el lado derecho de las EDOs nos indica cómo está cambiando la concentración de la variable de estado.
+                </p>
+
+                <p data-es="Una buena práctica es tomar las reacciones químicas o las EDOs que usamos para describir nuestro sistema determinista y escribir un ''+1'' en las reacciones que producen, y un ''−1'' en las reacciones que degradan."
+                   data-en="A good practice is take the chemical reactions or the ODEs we used to describe our deterministic system and write a ''+1'' in the reactions that produce, and a ''-1'' is the reactions that degrade.">
+                    Una buena práctica es tomar las reacciones químicas o las EDOs que usamos para describir nuestro sistema determinista y escribir un ''+1'' en las reacciones que producen, y un ''−1'' en las reacciones que degradan.
+                </p>
+            </div>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{d}{dt}m_{\text{gfp}} &=& \theta (+1) - \delta m_{\text{gfp}} (-1) \\
+                    \frac{d}{dt} \text{gfp} &=& \rho  m_{\text{gfp}} (+1) - \phi \text{gfp}(-1)
+                    \end{eqnarray}$$
+                </div>
+
+            <div class="cell cell-markdown">
+                <p data-es="No olvides que, si una especie química no participa en una reacción descrita por una función de propensión, se le asigna un <strong>cero</strong> (0) en la matriz de estequiometría."
+                   data-en="Don´t forget that, if a chemical species does not participate in a reaction describe by a propensity function, it's assigned a <strong>zero</strong> (0) in the stoichiometry matrix.">
+                    No olvides que, si una especie química no participa en una reacción descrita por una función de propensión, se le asigna un <strong>cero</strong> (0) en la matriz de estequiometría.
+                </p>
+            </div>
+
+                <div class="cell cell-code lang-block" data-lang="es">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+import numpy as np
+
+# Stoichiometry matrix
+simple_update = np.array(
+    [
+        # mgfp, gfp
+        [ 1,     0], # DNA -> DNA + mRNA        (producción por transcripción)
+        [-1,     0], # mRNA -> 0                (degradación)
+        [ 0,     1], # mRNA -> mRNA + protein   (producción por traslación)
+        [ 0,    -1], # protein -> 0             (degradación)
+    ]
+)
+</code></pre>
+                    </div>
+                </div>
+
+                <div class="cell cell-code lang-block" data-lang="en">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+import numpy as np
+
+# Stoichiometry matrix
+simple_update = np.array(
+    [
+        # mgfp, gfp
+        [ 1,     0], # DNA -> DNA + mRNA        (production via transcription)
+        [-1,     0], # mRNA -> 0                (degradation)
+        [ 0,     1], # mRNA -> mRNA + protein   (production via translation)
+        [ 0,    -1], # protein -> 0             (degradation)
+    ]
+)
+                    </code></pre>
+                    </div>
+                </div>
+
+            <div class="cell cell-markdown">
+                <h2 data-es="Utilizando el algoritmo Gillespie"
+                    data-en="Using the Gillespie algorithm">
+                    Utilizando el algoritmo Gillespie
+                </h2>
+
+                <p data-es="Como resumen, definimos la <strong>matriz de probabilidades</strong> para indicarle al algoritmo de Gillespie la probabilidad de que una reacción aumente o disminuya el número de moléculas, lo cual está determinado por la <strong>matriz de estequiometría</strong>. Para implementar el algoritmo y visualizar los resultados, vamos a usar los paquetes <code>biocircuits</code> y <code>bokeh</code>."
+                   data-en="As a recap, we define the <strong>propensities matrix</strong> to tell the Gillespie algorithm the probability of a reaction to either increase or decrease the number of molecules, defined by the <strong>stoichiometry matrix</strong>. To implement the algorithm and visualize the results, let's use the <code>biocircuits</code> and <code>bokeh</code> packages.">
+                    Como resumen, definimos la <strong>matriz de probabilidades</strong> para indicarle al algoritmo de Gillespie la probabilidad de que una reacción aumente o disminuya el número de moléculas, lo cual está determinado por la <strong>matriz de estequiometría</strong>. Para implementar el algoritmo y visualizar los resultados, vamos a usar los paquetes <code>biocircuits</code> y <code>bokeh</code>.
+                </p>      
+            </div>
+
+            <div class="cell cell-code">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+import os, sys, subprocess
+if "google.colab" in sys.modules:
+  cmd = "pip install --upgrade biocircuits bokeh-catplot watermark blackcellmagic intersect"
+  process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  stdout, stderr = process.communicate()
+# ------
+
+import biocircuits
+
+import bokeh.io
+import bokeh.plotting
+import bokeh.palettes
+from bokeh.models import Range1d
+
+bokeh.io.output_notebook()
+                    </code></pre>
+                    </div>
+                </div>
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+# Kinetic parameters
+th = 1
+rho = 2
+d = 0.1
+p = 0.05
+
+# Definir el valor de conversión a número de molécules
+Omega = 100 # e.g., 500: volumen de una célula E. Coli
+
+# Definir el tiempo de simulación, condiciones iniciales y parámetros del sistema
+time_points = np.linspace(0, 80, 801)
+population_0 = np.zeros(2, dtype=int) # initial conditions
+args1 = (th, rho, d, p, Omega)
+                    </code></pre>
+                    </div>
+                </div>
+            
+            <div class="cell cell-code lang-block" data-lang="en">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+# Kinetic parameters
+th = 1
+rho = 2
+d = 0.1
+p = 0.05
+
+# Define the conversion factor to number of molecules
+Omega = 600 # e.g., E. Coli cell volume
+
+# Define simulation time, initial conditions, and system parameters
+time_points = np.linspace(0, 80, 801)
+population_0 = np.zeros(2, dtype=int) # initial conditions
+args1 = (th, rho, d, p, Omega)
+                    </code></pre>
+                    </div>
+                </div>
+
+            <div class="cell cell-markdown">
+                <p data-es="La función que estamos usando se llama <code>gillespie_ssa</code> , y recibe como argumentos (no necesariamente en este orden): la matriz de propensiones, la matriz de estequiometría, las condiciones iniciales, el tiempo de simulación, los parámetros cinéticos y dos parámetros adicionales llamados <code>size</code> y <code>n_threads</code>, cuyo producto indica cuántas trayectorias estocásticas se van a simular. Además, como las simulaciones estocásticas suelen tomar algo de tiempo en resolverse, es buena práctica guardar los resultados una vez que terminan. "
+                   data-en="The function we are using is called <code>gillespie_ssa</code> , which receives as arguments (not in order): the propensities matrix, the stoichiometry matrix, the initial conditions, the simulation time, the kinetic parameters and two other parameters called <code>size</code> and <code>n_threads</code>, whose product gives us how many stochastic trajectories are simulated. Also, since stochastic simulations usually take some time to solve, it's a good practice to save our results once it finishes.">
+                    La función que estamos usando se llama <code>gillespie_ssa</code> , y recibe como argumentos (no necesariamente en este orden): la matriz de propensiones, la matriz de estequiometría, las condiciones iniciales, el tiempo de simulación, los parámetros cinéticos y dos parámetros adicionales llamados <code>size</code> y <code>n_threads</code>, cuyo producto indica cuántas trayectorias estocásticas se van a simular. Además, como las simulaciones estocásticas suelen tomar algo de tiempo en resolverse, es buena práctica guardar los resultados una vez que terminan. 
+                </p>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+# Resolviendo utilizando el algoritmo Gillespie
+samples = biocircuits.gillespie_ssa(simple_propensity, simple_update, population_0, time_points, size=20, args=args1, n_threads=2, progress_bar=True)
+
+# Guardando los resultados
+np.save("TXTL_stochastic.npy", samples)</code></pre>
+                </div>
+                <div class="cell-output">
+                    <pre>
+ 100%|██████████| 20/20 [02:11<00:00,  6.58s/it]
+ 100%|██████████| 20/20 [02:12<00:00,  6.61s/it] </pre>
+                </div>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="en">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+# Solve using the Gillespie algorithm
+samples = biocircuits.gillespie_ssa(simple_propensity, simple_update, population_0, time_points, size=20, args=args1, n_threads=2, progress_bar=True)
+
+# Save results
+np.save("TXTL_stochastic.npy", samples)</code></pre>
+                </div>
+                <div class="cell-output">
+                    <pre>
+ 100%|██████████| 20/20 [02:11<00:00,  6.58s/it]
+ 100%|██████████| 20/20 [02:12<00:00,  6.61s/it] </pre>
+                </div>
+            </div>
+
+            <!-- Celda 5: Mostrar soluciones -->
+            <div class="cell cell-markdown">
+                <h3 data-es="Finalmente, visualizamos los resultados:"
+                    data-en="Finally, we can visualize our results:">
+                    Finalmente, visualizamos los resultados:
+                </h3>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+# Colores y etiquetas
+colors = ['gray', 'orange']
+labels = ['mRNA', 'proteina']
+
+# Configuración de la visualización con bokeh
+fig_size = [320, 250]
+plots = []
+
+for i in range(2):
+  plots.append(bokeh.plotting.figure(width = fig_size[0], height = fig_size[1],
+                                     x_axis_label = 'Tiempo (horas)', y_axis_label = 'Numéro de moléculas'))
+
+  # Calculamos el promedio entre trayectorias
+  y_mean = np.mean(samples[:, :, i], axis=0)
+  y_min = np.min(samples[:, :, i], axis=0)
+  y_max = np.max(samples[:, :, i], axis=0)
+
+  # Creamos un patch: resaltando la región cubierta por todas las trayectorias
+  x_patch = np.concatenate([time_points, time_points[::-1]])
+  y_patch = np.concatenate([y_max, y_min[::-1]])
+
+  # Ploteamos los resultados
+  plots[i].patch(x_patch, y_patch, color=colors[i], fill_alpha=0.2, line_alpha=0, legend_label = labels[i])
+  plots[i].line(time_points, y_mean, line_width=3, color=colors[i])
+
+  plots[i].legend.location = 'bottom_right'
+
+# Visualización
+bokeh.io.show(bokeh.layouts.row(plots))
+</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="en">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+# Colors and labels
+colors = ['gray', 'orange']
+labels = ['mRNA', 'protein']
+
+# Setting up the bokeh visualization
+fig_size = [320, 250]
+plots = []
+
+for i in range(2):
+  plots.append(bokeh.plotting.figure(width = fig_size[0], height = fig_size[1],
+                                     x_axis_label = 'Time (hours)', y_axis_label = 'Number of molecules'))
+
+# Let's compute the average between trajectories
+  y_mean = np.mean(samples[:, :, i], axis=0)
+  y_min = np.min(samples[:, :, i], axis=0)
+  y_max = np.max(samples[:, :, i], axis=0)
+
+  # Let's create a patch: highlighting the region covered by all trajectories
+  x_patch = np.concatenate([time_points, time_points[::-1]])
+  y_patch = np.concatenate([y_max, y_min[::-1]])
+
+  # Showing the results
+  plots[i].patch(x_patch, y_patch, color=colors[i], fill_alpha=0.2, line_alpha=0, legend_label = labels[i])
+  plots[i].line(time_points, y_mean, line_width=3, color=colors[i])
+
+  plots[i].legend.location = 'bottom_right'
+
+# Visualization
+bokeh.io.show(bokeh.layouts.row(plots))
+</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 1_TN2_esp.html"
+                    width="100%" height="250"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 1_TN2_en.html"
+                    width="100%" height="250"
+                    style="border:none; display: none;"></iframe>
+            </div>
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - exactamente igual a tu index -->
+    <footer class="footer">
+        <div class="container">
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- JavaScript exactamente igual a tu index -->
+    <script>
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setLanguage(this.currentLang);
+            }
+
+            setupEventListeners() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang');
+                        this.setLanguage(lang);
+                    });
+                });
+            }
+
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+
+                // Actualizar atributo lang del <html>
+                document.getElementById('html-root').setAttribute('lang', lang);
+
+                // Cambiar textos multilingües
+                document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        element.innerHTML = text;
+                    }
+                });
+
+                // Mostrar u ocultar bloques de código por idioma
+                document.querySelectorAll('.lang-block').forEach(block => {
+                    const blockLang = block.getAttribute('data-lang');
+                    block.style.display = (blockLang === lang) ? 'block' : 'none';
+                });
+
+                // Mostrar u ocultar imágenes por idioma
+                document.querySelectorAll('.lang-img').forEach(img => {
+                    const imgLang = img.getAttribute('data-lang');
+                    img.style.display = (imgLang === lang) ? 'block' : 'none';
+                });
+
+                // Activar botón correspondiente
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Actualizar título de la página
+                const titles = {
+                    es: 'Solución Numérica de EDOs - EBCP Latam 2025',
+                    en: 'Numerical Solution of ODEs - EBCP Latam 2025'
+                };
+                document.title = titles[lang];
+
+                // Re-render de MathJax si está disponible
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('selectedLanguage') || 'es';
+
+            // Mostrar directamente el contenido correcto según idioma
+            document.getElementById('html-root').setAttribute('lang', lang);
+
+            document.querySelectorAll('[data-es][data-en]').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) el.innerHTML = text;
+            });
+
+            document.querySelectorAll('.lang-block, .lang-img').forEach(el => {
+                const elLang = el.getAttribute('data-lang');
+                el.style.display = (elLang === lang) ? 'block' : 'none';
+            });
+
+            const titles = {
+                es: 'Algoritmo de Gillespie - EBCP Latam 2025',
+                en: 'Gillespie Algorithm - EBCP Latam 2025'
+            };
+            document.title = titles[lang];
+
+            new LanguageManager();
+        });
+    </script>
+
+    <!-- Renderizar MathJax al final si es necesario -->
+    <script>
+        if (window.MathJax) {
+        MathJax.typesetPromise();
+        }
+    </script>
+</body>
+</html>

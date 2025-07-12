@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solución Numérica de EDOs - EBCP Latam 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../../images/bacteria favicon.svg">
+
+    <link rel="stylesheet" href="../../../static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax para matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Prism.js para sintaxis highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- Header - exactamente igual a tu index -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../../../images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+                <span class="brand-text">EBCP Latam 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="../../../lectures.html" data-es="Lectures" data-en="Lectures">Lectures</a>
+                <a href="../../../about.html" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Notebook Section -->
+    <section class="notebook-section">
+        <div class="notebook-container">
+
+            <!-- Header del notebook -->
+            <div class="notebook-header">
+                <h1 class="notebook-title"
+                    data-es="Solución numérica de EDOs utilizando SciPy"
+                    data-en="Numerical Solution of ODEs using SciPy">
+                    Solución numérica de EDOs utilizando SciPy
+                </h1>
+                <p class="notebook-subtitle"
+                   data-es="2025 Workshop en Modelamiento de Sistemas Biológicos"
+                   data-en="2025 Workshop on Biological Systems Modeling">
+                    2025 Workshop en Modelamiento de Sistemas Biológicos
+                </p>
+                <div class="notebook-meta">
+                    <div data-es="Autores: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego"
+                         data-en="Authors: Bsc. Frank Britto Bisso | Reviewed by: PhD. Christian Cuba Samaniego">
+                        Autores: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego
+                    </div>
+                    <div data-es="Última fecha de modificación: 06 de Julio, 2025"
+                         data-en="Last modified: July 06, 2025">
+                        Última fecha de modificación: 06 de Julio, 2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navegación interna 
+            <nav class="notebook-nav">
+                <div class="nav-items">
+                    <a href="#introduccion" data-es="Introducción" data-en="Introduction">Introducción</a>
+                    <a href="#ecuaciones-cineticas" data-es="Ecuaciones Cinéticas" data-en="Kinetic Equations">Ecuaciones Cinéticas</a>
+                    <a href="#solucion-simbolica" data-es="Solución Simbólica" data-en="Symbolic Solution">Solución Simbólica</a>
+                    <a href="#solucion-numerica" data-es="Solución Numérica" data-en="Numerical Solution">Solución Numérica</a>
+                </div>
+            </nav>
+            -->
+
+            <!-- Contenido del notebook -->
+            
+            <!-- Celda 1: Introducción -->
+            <div class="cell cell-markdown" id="introduccion">
+                <h2 data-es="Modelando la dinámica de reacciones bioquímicas"
+                    data-en="Modeling the dynamics of biochemical reactions">
+                    Modelando la dinámica de reacciones bioquímicas
+                </h2>
+                
+                <p data-es="A grandes rasgos, la investigación en biología inicia con la recolección de datos experimentales, para luego utilizar herramientas matemáticas para describir cómo se relacionan distintas variables — por ejemplo, mediante una regresión lineal. Lograr que un modelo se ajuste bien a los datos es un gran paso, ya que puede revelar aspectos clave de los mecanismos regulatorios que determinan el comportamiento del sistema. Hay mucho trabajo interesante en esta área, y el campo de la <strong>identificación de sistemas</strong> en particular ofrece herramientas útiles para descubrir estas relaciones."
+                   data-en="Broadly speaking, research in biology begins with the collection of experimental data, and then uses mathematical tools to describe how different variables relate to each other — for example, through linear regression. Getting a model to fit the data well is a big step, as it can reveal key aspects of the regulatory mechanisms that determine system behavior. There is a lot of interesting work in this area, and the field of <strong>system identification</strong> in particular offers useful tools for discovering these relationships.">
+                    A grandes rasgos, la investigación en biología inicia con la recolección de datos experimentales, para luego utilizar herramientas matemáticas para describir cómo se relacionan distintas variables — por ejemplo, mediante una regresión lineal. Lograr que un modelo se ajuste bien a los datos es un gran paso, ya que puede revelar aspectos clave de los mecanismos regulatorios que determinan el comportamiento del sistema. Hay mucho trabajo interesante en esta área, y el campo de la <strong>identificación de sistemas</strong> en particular ofrece herramientas útiles para descubrir estas relaciones.
+                </p>
+
+                <p data-es="En biología sintética también usamos modelos matemáticos, pero muchas veces con otro objetivo. En lugar de usarlos solo para describir relaciones entre variables, los usamos para <strong>diseñar circuitos biológicos de manera dirigida</strong> (<em>forward engineering</em>). Es decir, los modelos nos ayudan a crear sistemas que se comporten de una forma específica. En este contexto, los modelos <em>predictivos</em> resultan especialmente útiles, ya que nos permiten simular el comportamiento de un circuito (<em>in silico</em>) y reducir la cantidad de iteraciones experimentales necesarias para hacerlo funcionar. No esperamos que nuestros modelos representen todos los detalles de la biología. Más bien, buscamos que capturen las características clave que son relevantes para el problema de diseño que estamos abordando."
+                   data-en="In synthetic biology we also use mathematical models, but often with a different objective. Instead of using them only to describe relationships between variables, we use them to <strong>design biological circuits in a directed manner</strong> (<em>forward engineering</em>). That is, models help us create systems that behave in a specific way. In this context, <em>predictive</em> models are especially useful, as they allow us to simulate the behavior of a circuit (<em>in silico</em>) and reduce the number of experimental iterations needed to make it work. We don't expect our models to represent every detail of biology. Rather, we seek to capture the key features that are relevant to the design problem we are addressing.">
+                    En biología sintética también usamos modelos matemáticos, pero muchas veces con otro objetivo. En lugar de usarlos solo para describir relaciones entre variables, los usamos para <strong>diseñar circuitos biológicos de manera dirigida</strong> (<em>forward engineering</em>). Es decir, los modelos nos ayudan a crear sistemas que se comporten de una forma específica. En este contexto, los modelos <em>predictivos</em> resultan especialmente útiles, ya que nos permiten simular el comportamiento de un circuito (<em>in silico</em>) y reducir la cantidad de iteraciones experimentales necesarias para hacerlo funcionar. No esperamos que nuestros modelos representen todos los detalles de la biología. Más bien, buscamos que capturen las características clave que son relevantes para el problema de diseño que estamos abordando.
+                </p>
+            </div>
+
+            <!-- Celda 2: Ecuaciones cinéticas -->
+            <div class="cell cell-markdown" id="ecuaciones-cineticas">
+                <h2 data-es="Ecuaciones cinéticas (o de velocidad de reacciones químicas)"
+                    data-en="Kinetic equations (or chemical reaction rate equations)">
+                    Ecuaciones cinéticas (o de velocidad de reacciones químicas)
+                </h2>
+                
+                <p data-es="Un marco matemático muy útil para modelar sistemas biológicos es el de las ecuaciones cinéticas, las cuales describen cómo cambian las concentraciones de las especies químicas a lo largo del tiempo. Este enfoque se basa en conceptos de la mecánica estadística, donde las interacciones moleculares se tratan como eventos estocásticos (aleatorios) que obedecen las leyes de la termodinámica. Para una explicación más detallada, recomendamos la sección introductoria del libro de <a href='https://www.cds.caltech.edu/~murray/books/AM08/pdf/bfs-pupss_13Jun14.pdf'>Del Vecchio y Murray</a>."
+                   data-en="A very useful mathematical framework for modeling biological systems is that of kinetic equations, which describe how the concentrations of chemical species change over time. This approach is based on concepts from statistical mechanics, where molecular interactions are treated as stochastic (random) events that obey the laws of thermodynamics. For a more detailed explanation, we recommend the introductory section of the book by <a href='https://www.cds.caltech.edu/~murray/books/AM08/pdf/bfs-pupss_13Jun14.pdf'>Del Vecchio and Murray</a>.">
+                    Un marco matemático muy útil para modelar sistemas biológicos es el de las ecuaciones cinéticas, las cuales describen cómo cambian las concentraciones de las especies químicas a lo largo del tiempo. Este enfoque se basa en conceptos de la mecánica estadística, donde las interacciones moleculares se tratan como eventos estocásticos (aleatorios) que obedecen las leyes de la termodinámica. Para una explicación más detallada, recomendamos la sección introductoria del libro de <a href="https://www.cds.caltech.edu/~murray/books/AM08/pdf/bfs-pupss_13Jun14.pdf">Del Vecchio y Murray</a>.
+                </p>
+
+                <p data-es="Dentro de este marco, usamos Ecuaciones Diferenciales Ordinarias (EDOs) para modelar un conjunto de reacciones químicas que representan las interacciones entre los componentes de un determinado circuito biológico. Como ejemplo, vamos a modelar la dinámica de un gen reportero. Supongamos que tenemos un gen regulado por un promotor constitutivo, que puede transcribirse para generar la molécula de ARNm llamada $m_{\text{gfp}}$, y que puede traducirse en la proteína llamada ${\text{gfp}}$."
+                   data-en="Within this framework, we use Ordinary Differential Equations (ODEs) to model a set of chemical reactions that represent the interactions between the components of a given biological circuit. As an example, we are going to model the dynamics of a reporter gene. Suppose we have a gene regulated by a constitutive promoter, which can be transcribed to generate the mRNA molecule called $m_{\text{gfp}}$ , and which can be translated into the protein called ${\text{gfp}}$.">
+                    Dentro de este marco, usamos Ecuaciones Diferenciales Ordinarias (EDOs) para modelar un conjunto de reacciones químicas que representan las interacciones entre los componentes de un determinado circuito biológico. Como ejemplo, vamos a modelar la dinámica de un gen reportero. Supongamos que tenemos un gen regulado por un promotor constitutivo, que puede transcribirse para generar la molécula de ARNm llamada $m_{\text{gfp}}$, y que puede traducirse en la proteína llamada ${\text{gfp}}$.
+                </p>
+
+                <h3 data-es="Escribiendo las reacciones químicas"
+                    data-en="Writing the chemical reactions">
+                    Escribiendo las reacciones químicas
+                </h3>
+
+                <p data-es="Los eventos bioquímicos involucrados en este sistema son la transcripción y la traducción. Vamos a asumir que la transcripción ocurre a una tasa $\theta$, y la traducción a una tasa $\rho$. Además, tanto el ARNm como la proteína están sujetos a degradación: el ARNm se degrada a una tasa $\delta$, y la proteína a una tasa $\phi$. Con estas suposiciones, podemos escribir las reacciones químicas correspondientes de la siguiente manera:"
+                   data-en="The biochemical events involved in this system are transcription and translation. We will assume that transcription occurs at a rate $\theta$, and translation at a rate $\rho$. In addition, both mRNA and protein are subject to degradation: mRNA degrades at a rate $\delta$, and protein at a rate $\phi$. With these assumptions, we can write the corresponding chemical reactions as follows:">
+                    Los eventos bioquímicos involucrados en este sistema son la transcripción y la traducción. Vamos a asumir que la transcripción ocurre a una tasa $\theta$, y la traducción a una tasa $\rho$. Además, tanto el ARNm como la proteína están sujetos a degradación: el ARNm se degrada a una tasa $\delta$, y la proteína a una tasa $\phi$. Con estas suposiciones, podemos escribir las reacciones químicas correspondientes de la siguiente manera:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{align}
+                    \text{DNA} &\xrightarrow{\theta} \text{DNA} + m_{\text{gfp}} && m_{\text{gfp}} \xrightarrow{\delta} \emptyset && \text{Transcripcion y degradación del mRNA}\\
+                    m_{\text{gfp}} &\xrightarrow{\rho} m_{\text{gfp}} + \text{gfp} && \text{gfp} \xrightarrow{\phi} \emptyset && \text{Traducción y degradación de la proteina}
+                    \end{align}$$
+                </div>
+
+                <h3 data-es="Escribiendo las EDOs"
+                    data-en="Writing the ODEs">
+                    Escribiendo las EDOs
+                </h3>
+
+                <p data-es="Utilizando la ley de acción de masas, podemos modelar las reacciones químicas con las siguientes EDOs:"
+                   data-en="Using the law of mass action, we can model the chemical reactions with the following ODEs:">
+                    Utilizando la ley de acción de masas, podemos modelar las reacciones químicas con las siguientes EDOs:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{d}{dt}m_{\text{gfp}} &=& \theta - \delta m_{\text{gfp}} \\
+                    \frac{d}{dt} \text{gfp} &=& \rho  m_{\text{gfp}} - \phi \text{gfp}
+                    \end{eqnarray}$$
+                </div>
+            </div>
+
+            <!-- Celda 3: Solución simbólica -->
+            <div class="cell cell-markdown" id="solucion-simbolica">
+                <h2 data-es="Resolviendo las EDOs: métodos simbólicos y numéricos"
+                    data-en="Solving ODEs: symbolic and numerical methods">
+                    Resolviendo las EDOs: métodos simbólicos y numéricos
+                </h2>
+                
+                <p data-es="En este sistema, $m_{\text{gfp}}$ y $\text{gfp}$ son las <strong>variables de estado</strong>, lo que significa que representan cantidades internas cuyos valores cambian con el tiempo de acuerdo con la dinámica del sistema. El sistema es lineal porque cada ecuación es una combinación lineal de estas variables: aparecen solo multiplicadas por constantes, no están elevadas a potencias distintas de uno, y no hay productos entre variables ni funciones no lineales. Entonces, como el sistema es lo suficientemente simple, podemos usar una librería de Python llamada <code>sympy</code> para encontrar las soluciones de estas EDOs."
+                   data-en="In this system, $m_{\text{gfp}}$ and $\text{gfp}$ are the <strong>state variables</strong>, meaning they represent internal quantities whose values change over time according to the system dynamics. The system is linear because each equation is a linear combination of these variables: they appear only multiplied by constants, are not raised to powers other than one, and there are no products between variables or nonlinear functions. So, since the system is simple enough, we can use a Python library called <code>sympy</code> to find the solutions to these ODEs.">
+                    En este sistema, $m_{\text{gfp}}$ y $\text{gfp}$ son las <strong>variables de estado</strong>, lo que significa que representan cantidades internas cuyos valores cambian con el tiempo de acuerdo con la dinámica del sistema. El sistema es lineal porque cada ecuación es una combinación lineal de estas variables: aparecen solo multiplicadas por constantes, no están elevadas a potencias distintas de uno, y no hay productos entre variables ni funciones no lineales. Entonces, como el sistema es lo suficientemente simple, podemos usar una librería de Python llamada <code>sympy</code> para encontrar las soluciones de estas EDOs.
+                </p>
+            </div>
+
+            <!-- Celda 4: Código Python -->
+            <div class="cell cell-code lang-block" data-lang="es">
+                <div class="cell-input">
+                    <pre><code class="language-python">import sympy as sp
+
+# Paso #1: definir los símbolos
+t = sp.symbols('t')
+theta, delta, rho, phi = sp.symbols('theta delta rho phi', positive=True, real=True)
+m = sp.Function('m_gfp')
+gfp = sp.Function('gfp')
+
+# Paso #2: escribir la EDO que describe la dinámica del ARNm
+ode1 = sp.Eq(m(t).diff(t), theta - delta * m(t))
+sol_m = sp.dsolve(ode1, m(t), ics={m(0): 0})
+m_sol = sol_m.rhs
+
+# Paso #3: escribir la EDO que describe la dinámica de la proteína
+ode2 = sp.Eq(gfp(t).diff(t), rho * m_sol - phi * gfp(t))
+sol_gfp = sp.dsolve(ode2, gfp(t), ics={gfp(0): 0})
+gfp_sol = sol_gfp.rhs
+
+# Imprimir resultados
+print("Solución de m_gfp(t):")
+print(sp.latex(m_sol))
+print("\nSolución de gfp(t):")
+print(sp.latex(gfp_sol))</code></pre>
+                </div>
+                <div class="cell-output">
+                    <pre>  Solución de m_gfp(t):
+  \frac{\theta}{\delta} - \frac{\theta e^{- \delta t}}{\delta}
+
+  Solución de gfp(t):
+  - \frac{\rho \theta e^{- \phi t}}{\delta \phi - \phi^{2}} + \frac{\rho \theta e^{- \delta t}}{\delta \left(\delta - \phi\right)} + \frac{\rho \theta}{\delta \phi}</pre>
+                </div>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="en">
+                <div class="cell-input">
+                    <pre><code class="language-python">import sympy as sp
+
+# Step #1: defining the symbols
+t = sp.symbols('t')
+theta, delta, rho, phi = sp.symbols('theta delta rho phi', positive=True, real=True)
+m = sp.Function('m_gfp')
+gfp = sp.Function('gfp')
+
+# Step #2: writing the ODE describing mRNA dynamics, considering mRNA(0) = 0 as the initial condition
+ode1 = sp.Eq(m(t).diff(t), theta - delta * m(t))
+sol_m = sp.dsolve(ode1, m(t), ics={m(0): 0})  # Initial condition: mRNA(0) = 0
+m_sol = sol_m.rhs
+
+# Now, we use the previous solution for the ODE describing protein dynamics, for the same initial condition
+ode2 = sp.Eq(gfp(t).diff(t), rho * m_sol - phi * gfp(t))
+sol_gfp = sp.dsolve(ode2, gfp(t), ics={gfp(0): 0})  # Initial condition: gfp(0) = 0
+gfp_sol = sol_gfp.rhs
+
+# Print results in Latex
+print("m_gfp(t) solution in LaTeX:")
+print(sp.latex(m_sol))
+
+print("\ngfp(t) solution in LaTeX:")
+print(sp.latex(gfp_sol))</code></pre>
+                </div>
+                <div class="cell-output">
+                    <pre>  m_gfp(t) solution in LaTeX:
+  \frac{\theta}{\delta} - \frac{\theta e^{- \delta t}}{\delta}
+
+  gfp(t) solution in LaTeX:
+  - \frac{\rho \theta e^{- \phi t}}{\delta \phi - \phi^{2}} + \frac{\rho \theta e^{- \delta t}}{\delta \left(\delta - \phi\right)} + \frac{\rho \theta}{\delta \phi}</pre>
+                </div>
+            </div>
+
+            <!-- Celda 5: Mostrar soluciones -->
+            <div class="cell cell-markdown">
+                <p data-es="Utilicemos LaTeX para mostrar las soluciones de forma más entendible:"
+                   data-en="Let's use LaTeX to show the solutions in a more understandable way:">
+                    Utilicemos LaTeX para mostrar las soluciones de forma más entendible:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    m_{\text{gfp}}(t) &=& \frac{\theta}{\delta} - \frac{\theta e^{- \delta t}}{\delta} \\
+                    \text{gfp}(t) &=& - \frac{\rho \theta e^{- \phi t}}{\delta \phi - \phi^{2}} + \frac{\rho \theta e^{- \delta t}}{\delta \left(\delta - \phi\right)} + \frac{\rho \theta}{\delta \phi}
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="Ahora vamos a visualizar la dinámica de ambas variables de estado. A lo largo de este workshop, usaremos la librería <code>bokeh</code> en lugar de <code>matplotlib</code> (u otras similares), simplemente porque permite generar visualizaciones más interactivas."
+                   data-en="Now we are going to visualize the dynamics of both state variables. Throughout this workshop, we will use the <code>bokeh</code> library instead of <code>matplotlib</code> (or similar ones), simply because it allows generating more interactive visualizations.">
+                    Ahora vamos a visualizar la dinámica de ambas variables de estado. A lo largo de este workshop, usaremos la librería <code>bokeh</code> en lugar de <code>matplotlib</code> (u otras similares), simplemente porque permite generar visualizaciones más interactivas.
+                </p>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                <div class="cell-input">
+                    <pre><code class="language-python">import numpy as np
+import bokeh.io
+import bokeh.plotting
+import bokeh.palettes
+from bokeh.models import Range1d
+
+bokeh.io.output_notebook()
+
+# Parámetros cinéticos
+th = 1
+rho = 2
+d = 0.1
+p = 0.05
+
+# Tiempo de simulación
+t = np.linspace(0,80,801)
+
+# Escribir la solución de las EDOs
+mgfp = (th/d) - (th * np.exp(-d*t))/d
+gfp = -(rho*th*np.exp(-p*t))/(d*p - p**2) + (rho*th*np.exp(-d*t))/(d*(d - p)) + rho*th/(d*p)
+
+# Configurar la visualización con bokeh
+plot = bokeh.plotting.figure(width = 320, height = 225,
+                             x_axis_label = 'Tiempo (minutos)', y_axis_label = 'Nivel de expresión')
+
+# Graficar las soluciones
+plot.line(t, mgfp, line_width = 3, color = 'grey', legend_label = 'mRNA')
+plot.line(t, gfp, line_width = 3, color = 'orange', legend_label = 'proteína')
+
+# Visualización
+plot.legend.location = 'top_left'
+plot.legend.background_fill_alpha = 0.0
+bokeh.io.show(plot)</code></pre>
+                </div>
+            </div>
+
+                <div class="cell cell-code lang-block" data-lang="en">
+                    <div class="cell-input">
+                        <pre><code class="language-python">import numpy as np
+import bokeh.io
+import bokeh.plotting
+import bokeh.palettes
+from bokeh.models import Range1d
+
+bokeh.io.output_notebook()
+
+# Kinetic parameters
+th = 1
+rho = 2
+d = 0.1
+p = 0.05
+
+# Simulation time
+t = np.linspace(0,80,801)
+
+# Writing the solution to the ODEs
+mgfp = (th/d) - (th * np.exp(-d*t))/d
+gfp = -(rho*th*np.exp(-p*t))/(d*p - p**2) + (rho*th*np.exp(-d*t))/(d*(d - p)) + rho*th/(d*p)
+
+# Setting the bokeh visualization
+plot = bokeh.plotting.figure(width = 320, height = 225,
+                             x_axis_label = 'Time (minutes)', y_axis_label = 'Expression level')
+
+# Plotting the solutions
+plot.line(t, mgfp, line_width = 3, color = 'grey', legend_label = 'mRNA')
+plot.line(t, gfp, line_width = 3, color = 'orange', legend_label = 'protein')
+
+# Visualization
+plot.legend.location = 'top_left'
+plot.legend.background_fill_alpha = 0.0
+bokeh.io.show(plot)</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 1_TN1_esp.html"
+                    width="100%" height="240"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 1_TN1_en.html"
+                    width="100%" height="240"
+                    style="border:none; display: none;"></iframe>
+            </div>
+
+            <div class="cell cell-markdown" style="margin-top: 0;"">
+                <p style="margin-top: 0;" data-es="Sin embargo, en la práctica es bastante raro encontrarse con un sistema de EDOs para el cual podamos escribir una solución simbólica. En biología, los sistemas suelen ser no lineales, lo que hace que resolver las ecuaciones a mano sea casi imposible, incluso usando software especializados que trabajan con álgebra simbólica, como MatLab o Mathematica. Lo más común es aplicar métodos numéricos. En nuestro caso, vamos a usar la función <code>integrate.odeint</code> del paquete <code>scipy</code>. Es rápida, fácil de usar, y como los sistemas con los que estamos trabajando son pequeños, no necesitamos nada más avanzado."
+                   data-en="However, it's actually pretty rare to run into a system of ODEs where we can write down a (relatively simple) closed-form solution. In biology, things are often nonlinear, which makes it almost impossible to solve the equations by hand, or even using sophisticated software able to work with symbolic math, such as MatLab or Mathematica. It's more common to apply numerical methods. In our case, we'll use the <code>integrate.odeint</code> function from the <code>scipy</code> package.  It's fast and easy to use, and since the systems we're dealing with are small, we don't need anything more advanced." style="margin-top: 0;">
+                    Sin embargo, en la práctica es bastante raro encontrarse con un sistema de EDOs para el cual podamos escribir una solución simbólica.
+                    En biología, los sistemas suelen ser no lineales, lo que hace que resolver las ecuaciones a mano sea casi imposible, incluso usando software
+                    especializados que trabajan con álgebra simbólica, como MatLab o Mathematica. Lo más común es aplicar métodos numéricos. En nuestro caso, vamos a usar la función <code>integrate.odeint</code> del paquete <code>scipy</code>. Es rápida, fácil de usar, y como los sistemas con los que estamos trabajando son pequeños, no necesitamos nada más avanzado.
+                </p>
+            </div>
+
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+import scipy.integrate
+
+# Necesitamos definir el sistema de EDOs que queremos resolver
+def TXTL(X, t, th, rho, d, p):
+
+  mgfp, gfp = X
+
+  return(
+      [
+          th - d*mgfp,
+          rho*mgfp - p*gfp
+      ]
+  )
+
+# Parámetros cinéticos
+th = 1
+rho = 2
+d = 0.1
+p = 0.05
+
+# Tiempo de simulación y condiciones iniciales
+t = np.linspace(0,80,801)
+x0 = np.zeros(2)
+
+# Resolviendo numéricamente las EDOs
+args1 = (th, rho, d, p)
+sol = scipy.integrate.odeint(TXTL, x0, t, args = args1)
+
+</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="en">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+import scipy.integrate
+
+# We need to define the system of ODEs that we want to solve
+def TXTL(X, t, th, rho, d, p):
+
+  mgfp, gfp = X
+
+  return(
+      [
+          th - d*mgfp,
+          rho*mgfp - p*gfp
+      ]
+  )
+
+# Kinetic parameters
+th = 1
+rho = 2
+d = 0.1
+p = 0.05
+
+# Simulation time and initial conditions
+t = np.linspace(0,80,801)
+x0 = np.zeros(2)
+
+# Numerically solving the ODEs
+args1 = (th, rho, d, p)
+sol = scipy.integrate.odeint(TXTL, x0, t, args = args1)
+</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-markdown">
+                <p data-es="La solución de nuestras EDOs ahora está almacenada en la variable <code>sol</code>, que es un vector de tamaño $(n,m)$. Aquí, $n$ corresponde a la resolución de la simulación, que fue definida por el array de tiempo. En nuestro ejemplo, el array de tiempo es $t$ y tiene una resolución (o número de pasos) de 801. Por otro lado, $m$ es el número de variables de estado en nuestra función <code>TXTL</code>. Para acceder a la solución, debemos tener en cuenta el <strong>orden</strong> en que nuestra función retorna las variables de estado. Por ejemplo, <code>sol[:,0]</code> contiene la solución para $m_{\text{gfp}}$, mientras que <code>sol[:,1]</code> contiene la solución para $\text{gfp}$."
+                    data-en="The solution to our ODEs is now stored in the variable <code>sol</code>, which is a vector of size $(n,m)$. Here, $n$ corresponds to the simulation resolution, which was defined by the time array. In our example, the time array is $t$ and has a resolution (or number of steps) of 801. On the other hand, $m$ is the number of state variables in our <code>TXTL</code> function. To access the solution, we must take into account the <strong>order</strong> in which our function returns the state variables. For example, <code>sol[:,0]</code> contains the solution for $m_{\text{gfp}}$, while <code>sol[:,1]</code> contains the solution for $\text{gfp}$.">
+                La solución de nuestras EDOs ahora está almacenada en la variable <code>sol</code>, que es un vector de tamaño $(n,m)$. Aquí, $n$ corresponde a la resolución de la simulación, que fue definida por el array de tiempo. En nuestro ejemplo, el array de tiempo es $t$ y tiene una resolución (o número de pasos) de 801. Por otro lado, $m$ es el número de variables de estado en nuestra función <code>TXTL</code>. Para acceder a la solución, debemos tener en cuenta el <strong>orden</strong> en que nuestra función retorna las variables de estado. Por ejemplo, <code>sol[:,0]</code> contiene la solución para $m_{\text{gfp}}$, mientras que <code>sol[:,1]</code> contiene la solución para $\text{gfp}$.
+                </p>
+            </div>
+
+            <div class="cell-output">
+                <pre>  np.shape(sol)
+ (801, 2)</pre>
+                
+            </div>
+                
+            <div class="cell cell-markdown" >
+                <h3 data-es="Visualizando los resultados"
+                    data-en="Visualizing the results">
+                    Visualizando los resultados
+                </h3>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+# Configurar la visualización con bokeh
+plot = bokeh.plotting.figure(width = 320, height = 225,
+                             x_axis_label = 'Tiempo (minutos)', y_axis_label = 'Nivel de expresión')
+
+# Graficar las soluciones
+plot.line(t, sol[:,0], line_width = 3, color = 'grey', legend_label = 'mRNA')
+plot.line(t, sol[:,1], line_width = 3, color = 'orange', legend_label = 'proteína')
+
+# Visualización
+plot.legend.location = 'top_left'
+plot.legend.background_fill_alpha = 0.0
+bokeh.io.show(plot)
+
+</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="en">
+                <div class="cell-input">
+                    <pre><code class="language-python">
+# Setting the bokeh visualization
+plot = bokeh.plotting.figure(width = 320, height = 225,
+                             x_axis_label = 'Time (minutes)', y_axis_label = 'Expression level')
+
+# Plotting the solutions
+plot.line(t, sol[:,0], line_width = 3, color = 'grey', legend_label = 'mRNA')
+plot.line(t, sol[:,1], line_width = 3, color = 'orange', legend_label = 'protein')
+
+# Visualization
+plot.legend.location = 'top_left'
+plot.legend.background_fill_alpha = 0.0
+bokeh.io.show(plot)
+
+</code></pre>
+                </div>
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 2_TN1_esp.html"
+                    width="100%" height="240"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 2_TN1_en.html"
+                    width="100%" height="240"
+                    style="border:none; display: none;"></iframe>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - exactamente igual a tu index -->
+    <footer class="footer">
+        <div class="container">
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- JavaScript exactamente igual a tu index -->
+    <script>
+    class LanguageManager {
+        constructor() {
+            this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+            this.init();
+        }
+
+        init() {
+            this.setupEventListeners();
+            this.setLanguage(this.currentLang);
+        }
+
+        setupEventListeners() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.target.getAttribute('data-lang');
+                    this.setLanguage(lang);
+                });
+            });
+        }
+
+        setLanguage(lang) {
+            this.currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+
+            document.getElementById('html-root').setAttribute('lang', lang);
+
+            // Cambiar texto según idioma
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.innerHTML = text;
+                }
+            });
+
+            // Mostrar/ocultar bloques de código por idioma
+            document.querySelectorAll('.lang-block').forEach(block => {
+                const blockLang = block.getAttribute('data-lang');
+                block.style.display = (blockLang === lang) ? 'block' : 'none';
+            });
+
+            // Mostrar/ocultar imágenes por idioma
+            document.querySelectorAll('.lang-img').forEach(img => {
+                const imgLang = img.getAttribute('data-lang');
+                img.style.display = (imgLang === lang) ? 'block' : 'none';
+            });
+
+            // Activar botón actual
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Cambiar título del documento
+            const titles = {
+                es: 'Solución Numérica de EDOs - EBCP Latam 2025',
+                en: 'Numerical Solution of ODEs - EBCP Latam 2025'
+            };
+            document.title = titles[lang];
+
+            // Re-renderizar MathJax si está disponible
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const lang = localStorage.getItem('selectedLanguage') || 'es';
+
+        // Mostrar elementos iniciales (antes de inicializar LanguageManager completo)
+        document.querySelectorAll('.lang-block, .lang-img').forEach(el => {
+            const elLang = el.getAttribute('data-lang');
+            el.style.display = (elLang === lang) ? 'block' : 'none';
+        });
+
+        // Cambiar texto inicial
+        document.querySelectorAll('[data-es][data-en]').forEach(el => {
+            const text = el.getAttribute(`data-${lang}`);
+            if (text) {
+                el.innerHTML = text;
+            }
+        });
+
+        // Cambiar título inicial
+        const titles = {
+            es: 'Solución Numérica de EDOs - EBCP Latam 2025',
+            en: 'Numerical Solution of ODEs - EBCP Latam 2025'
+        };
+        document.title = titles[lang];
+
+        // Establecer lang del HTML
+        document.getElementById('html-root').setAttribute('lang', lang);
+
+        // Iniciar gestor de idioma completo
+        new LanguageManager();
+    });
+</script>
+
+<!-- Render MathJax si es necesario -->
+<script>
+    if (window.MathJax) {
+        MathJax.typesetPromise();
+    }
+</script>
+</body>
+</html>

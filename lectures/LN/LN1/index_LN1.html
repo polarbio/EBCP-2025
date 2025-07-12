@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulación de genes - EBCP Latam 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../../images/bacteria favicon.svg">
+
+    <link rel="stylesheet" href="../../../static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax para matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Prism.js para sintaxis highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- Header - exactamente igual a tu index -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../../../images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+                <span class="brand-text">EBCP Latam 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="../../../lectures.html" data-es="Lectures" data-en="Lectures">Lectures</a>
+                <a href="../../../about.html" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Notebook Section -->
+    <section class="notebook-section">
+        <div class="notebook-container">
+
+            <!-- Header del notebook -->
+            <div class="notebook-header-TR">
+                <h1 class="notebook-title"
+                    data-es="Regulación de genes"
+                    data-en="Gene Regulation">
+                    Regulación de genes
+                </h1>
+                <p class="notebook-subtitle"
+                   data-es="2025 Workshop en Modelamiento de Sistemas Biológicos"
+                   data-en="2025 Workshop on Biological Systems Modeling">
+                    2025 Workshop en Modelamiento de Sistemas Biológicos
+                </p>
+                <div class="notebook-meta">
+                    <div data-es="Autores: Mijael Espinoza y Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego"
+                         data-en="Authors: Mijael Espinoza and Bsc. Frank Britto Bisso | Reviewed by: PhD. Christian Cuba Samaniego">
+                        Autores: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego
+                    </div>
+                    <div data-es="Última fecha de modificación: 10 de Julio, 2025"
+                         data-en="Last modified: July 10, 2025">
+                        Última fecha de modificación: 10 de Julio, 2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del notebook -->
+            
+            <div class="cell cell-markdown">
+                <h2 style="color: var(--dark-purple);" data-es="Diseño de circuitos biológicos"
+                    data-en="Design of biological circuits">
+                    Diseño de circuitos biológicos
+                </h2>
+                
+                <p data-es="El fenótipo de una célula puede considerarse como una función viológica que relaciona las entradas moleculares con un resultado celular concreto, como las proliferación, la apoptosis o la diferenciación. Como biólogos sintéticos, buscamos replicar ese mapeo de entrada-salida o reconfigurarlo para dar un nuevo fenotipo a la célula. Para lograrlo utilizamos <strong>circuitos biológicos</strong>: conjuntos de especies químicas (ácidos nucleicos, proteínas, metabolitos, etc.) cuyas interacciones transforman las entradas moleculares en salidas definidas, del mismo modo que las funciones matemáticas transforman variables en resultados"
+                   data-en="A cell’s phenotype can be seen as a biological function that maps molecular inputs to a discrete cellular outcome, such as proliferation, apoptosis or differentiation. As synthetic biologists, we aim to replicate that input–output mapping or rewire it to give the cell a new phenotype. We achieve this by using <strong>biological circuits</strong>: sets of chemical species (e.g. nucleic acids, proteins, metabolites) whose interactions process molecular inputs into defined outputs, much like mathematical functions transform variables into results.">
+                    El fenótipo de una célula puede considerarse como una función viológica que relaciona las entradas moleculares con un resultado celular concreto, como las proliferación, la apoptosis o la diferenciación. Como biólogos sintéticos, buscamos replicar ese mapeo de entrada-salida o reconfigurarlo para dar un nuevo fenotipo a la célula. Para lograrlo utilizamos <strong>circuitos biológicos</strong>: conjuntos de especies químicas (ácidos nucleicos, proteínas, metabolitos, etc.) cuyas interacciones transforman las entradas moleculares en salidas definidas, del mismo modo que las funciones matemáticas transforman variables en resultados
+                </p>
+
+                <p data-es="Así como ocurre en ingeniería, a menudo existen múltiples formas de diseñar un circuito para resolver un problema determinado. En este workshop, exploraremos distintas arquitecturas de circuitos desde una perspectiva de diseño, con el objetivo de comprender los compromisos y ventajas entre las distintas alternativas y de identificar <strong>principios de diseño</strong> que expliquen por qué una solución puede ser preferible a otra. Derivar estos principios de forma empírica requeriría demasiado tiempo y esfuerzo, ya que depende en gran medida del método de prueba y error. En su lugar, recurriremos a modelos matemáticos para representar las interacciones clave entre las partes de un circuito biológico y así determinar las condiciones bajo las cuales dicho circuito funciona como se espera."
+                   data-en="As in engineering, there are often many ways to design a circuit to solve a given problem. In this workshop, we will explore different circuit architectures from a design perspective, aiming to understand the tradeoffs between alternatives and to identify <strong>design principles</strong> that explain why one solution might be preferred over another. Deriving these principles empirically would require too much time and effort, as it heavily depends on trial and error. Instead, we will rely on mathematical models to capture the key interactions within the parts of a biological circuit in order to determine the conditions under which it performs as intended.">
+                    Así como ocurre en ingeniería, a menudo existen múltiples formas de diseñar un circuito para resolver un problema determinado. En este workshop, exploraremos distintas arquitecturas de circuitos desde una perspectiva de diseño, con el objetivo de comprender los compromisos y ventajas entre las distintas alternativas y de identificar <strong>principios de diseño</strong> que expliquen por qué una solución puede ser preferible a otra. Derivar estos principios de forma empírica requeriría demasiado tiempo y esfuerzo, ya que depende en gran medida del método de prueba y error. En su lugar, recurriremos a modelos matemáticos para representar las interacciones clave entre las partes de un circuito biológico y así determinar las condiciones bajo las cuales dicho circuito funciona como se espera.
+                </p>
+            </div>
+
+
+            <div class="cell cell-markdown">
+                <h2 style="color: var(--dark-purple);" data-es="La lógica detrás de las ecuaciones de velocidad de reacción"
+                    data-en="Intuition behind the reaction rate equations">
+                    La lógica detrás de las ecuaciones de velocidad de reacción
+                </h2>
+
+                <p data-es="El marco matemático que utilizamos se llama <strong>ecuaciones de velocidad de reacción</strong>, y nos ayuda a monitorear cómo cambian las concentraciones de las especies químicas en un circuito biológico a lo largo del tiempo <em>(ver Technical Note #1)</em>. Una buena forma de comenzar con el modelado matemático es dibujar el circuito, asegurándonos de incluir todas las interacciones que nos interesan. Empecemos con las reacciones básicas presentes en prácticamente todos los circuitos biológicos: transcripción (TX) y traducción (TL). Imaginemos que tenemos un gen llamado $Y$ que se transcribe en una molécula de ARNm, a la que llamaremos $M_y$, y luego se traduce en una proteína, también llamada $Y$. Estos pasos aumentan las concentraciones de $M_y$ y $Y$, por lo que podemos considerarlos efectos positivos. Por otro lado, tanto $M_y$ como $Y$ se degradan, ya sea por descomposición natural o por dilución durante la división celular, lo cual podemos interpretar como un efecto negativo. Ahora vamos a representar todos estos eventos en un diagrama (Figura 1, izquierda)."
+                   data-en="The mathematical framework we use is called <strong>reaction rate equations</strong>, which helps us monitor how the concentrations of the chemical species in a biological circuit change over time <em>(see Technical Note #1)</em>. A good way to get started in mathematical modeling is by drawing the circuit, making sure we include all the interactions we care about. Let’s begin with the core reactions behind pretty much every biological circuit: transcription (TX) and translation (TL). Imagine we have a gene named $Y$ that gets transcribed into an mRNA molecule, which we’ll call $M_y$, and then translated into a protein, also named $Y$. These steps increase the concentrations of $M_y$ and $Y$, so we can think of them as having a positive effect. On the other hand, both $M_y$ and $Y$ are degraded, either through natural decay or dilution during cell division, which we can think of as having a negative effect. Let’s now capture all of these events in a diagram (Figure 1, left).">
+                    El marco matemático que utilizamos se llama <strong>ecuaciones de velocidad de reacción</strong>, y nos ayuda a monitorear cómo cambian las concentraciones de las especies químicas en un circuito biológico a lo largo del tiempo <em>(ver Technical Note #1)</em>. Una buena forma de comenzar con el modelado matemático es dibujar el circuito, asegurándonos de incluir todas las interacciones que nos interesan. Empecemos con las reacciones básicas presentes en prácticamente todos los circuitos biológicos: transcripción (TX) y traducción (TL). Imaginemos que tenemos un gen llamado $Y$ que se transcribe en una molécula de ARNm, a la que llamaremos $M_y$, y luego se traduce en una proteína, también llamada $Y$. Estos pasos aumentan las concentraciones de $M_y$ y $Y$, por lo que podemos considerarlos efectos positivos. Por otro lado, tanto $M_y$ como $Y$ se degradan, ya sea por descomposición natural o por dilución durante la división celular, lo cual podemos interpretar como un efecto negativo. Ahora vamos a representar todos estos eventos en un diagrama (Figura 1, izquierda).
+                </p>
+
+                <div class="cell cell-markdown" style="text-align: center;">
+                    <img src="Figura1_LN1_en.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 100%; height: auto;">
+                    <img src="Figura1_LN1_en.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 100%; height: auto; display: none;">
+                </div>
+
+                <p data-es="Podemos escribir las reacciones químicas, incluyendo la velocidad a la que ocurren estos eventos, como se muestra a continuación."
+                   data-en="We can write the chemical reactions, including the rate at which these events occur, as show below.">
+                   Podemos escribir las reacciones químicas, incluyendo la velocidad a la que ocurren estos eventos, como se muestra a continuación. 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{align}
+                    \text{DNA} &\xrightarrow{\theta} \text{DNA} + M_y && M_y \xrightarrow{\delta} \emptyset && \text{Transcription and degradation of mRNA}\\
+                    M_y &\xrightarrow{\rho} M_y + Y && Y \xrightarrow{\phi} \emptyset && \text{Translation and degradation of protein}
+                    \end{align}$$
+                </div>
+
+                <p data-es="Podemos modelar cómo varía con el tiempo la concentración de las especies involucradas en estas reacciones utilizando Ecuaciones Diferenciales Ordinarias (ODEs) bajo la <strong>ley de acción de masas</strong>. Estas ODEs tienen la siguiente forma:"
+                   data-en="We can model how the concentration of the species involved in these reactions vary over time using Ordinary Differential Equations (ODEs) under the <strong>law of mass action</strong>. These ODEs take the following form: ">
+                   Podemos modelar cómo varía con el tiempo la concentración de las especies involucradas en estas reacciones utilizando Ecuaciones Diferenciales Ordinarias (ODEs) bajo la <strong>ley de acción de masas</strong>. Estas ODEs tienen la siguiente forma:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{align}
+                    \frac{d}{dt} \text{species} = \text{production} - \text{degradation}
+                    \end{align}$$
+                </div>
+
+                <p data-es="Por lo tanto, modelamos nuestras reacciones químicas anteriores de la siguiente manera:"
+                   data-en="Therefore, we model our previous chemical reactions as follows,">
+                   Por lo tanto, modelamos nuestras reacciones químicas anteriores de la siguiente manera:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{align}
+                    \frac{d}{dt} m_y &=& \theta - \delta m_y \\
+                    \frac{d}{dt} y &=& \rho m_y - \phi y
+                    \end{align}$$
+                </div>
+
+                <p data-es="Como notación, usamos letras mayúsculas para referirnos a las especies químicas en sí (por ejemplo, $Y$, $M_y$), y letras minúsculas para referirnos a sus concentraciones (por ejemplo, $y = y(t)$ y $m_y = m_y(t)$). Si resolvemos el sistema de ODEs, podemos seguir cómo cambian estas concentraciones a lo largo del tiempo debido a las interacciones entre especies. Por ejemplo, en el lado derecho de la Figura 1, podemos ver cómo evolucionan las concentraciones de ARNm ($m_y$) y de proteína ($y$), basándonos en la solución numérica de nuestro modelo <em>(ver Technical Note #1 para más detalles)</em>."
+                   data-en="As notation, we use uppercase letters to refer to the chemical species themselves (e.g., $Y$, $M_y$), and lowercase letters to refer to their concentrations (e.g., $y = y(t)$ and $m_y = m_y(t)$). If we solve the system of ODEs, we can track how these concentrations change over time due to the interactions between species. For example, on the right side of Figure 1, we can see how the concentrations of mRNA ($m_y$) and protein ($y$) evolve, based on the numerical solution of our model <em>(see Technical Note #1 for more details)</em>.">
+                   Como notación, usamos letras mayúsculas para referirnos a las especies químicas en sí (por ejemplo, $Y$, $M_y$), y letras minúsculas para referirnos a sus concentraciones (por ejemplo, $y = y(t)$ y $m_y = m_y(t)$). Si resolvemos el sistema de ODEs, podemos seguir cómo cambian estas concentraciones a lo largo del tiempo debido a las interacciones entre especies. Por ejemplo, en el lado derecho de la Figura 1, podemos ver cómo evolucionan las concentraciones de ARNm ($m_y$) y de proteína ($y$), basándonos en la solución numérica de nuestro modelo <em>(ver Technical Note #1 para más detalles)</em>.
+                </p>
+            </div>
+
+            
+            <div class="cell cell-markdown">
+                <h2 style="color: var(--dark-purple);" data-es="¿Qué es el estado estacionario?"
+                    data-en="What is the steady-state?">
+                    ¿Qué es el estado estacionario?
+                </h2>
+                
+                <p data-es="Para algunos sistemas biológicos, incluyendo el que estamos estudiando aquí, si esperamos el tiempo suficiente, las reacciones alcanzarán un equilibrio cinético, donde las concentraciones de todas las especies dejan de cambiar con el tiempo. Esta condición se conoce como el <strong>estado estacionario</strong>. Podemos encontrar las concentraciones en estado estacionario igualando a cero el lado derecho de nuestras ecuaciones diferenciales y resolviendo las ecuaciones algebraicas resultantes. Utilizaremos una pequeña barra sobre la variable de la especie química para representar su valor en estado estacionario. Por ejemplo, $\bar{y}$ para representar el valor en estado estacionario de la variable $y(t)$."
+                   data-en="For some biological systems, including the one we’re studying here, if we wait long enough, the reactions will reach kinetic equilibrium, where the concentrations of all species stop changing over time. This condition is known as the <strong>steady-state</strong>. We can find the steady-state concentrations by setting the right-hand side of our differential equations to zero and solving the resulting algebraic equations. We will use a small bar above the chemical species' variable to represent the steady-state value of that species. For example, $\bar{y}$ to represent the steady-state value of the variable $y(t)$.">
+                    Para algunos sistemas biológicos, incluyendo el que estamos estudiando aquí, si esperamos el tiempo suficiente, las reacciones alcanzarán un equilibrio cinético, donde las concentraciones de todas las especies dejan de cambiar con el tiempo. Esta condición se conoce como el <strong>estado estacionario</strong>. Podemos encontrar las concentraciones en estado estacionario igualando a cero el lado derecho de nuestras ecuaciones diferenciales y resolviendo las ecuaciones algebraicas resultantes. Utilizaremos una pequeña barra sobre la variable de la especie química para representar su valor en estado estacionario. Por ejemplo, $\bar{y}$ para representar el valor en estado estacionario de la variable $y(t)$.
+                </p>
+
+                <p data-es="En nuestro ejemplo, al resolver el estado estacionario del ARNm, obtenemos:"
+                   data-en="In our example, solving for the steady-state of the mRNA, we obtain">
+                   En nuestro ejemplo, al resolver el estado estacionario del ARNm, obtenemos: 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{align}
+                    \bar m_y = \theta / \delta
+                    \end{align}$$
+                </div>
+
+                <p data-es="Ahora, al resolver el estado estacionario de la proteína $Y$, obtenemos:"
+                   data-en="Now, solving for the steady-state of the protein $Y$, we obtain:">
+                   Ahora, al resolver el estado estacionario de la proteína $Y$, obtenemos:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{align}
+                    \bar y = \frac{\rho}{\phi} \bar m_y = \frac{\rho}{\phi} \frac{\theta}{\delta}
+                    \end{align}$$
+                </div>
+
+                <p data-es="Si tomamos el valor en estado estacionario que acabamos de calcular y lo comparamos con la dinámica temporal de nuestras especies químicas (como se muestra en la Figura 1, derecha), podemos observar cómo las trayectorias se acercan gradualmente a ese valor a medida que pasa el tiempo."
+                   data-en="If we take the steady-state value we just calculated and compare it to the time dynamics of our chemical species (as shown in Figure 1, right), we can see how the trajectories gradually approach that value as time progresses.">
+                   Si tomamos el valor en estado estacionario que acabamos de calcular y lo comparamos con la dinámica temporal de nuestras especies químicas (como se muestra en la Figura 1, derecha), podemos observar cómo las trayectorias se acercan gradualmente a ese valor a medida que pasa el tiempo.
+                </p>
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 1_LN1_esp.html"
+                    width="100%" height="250"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 1_LN1_en.html"
+                    width="100%" height="250"
+                    style="border:none; display: none;"></iframe>
+            </div>
+
+            <div class="cell cell-markdown">
+
+                <h2 style="color: var(--dark-purple);" data-es="Regulación génica a nivel transcripcional"
+                    data-en="Gene regulation at the transcriptional level">
+                    Regulación génica a nivel transcripcional
+                </h2>
+
+                <p data-es="Hicimos una suposición en nuestro modelo anterior: que la expresión génica está siempre ''activada''. Esto ocurre cuando el promotor que controla el gen es <strong>constitutivo</strong>, lo que significa que impulsa la expresión en todo momento, sin importar el contexto. Sin embargo, las células tienen una amplia variedad de mecanismos para decidir si un gen debe estar activo o no, dependiendo del entorno y de su estado interno. Una de las estrategias más comunes implica el uso de <strong>factores de transcripción</strong>. Estas son proteínas que reconocen una secuencia específica de ADN en el promotor, llamada sitio de unión. Cuando interactúan con ese sitio, pueden inhibir la expresión —como lo hacen los <strong>represores transcripcionales</strong>— o activarla, en el caso de los <strong>activadores transcripcionales</strong>."
+                   data-en="We made an assumption in our previous model: that gene expression is always ''on''. This happens when the promoter controlling the gene is <strong>constitutive</strong>, meaning it drives expression all the time, no matter the context. However, cells have a wide variety of ways to decide whether a gene should be active or not, depending on the environment and their internal state. One of the most common strategies involves <strong>transcription factors</strong>. These are proteins that recognize a specific DNA sequence in the promoter, called the binding site. When they interact with that site, they can either inhibit expression, which is what <strong>transcriptional repressors</strong> do, or activate it, which is the case of <strong>transcriptional activators</strong>.">
+                    Hicimos una suposición en nuestro modelo anterior: que la expresión génica está siempre ''activada''. Esto ocurre cuando el promotor que controla el gen es <strong>constitutivo</strong>, lo que significa que impulsa la expresión en todo momento, sin importar el contexto. Sin embargo, las células tienen una amplia variedad de mecanismos para decidir si un gen debe estar activo o no, dependiendo del entorno y de su estado interno. Una de las estrategias más comunes implica el uso de <strong>factores de transcripción</strong>. Estas son proteínas que reconocen una secuencia específica de ADN en el promotor, llamada sitio de unión. Cuando interactúan con ese sitio, pueden inhibir la expresión —como lo hacen los <strong>represores transcripcionales</strong>— o activarla, en el caso de los <strong>activadores transcripcionales</strong>.
+                </p>
+
+                <p data-es="La <strong>función de Hill</strong> se utiliza comúnmente para modelar la regulación mediada por factores de transcripción, y se basa en lo que se conoce como el argumento de separación de escalas de tiempo. La idea es que la unión entre un factor de transcripción y su sitio de unión en el ADN ocurre mucho más rápido que procesos como la transcripción y la traducción. Por lo tanto, si nos enfocamos en modelar los pasos más lentos, como la producción de ARNm y proteínas, podemos asumir que la unión del factor de transcripción alcanza su estado estacionario casi de forma instantánea. Esto simplifica el modelo, ya que no necesitamos seguir explícitamente la dinámica rápida."
+                   data-en="The <strong>Hill function</strong> is commonly used to model regulation by transcription factors, and it relies on what's called the time scale separation argument. The idea is that the binding between a transcription factor and its DNA binding site happens much faster than processes like transcription and translation. So if we focus on modeling the slower steps, such as mRNA and protein production, we can assume that the transcription factor binding reaches its steady state almost instantly. This simplifies the model because we don’t need to track the fast dynamics explicitly.">
+                    La <strong>función de Hill</strong> se utiliza comúnmente para modelar la regulación mediada por factores de transcripción, y se basa en lo que se conoce como el argumento de separación de escalas de tiempo. La idea es que la unión entre un factor de transcripción y su sitio de unión en el ADN ocurre mucho más rápido que procesos como la transcripción y la traducción. Por lo tanto, si nos enfocamos en modelar los pasos más lentos, como la producción de ARNm y proteínas, podemos asumir que la unión del factor de transcripción alcanza su estado estacionario casi de forma instantánea. Esto simplifica el modelo, ya que no necesitamos seguir explícitamente la dinámica rápida.
+                </p>
+
+                <p data-es="Para modelar la regulación basada en factores de transcripción, utilizaremos la misma estructura del sistema TX-TL, pero ahora la proteína $Y$ puede inhibir o activar su propia expresión. Esto modifica la forma en que se regula la transcripción, ya que $Y$ ahora actúa como regulador de su propio promotor. Las reacciones químicas en este sistema se verán de la siguiente manera:"
+                   data-en="To model transcription factor-based regulation, we’ll use the same setup as the TX-TL system, but now the protein $Y$ can either inhibit or activate its own expression. This changes how transcription is regulated, since $Y$ now acts as a regulator of its own promoter. The chemical reactions in this system will look like this:">
+                    Para modelar la regulación basada en factores de transcripción, utilizaremos la misma estructura del sistema TX-TL, pero ahora la proteína $Y$ puede inhibir o activar su propia expresión. Esto modifica la forma en que se regula la transcripción, ya que $Y$ ahora actúa como regulador de su propio promotor. Las reacciones químicas en este sistema se verán de la siguiente manera:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \emptyset &\xrightarrow{h(y)} M_y && M_y \xrightarrow{\delta} \emptyset && \text{Regulated transcription and degradation of mRNA}\\
+                    M_y &\xrightarrow{\rho} M_y + Y && Y \xrightarrow{\phi} \emptyset && \text{Translation and degradation of protein}
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="En este caso, $h(y)$ depende del tipo de factor de transcripción involucrado. Para un inhibidor, usamos $h(y) = \alpha \frac{K^m}{K^m + y^m}$, y para un activador, se convierte en $h(y) = \alpha \frac{y^m}{y^m + K^m}$."
+                   data-en="In this case, $h(y)$ depends on the type of transcription factor involved. For an inhibitor, we use $h(y) = \alpha \frac{K^m}{K^m + y^m}$, and for an activator, it becomes $h(y) = \alpha \frac{y^m}{y^m + K^m}$.">
+                    En este caso, $h(y)$ depende del tipo de factor de transcripción involucrado. Para un inhibidor, usamos $h(y) = \alpha \frac{K^m}{K^m + y^m}$, y para un activador, se convierte en $h(y) = \alpha \frac{y^m}{y^m + K^m}$.
+                </p>
+            </div>
+
+            
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 2_LN1_esp.html"
+                    width="100%" height="275"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 2_LN1_en.html"
+                    width="100%" height="275"
+                    style="border:none; display: none;"></iframe>
+            </div>
+
+            <div class="cell cell-markdown">
+                
+                <p data-es="En la Figura 2, podemos observar lo que se conoce como la curva de dosis-respuesta, la cual muestra la forma sigmoide característica de la función de Hill. Esta forma refleja cuán sensible es la expresión génica frente a cambios en la concentración del regulador. También podemos ver cómo la transición entre una expresión ''baja'' y ''alta'' se vuelve más pronunciada a medida que aumenta la cooperatividad ($m$ en las ecuaciones). Estas transiciones marcadamente abruptas se conocen como la propiedad de <strong>ultrasensibilidad</strong>."
+                   data-en="In Figure 2, we can observe what's known as the dose-response curve, which shows the sigmoidal shape of the Hill function. This shape reflects how sensitive gene expression is to changes in the regulator's concentration. We can also see how the transition between ''low'' and ''high'' expression becomes sharper as the cooperativity ($m$ in the equations) increases. These sharp transitions are referred to as the <strong>ultrasensitivity</strong> property.">
+                    En la Figura 2, podemos observar lo que se conoce como la curva de dosis-respuesta, la cual muestra la forma sigmoide característica de la función de Hill. Esta forma refleja cuán sensible es la expresión génica frente a cambios en la concentración del regulador. También podemos ver cómo la transición entre una expresión ''baja'' y ''alta'' se vuelve más pronunciada a medida que aumenta la cooperatividad ($m$ en las ecuaciones). Estas transiciones marcadamente abruptas se conocen como la propiedad de <strong>ultrasensibilidad</strong>.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - exactamente igual a tu index -->
+    <footer class="footer">
+        <div class="container">
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- JavaScript exactamente igual a tu index -->
+    <script>
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setLanguage(this.currentLang);
+            }
+
+            setupEventListeners() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang');
+                        this.setLanguage(lang);
+                    });
+                });
+            }
+
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+                
+                document.getElementById('html-root').setAttribute('lang', lang);
+                
+                const elements = document.querySelectorAll('[data-es][data-en]');
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        element.innerHTML = text;
+                    }
+                });
+
+
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Mostrar/ocultar bloques de código por idioma
+                document.querySelectorAll('.lang-block').forEach(block => {
+                    const blockLang = block.getAttribute('data-lang');
+                    block.style.display = (blockLang === lang) ? 'block' : 'none';
+                });
+
+                // Mostrar/ocultar imágenes según idioma
+                document.querySelectorAll('.lang-img').forEach(img => {
+                    const imgLang = img.getAttribute('data-lang');
+                    img.style.display = (imgLang === lang) ? 'block' : 'none';
+                });
+
+                const titles = {
+                    es: 'Regulación de genes - EBCP Latam 2025',
+                    en: 'Gene regulation - EBCP Latam 2025'
+                };
+                document.title = titles[lang];
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new LanguageManager();
+        });
+
+    </script>
+    <script>
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    </script>
+</body>
+</html>
