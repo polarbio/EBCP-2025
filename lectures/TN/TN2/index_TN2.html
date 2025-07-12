@@ -491,6 +491,11 @@ bokeh.io.show(bokeh.layouts.row(plots))
                     }
                 });
 
+                const titles = {
+                    es: 'Algoritmo de Gillespie - EBCP Latam 2025',
+                    en: 'Gillespie Algorithm - EBCP Latam 2025'
+                };
+
                 // Mostrar u ocultar bloques de código por idioma
                 document.querySelectorAll('.lang-block').forEach(block => {
                     const blockLang = block.getAttribute('data-lang');
@@ -534,10 +539,7 @@ bokeh.io.show(bokeh.layouts.row(plots))
                 el.style.display = (elLang === lang) ? 'block' : 'none';
             });
 
-            const titles = {
-                es: 'Algoritmo de Gillespie - EBCP Latam 2025',
-                en: 'Gillespie Algorithm - EBCP Latam 2025'
-            };
+
             document.title = titles[lang];
 
             new LanguageManager();
