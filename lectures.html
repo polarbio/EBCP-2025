@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EBCP Latam 2025</title>
+    <title>Lectures - EBCP Latam 2025</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./images/bacteria favicon.svg">
@@ -13,40 +13,161 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="./images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+                <span class="brand-text">EBCP Latam 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="about.html" class="active" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+                <a href="#proyectos_pasados" data-es="Proyectos anteriores" data-en="Previous Projects">Proyectos anteriores</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
 
-<!-- Header -->
-<header class="header">
-  <nav class="navbar">
-    <div class="nav-brand">
-      <img src="./images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
-      <span class="brand-text">EBCP Latam 2025</span>
-    </div>
-    <div class="nav-links">
-      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-      <a href="about.html" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
-      <a href="#proyectos_pasados" data-es="Proyectos anteriores" data-en="Previous Projects">Proyectos anteriores</a>
-      <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
-      
-      <!-- Language Toggle -->
-      <div class="language-toggle">
-        <button class="lang-btn active" data-lang="es">ESP</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-      </div>
-    </div>
-  </nav>
-</header>
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-  <main class="content">
-    <section class="notice-section">
-      <div class="update-message" 
-           data-es="Este sitio está en preparación. El contenido estará disponible a partir del viernes 11 de julio de 2025." 
-           data-en="This page is under preparation. Content will be available starting Friday, July 11, 2025.">
-        Este sitio está en preparación. El contenido estará disponible a partir del viernes 11 de julio de 2025.
-      </div>
-    </section>
-  </main>
+    <!-- Lectures Section -->
+    <main class="content">
+        <section class="lectures-section">
+            <div class="container">
+                <h2 class="section-title" data-es="Contenido del Workshop" data-en="Workshop Content">Contenido del Workshop</h2>
+
+                <div class="lectures-grid">
+
+                    <!-- LN1 -->
+                    <div class="lecture-card" data-level="teorico">
+                        <div class="card-header">
+                            <div class="card-icon">🧬</div>
+                            <div class="card-badge" data-es="Teórico" data-en="Theory">Teórico</div>
+                        </div>
+                        <h3 class="card-title" data-es="LN1: Regulación de genes" data-en="LN1: Gene regulation">LN1: Regulación de genes</h3>
+                        <p class="card-description" data-es="Introducción a los mecanismos de regulación génica en biología sintética." data-en="Introduction to gene regulation mechanisms in synthetic biology.">
+                            Introducción a los mecanismos de regulación génica en biología sintética.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag" data-es="Genética" data-en="Genes">Genética</span>
+                            <span class="tag" data-es="Represión" data-en="Repression">Represión</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="lectures/LN/LN1/index_LN1.html" class="btn-card-primary">📝 <span data-es="Ver Lecture" data-en="View Lecture">Ver Lecture</span></a>
+                        </div>
+                    </div>
+
+                    <!-- LN2 -->
+                    <div class="lecture-card" data-level="teorico">
+                        <div class="card-header">
+                            <div class="card-icon">⚖️</div>
+                            <div class="card-badge" data-es="Teórico" data-en="Theory">Teórico</div>
+                        </div>
+                        <h3 class="card-title" data-es="LN2: Sistemas dinámicos" data-en="LN2: Dynamic systems">LN2: Sistemas dinámicos</h3>
+                        <p class="card-description" data-es="Modelado matemático de circuitos biológicos como sistemas dinámicos." data-en="Mathematical modeling of biological circuits as dynamical systems.">
+                            Modelado matemático de circuitos biológicos como sistemas dinámicos.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag" data-es="EDOs" data-en="ODEs">ODEs</span>
+                            <span class="tag" data-es="Estabilidad" data-en="Stability">Estabilidad</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#index_LN2" class="btn-card-primary">📝 <span data-es="Ver Lecture" data-en="View Lecture">Ver Lecture</span></a>
+                        </div>
+                    </div>
+
+                    <!-- LN3 -->
+                    <div class="lecture-card" data-level="teorico">
+                        <div class="card-header">
+                            <div class="card-icon">🔄</div>
+                            <div class="card-badge" data-es="Teórico" data-en="Theory">Teórico</div>
+                        </div>
+                        <h3 class="card-title" data-es="LN3: Controladores biomoleculares" data-en="LN3: Biomolecular controllers">LN3: Controladores biomoleculares</h3>
+                        <p class="card-description" data-es="Diseño de controladores que regulan el comportamiento de circuitos genéticos." data-en="Design of controllers that regulate genetic circuit behavior.">
+                            Diseño de controladores que regulan el comportamiento de circuitos genéticos.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">Control</span>
+                            <span class="tag">Feedback</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#index_LN3" class="btn-card-primary">📝 <span data-es="Ver Lecture" data-en="View Lecture">Ver Lecture</span></a>
+                        </div>
+                    </div>
+
+                    <!-- LN4 -->
+                    <div class="lecture-card" data-level="teorico">
+                        <div class="card-header">
+                            <div class="card-icon">🧠</div>
+                            <div class="card-badge" data-es="Teórico" data-en="Theory">Teórico</div>
+                        </div>
+                        <h3 class="card-title" data-es="LN4: Redes neuronales biomoleculares" data-en="LN4: Biomolecular neural networks">LN4: Redes neuronales biomoleculares</h3>
+                        <p class="card-description" data-es="Concepto de redes neuronales implementadas con biomoléculas en células vivas." data-en="Concept of neural networks implemented with biomolecules in living cells.">
+                            Concepto de redes neuronales implementadas con biomoléculas en células vivas.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag" data-es="Capas" data-en="Layers">Capas</span>
+                            <span class="tag" data-es="Reacciones químicas" data-en="Chemical reactions">Reacciones químicas</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#index_LN4" class="btn-card-primary">📝 <span data-es="Ver Lecture" data-en="View Lecture">Ver Lecture</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Notes Section -->
+        <section id="technical-notes" class="lectures-section">
+            <div class="container">
+                <h2 class="section-title" data-es="Notas Técnicas" data-en="Technical Notes">Notas Técnicas</h2>
+                <div class="lectures-grid">
+                  <div class="lecture-card" data-level="tecnico">
+                        <div class="card-header">
+                            <div class="card-icon">🔢</div>
+                            <div class="card-badge" data-es="Técnico" data-en="Technical">Técnico</div>
+                        </div>
+                        <h3 class="card-title" data-es="TN1: Simulación numérica de EDOs con SciPy" data-en="TN1: Numerical Simulation of ODEs with SciPy">TN1: Simulación numérica de EDOs con SciPy</h3>
+                        <p class="card-description" data-es="Cómo usar `scipy.integrate` para resolver ecuaciones diferenciales ordinarias en sistemas biológicos." data-en="How to use `scipy.integrate` to solve ordinary differential equations in biological systems.">
+                            Cómo usar `scipy.integrate` para resolver ecuaciones diferenciales ordinarias en sistemas biológicos.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag" data-es="Simulación" data-en="Simulation">Simulación</span>
+                            <span class="tag" data-es="EDOs" data-en="ODEs">EDOs</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="lectures/TN/TN1/index_TN1.html" class="btn-card-primary">📝 <span data-es="Ver Technical Note" data-en="View Technical Note">Ver Technical Note</span></a>
+                        </div>
+                    </div>
+
+                  <div class="lecture-card" data-level="tecnico">
+                        <div class="card-header">
+                            <div class="card-icon">🎲</div>
+                            <div class="card-badge" data-es="Técnico" data-en="Technical">Técnico</div>
+                        </div>
+                        <h3 class="card-title" data-es="TN2: Simulaciones estocásticas con el algoritmo de Gillespie" data-en="TN2: Stochastic Simulations with the Gillespie Algorithm">TN2: Simulaciones estocásticas con el algoritmo de Gillespie</h3>
+                        <p class="card-description" data-es="Introducción a simulaciones estocásticas para reacciones químicas usando el algoritmo de Gillespie." data-en="Introduction to stochastic simulations for chemical reactions using the Gillespie algorithm.">
+                            Introducción a simulaciones estocásticas para reacciones químicas usando el algoritmo de Gillespie.
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag" data-es="Estocástico" data-en="Genes">Estocástico</span>
+                            <span class="tag" data-es="Represión" data-en="Repression">Represión</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="lectures/TN/TN2/index_TN2.html" class="btn-card-primary">📝 <span data-es="Ver Technical Note" data-en="View Technical Note">Ver Technical Note</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -58,57 +179,57 @@
         </div>
     </footer>
 
-  <!-- Language Switcher -->
-  <script>
-    class LanguageManager {
-        constructor() {
-            this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
-            this.init();
-        }
+    <!-- JavaScript for language switching -->
+    <script>
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+                this.init();
+            }
 
-        init() {
-            this.setupEventListeners();
-            this.setLanguage(this.currentLang);
-        }
+            init() {
+                this.setupEventListeners();
+                this.setLanguage(this.currentLang);
+            }
 
-        setupEventListeners() {
-            const langButtons = document.querySelectorAll('.lang-btn');
-            langButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const lang = e.target.getAttribute('data-lang');
-                    this.setLanguage(lang);
+            setupEventListeners() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang');
+                        this.setLanguage(lang);
+                    });
                 });
-            });
+            }
+
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+                document.getElementById('html-root').setAttribute('lang', lang);
+                const elements = document.querySelectorAll('[data-es][data-en]');
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        element.innerHTML = text;
+                    }
+                });
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                const titles = {
+                    es: 'Lectures - EBCP Latam 2025',
+                    en: 'Lectures - EBCP Latam 2025'
+                };
+                document.title = titles[lang];
+            }
         }
 
-        setLanguage(lang) {
-            this.currentLang = lang;
-            localStorage.setItem('selectedLanguage', lang);
-            document.getElementById('html-root').setAttribute('lang', lang);
-            const elements = document.querySelectorAll('[data-es][data-en]');
-            elements.forEach(element => {
-                const text = element.getAttribute(`data-${lang}`);
-                if (text) {
-                    element.innerHTML = text;
-                }
-            });
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                }
-            });
-            const titles = {
-                es: 'Lectures - EBCP Latam 2025',
-                en: 'Lectures - EBCP Latam 2025'
-            };
-            document.title = titles[lang];
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        new LanguageManager();
-    });
-  </script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new LanguageManager();
+        });
+    </script>
 </body>
 </html>
