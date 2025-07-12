@@ -455,102 +455,112 @@ bokeh.io.show(bokeh.layouts.row(plots))
 
     <!-- JavaScript exactamente igual a tu index -->
     <script>
-        class LanguageManager {
-            constructor() {
-                this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
-                this.init();
-            }
-
-            init() {
-                this.setupEventListeners();
-                this.setLanguage(this.currentLang);
-            }
-
-            setupEventListeners() {
-                const langButtons = document.querySelectorAll('.lang-btn');
-                langButtons.forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const lang = e.target.getAttribute('data-lang');
-                        this.setLanguage(lang);
-                    });
-                });
-            }
-
-            setLanguage(lang) {
-                this.currentLang = lang;
-                localStorage.setItem('selectedLanguage', lang);
-
-                // Actualizar atributo lang del <html>
-                document.getElementById('html-root').setAttribute('lang', lang);
-
-                // Cambiar textos multilingües
-                document.querySelectorAll('[data-es][data-en]').forEach(element => {
-                    const text = element.getAttribute(`data-${lang}`);
-                    if (text) {
-                        element.innerHTML = text;
-                    }
-                });
-
-                const titles = {
-                    es: 'Algoritmo de Gillespie - EBCP Latam 2025',
-                    en: 'Gillespie Algorithm - EBCP Latam 2025'
-                };
-
-                // Mostrar u ocultar bloques de código por idioma
-                document.querySelectorAll('.lang-block').forEach(block => {
-                    const blockLang = block.getAttribute('data-lang');
-                    block.style.display = (blockLang === lang) ? 'block' : 'none';
-                });
-
-                // Mostrar u ocultar imágenes por idioma
-                document.querySelectorAll('.lang-img').forEach(img => {
-                    const imgLang = img.getAttribute('data-lang');
-                    img.style.display = (imgLang === lang) ? 'block' : 'none';
-                });
-
-                // Activar botón correspondiente
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-lang') === lang) {
-                        btn.classList.add('active');
-                    }
-                });
-
-                // Re-render de MathJax si está disponible
-                if (window.MathJax) {
-                    MathJax.typesetPromise();
-                }
-            }
+    class LanguageManager {
+        constructor() {
+            this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+            this.init();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const lang = localStorage.getItem('selectedLanguage') || 'es';
+        init() {
+            this.setupEventListeners();
+            this.setLanguage(this.currentLang);
+        }
 
-            // Mostrar directamente el contenido correcto según idioma
+        setupEventListeners() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.target.getAttribute('data-lang');
+                    this.setLanguage(lang);
+                });
+            });
+        }
+
+        setLanguage(lang) {
+            this.currentLang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+
             document.getElementById('html-root').setAttribute('lang', lang);
 
-            document.querySelectorAll('[data-es][data-en]').forEach(el => {
-                const text = el.getAttribute(`data-${lang}`);
-                if (text) el.innerHTML = text;
+            // Cambiar texto según idioma
+            document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.innerHTML = text;
+                }
             });
 
-            document.querySelectorAll('.lang-block, .lang-img').forEach(el => {
-                const elLang = el.getAttribute('data-lang');
-                el.style.display = (elLang === lang) ? 'block' : 'none';
+            // Mostrar/ocultar bloques de código por idioma
+            document.querySelectorAll('.lang-block').forEach(block => {
+                const blockLang = block.getAttribute('data-lang');
+                block.style.display = (blockLang === lang) ? 'block' : 'none';
             });
 
+            // Mostrar/ocultar imágenes por idioma
+            document.querySelectorAll('.lang-img').forEach(img => {
+                const imgLang = img.getAttribute('data-lang');
+                img.style.display = (imgLang === lang) ? 'block' : 'none';
+            });
 
+            // Activar botón actual
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Cambiar título del documento
+            const titles = {
+                es: 'Algoritmo de Gillespie - EBCP Latam 2025',
+                en: 'Gillespie Algorithm - EBCP Latam 2025'
+            };
             document.title = titles[lang];
 
-            new LanguageManager();
-        });
-    </script>
-
-    <!-- Renderizar MathJax al final si es necesario -->
-    <script>
-        if (window.MathJax) {
-        MathJax.typesetPromise();
+            // Re-renderizar MathJax si está disponible
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
         }
-    </script>
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const lang = localStorage.getItem('selectedLanguage') || 'es';
+
+        // Mostrar elementos iniciales (antes de inicializar LanguageManager completo)
+        document.querySelectorAll('.lang-block, .lang-img').forEach(el => {
+            const elLang = el.getAttribute('data-lang');
+            el.style.display = (elLang === lang) ? 'block' : 'none';
+        });
+
+        // Cambiar texto inicial
+        document.querySelectorAll('[data-es][data-en]').forEach(el => {
+            const text = el.getAttribute(`data-${lang}`);
+            if (text) {
+                el.innerHTML = text;
+            }
+        });
+
+        // Cambiar título inicial
+        const titles = {
+            es: 'Algoritmo de Gillespie - EBCP Latam 2025',
+            en: 'Gillespie Algorithm - EBCP Latam 2025'
+        };
+        document.title = titles[lang];
+
+        // Establecer lang del HTML
+        document.getElementById('html-root').setAttribute('lang', lang);
+
+        // Iniciar gestor de idioma completo
+        new LanguageManager();
+    });
+</script>
+
+<!-- Render MathJax si es necesario -->
+<script>
+    if (window.MathJax) {
+        MathJax.typesetPromise();
+    }
+</script>
 </body>
 </html>
