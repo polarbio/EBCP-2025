@@ -13,7 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <!-- Header -->
     <header class="header">
@@ -26,8 +25,6 @@
                 <a href="lectures.html" data-es="Lectures" data-en="Lectures">Lectures</a>
                 <a href="#proyectos_pasados" data-es="Proyectos anteriores" data-en="Previous Projects">Proyectos anteriores</a>
                 <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
-                
-                <!-- Language Toggle -->
                 <div class="language-toggle">
                     <button class="lang-btn active" data-lang="es">ESP</button>
                     <button class="lang-btn" data-lang="en">EN</button>
@@ -36,55 +33,66 @@
         </nav>
     </header>
 
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <!-- Logo del workshop -->
-            <div class="hero-badge" 
-                 data-es="Engineering Biological Circuits Program LATAM"
-                 data-en="Engineering Biological Circuits Program LATAM">
+            <div class="hero-badge" data-es="Engineering Biological Circuits Program LATAM" data-en="Engineering Biological Circuits Program LATAM">
                 Engineering Biological Circuits Program LATAM
             </div>
 
-            <div class="hero-announcement" style="background-color: #fff3cd; border-left: 6px solid #ffa500; padding: 1rem 1.25rem; margin: 1.5rem 0; border-radius: 10px; font-size: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); max-width: 100%;">
-                <h2 style="margin-top: 0;" data-es="📢 Aviso importante" data-en="📢 Important Announcement">📢 Aviso importante</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
 
-                <p data-es="¡Gracias por el gran interés mostrado en el curso!" 
-                    data-en="Thank you for the great interest shown in the course!">
-                    ¡Gracias por el gran interés mostrado en el curso!
-                </p>
+                    <!-- Slide 1: Anuncio -->
+                    <div class="carousel-slide">
+                        <div class="carousel-card warning">
+                            <h2 data-es="Aviso importante" data-en="Important Announcement">Aviso importante</h2>
+                            <p data-es="¡Gracias por el gran interés mostrado en el curso!" data-en="Thank you for the great interest shown in the course!">¡Gracias por el gran interés mostrado en el curso!</p>
+                            <p data-es="<strong>Link de Zoom:</strong> <a href='https://cmu.zoom.us/j/95356337117' target='_blank'>https://cmu.zoom.us/j/95356337117</a><br><strong>Contraseña:</strong> 718079" data-en="<strong>Zoom Link:</strong> <a href='https://cmu.zoom.us/j/95356337117' target='_blank'>https://cmu.zoom.us/j/95356337117</a><br><strong>Password:</strong> 718079">
+                                <strong>Link de Zoom:</strong> <a href='https://cmu.zoom.us/j/95356337117' target='_blank'>https://cmu.zoom.us/j/95356337117</a><br>
+                                <strong>Contraseña:</strong> 718079
+                            </p>
+                            <p data-es="Por limitaciones técnicas, solo <strong>1000</strong> personas podrán acceder a la clase en vivo." data-en="Due to technical limitations, only <strong>1000</strong> people will be able to join the live class.">
+                                Por limitaciones técnicas, solo <strong>1000</strong> personas podrán acceder a la clase en vivo.
+                            </p>
+                            <p data-es="Los videos serán subidos en la noche luego de cada clase." data-en="Videos will be uploaded each night after class.">Los videos serán subidos en la noche luego de cada clase.</p>
+                            <p data-es="<strong>No se entregarán certificados de participación.</strong>" data-en="<strong>No certificates of participation will be provided.</strong>">
+                                <strong>No se entregarán certificados de participación.</strong>
+                            </p>
+                            <p data-es="Revisa esta página web cada día para nuevas actualizaciones." data-en="Check this website daily for updates.">Revisa esta página web cada día para nuevas actualizaciones.</p>
+                        </div>
+                    </div>
 
-                <p data-es="🔗 <strong>Link de Zoom:</strong> <a href='https://cmu.zoom.us/j/95356337117?pwd=khw2CXsya0huxdIe5sfWoasercxJby.1' target='_blank'>https://cmu.zoom.us/j/95356337117</a><br>🔑 <strong>Contraseña:</strong> 718079"
-                    data-en="🔗 <strong>Zoom Link:</strong> <a href='https://cmu.zoom.us/j/95356337117?pwd=khw2CXsya0huxdIe5sfWoasercxJby.10' target='_blank'>https://cmu.zoom.us/j/95356337117</a><br>🔑 <strong>Password:</strong> 718079">
-                    🔗 <strong>Link de Zoom:</strong> <a href='https://cmu.zoom.us/j/95356337117?pwd=khw2CXsya0huxdIe5sfWoasercxJby.1' target='_blank'>https://cmu.zoom.us/j/95356337117</a><br>
-                    🔑 <strong>Contraseña:</strong> 718079
-                </p>
+                    <!-- Slide 2: Estado del material -->
+                    <div class="carousel-slide">
+                        <div class="carousel-card info">
+                            <h3 data-es="Estado del material" data-en="Material Status">Estado del material</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th data-es="Material" data-en="Material">Material</th>
+                                        <th data-es="Estado" data-en="Status">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Lecture Note 1</td><td data-es="✅ Disponible" data-en="✅ Available">✅ Disponible</td></tr>
+                                    <tr><td>Lecture Note 2</td><td data-es="⏳ Por subir" data-en="⏳ Coming soon">⏳ Por subir</td></tr>
+                                    <tr><td>Lecture Note 3</td><td data-es="⏳ Por subir" data-en="⏳ Coming soon">⏳ Por subir</td></tr>
+                                    <tr><td>Lecture Note 4</td><td data-es="⏳ Por subir" data-en="⏳ Coming soon">⏳ Por subir</td></tr>
+                                    <tr><td>Technical Note 1</td><td data-es="✅ Disponible" data-en="✅ Available">✅ Disponible</td></tr>
+                                    <tr><td>Technical Note 2</td><td data-es="✅ Disponible" data-en="✅ Available">✅ Disponible</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="material-contact" data-es="📬 Preguntas: <a href='mailto:synbio.workshop.latam@gmail.com'>synbio.workshop.latam@gmail.com</a>" data-en="📬 Contact: <a href='mailto:synbio.workshop.latam@gmail.com'>synbio.workshop.latam@gmail.com</a>">
+                                <a href="mailto:synbio.workshop.latam@gmail.com">synbio.workshop.latam@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                <p data-es="El viernes, 11 de Julio, compartiremos el link del curso y la primera parte del material del lunes." 
-                    data-en="On Friday, July 11, we will share the course link and the first part of Monday's materials.">
-                    El viernes, 11 de Julio, compartiremos el link del curso y la primera parte del material del lunes.
-                </p>
-
-                <p data-es="Por limitaciones técnicas, solo <strong>1000</strong> personas (incluyendo instructores) podrán acceder a la clase en vivo." 
-                    data-en="Due to technical limitations, only <strong>1000</strong> people (including instructors) will be able to join the live class.">
-                    Por limitaciones técnicas, solo 1000 personas (incluyendo instructores) podrán acceder a la clase en vivo.
-                </p>
-
-                <p data-es="Los videos serán subidos en la noche luego de cada clase." 
-                    data-en="Videos will be uploaded each night after class.">
-                    Los videos serán subidos en la noche luego de cada clase.
-                </p>
-
-                <p data-es="<strong>No se entregarán certificados de participación.</strong>" 
-                    data-en="<strong>No certificates of participation will be provided.</strong>">
-                    <strong>No se entregarán certificados de participación.</strong>
-                </p>
-
-                <p data-es="Revisa esta página web cada día para nuevas actualizaciones." 
-                    data-en="Check this website daily for new updates.">
-                    Revisa esta página web cada día para nuevas actualizaciones.
-                </p>
+                <!-- Controles del carrusel -->
+                <button onclick="prevSlide()" class="carousel-button left">&#10094;</button>
+                <button onclick="nextSlide()" class="carousel-button right">&#10095;</button>
             </div>
             
             <h1 class="hero-title">
@@ -138,78 +146,60 @@
         </div>
     </section>
 
-
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
-               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
-               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego" data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+                &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
             </p>
         </div>
     </footer>
 
-    <!-- JavaScript for language switching -->
+    <!-- JavaScript para cambio de idioma y carrusel -->
     <script>
         class LanguageManager {
             constructor() {
                 this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
                 this.init();
             }
-
             init() {
                 this.setupEventListeners();
                 this.setLanguage(this.currentLang);
             }
-
             setupEventListeners() {
-                const langButtons = document.querySelectorAll('.lang-btn');
-                langButtons.forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const lang = e.target.getAttribute('data-lang');
-                        this.setLanguage(lang);
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        this.setLanguage(e.target.dataset.lang);
                     });
                 });
             }
-
             setLanguage(lang) {
                 this.currentLang = lang;
                 localStorage.setItem('selectedLanguage', lang);
-                
-                // Update HTML lang attribute
-                document.getElementById('html-root').setAttribute('lang', lang);
-                
-                // Update all elements with data attributes
-                const elements = document.querySelectorAll('[data-es][data-en]');
-                elements.forEach(element => {
-                    const text = element.getAttribute(`data-${lang}`);
-                    if (text) {
-                        element.innerHTML = text;
-                    }
+                document.getElementById('html-root').lang = lang;
+                document.querySelectorAll('[data-es][data-en]').forEach(el => {
+                    const text = el.getAttribute(`data-${lang}`);
+                    if (text) el.innerHTML = text;
                 });
-
-                // Update active button
                 document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-lang') === lang) {
-                        btn.classList.add('active');
-                    }
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
                 });
-
-                // Update page title
-                const titles = {
-                    es: 'EBCP Latam 2025 - Workshop SynBio',
-                    en: 'EBCP Latam 2025 - SynBio Workshop'
-                };
-                document.title = titles[lang];
+                document.title = lang === 'es' ? 'EBCP Latam 2025 - Workshop SynBio' : 'EBCP Latam 2025 - SynBio Workshop';
             }
         }
+        document.addEventListener('DOMContentLoaded', () => new LanguageManager());
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new LanguageManager();
-        });
+        // Carrusel
+        let currentSlide = 0;
+        const track = document.getElementById("carousel-track");
+        const updateCarousel = () => {
+            const slideWidth = track.offsetWidth / 2;
+            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        };
+        const nextSlide = () => { if (currentSlide < 1) { currentSlide++; updateCarousel(); } };
+        const prevSlide = () => { if (currentSlide > 0) { currentSlide--; updateCarousel(); } };
+        window.addEventListener("resize", updateCarousel);
     </script>
+
 </body>
 </html>

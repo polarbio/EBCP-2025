@@ -946,3 +946,73 @@ html[lang="en"] .lang-comment::before {
 .lang-block {
 display: none;
 }
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 2rem auto;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 200%;
+}
+
+.carousel-slide {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.carousel-card {
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    background-color: #fff;
+}
+
+.carousel-card.warning {
+    border-left: 5px solid #ffa500;
+    background-color: #fffaf2;
+}
+
+.carousel-card.info {
+    border-left: 5px solid #4caf50;
+    background-color: #f9f9f9;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.carousel-button.left { left: 10px; }
+.carousel-button.right { right: 10px; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+table th, table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table thead {
+    background-color: #e0f2f1;
+}
