@@ -511,13 +511,6 @@ bokeh.io.show(bokeh.layouts.row(plots))
                     }
                 });
 
-                // Actualizar título de la página
-                const titles = {
-                    es: 'Solución Numérica de EDOs - EBCP Latam 2025',
-                    en: 'Numerical Solution of ODEs - EBCP Latam 2025'
-                };
-                document.title = titles[lang];
-
                 // Re-render de MathJax si está disponible
                 if (window.MathJax) {
                     MathJax.typesetPromise();
