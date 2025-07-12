@@ -11,6 +11,8 @@
     --text-light: #64748b;
     --white: #ffffff;
     --light-bg: #f8fafc;
+    --lilac-tr:#d0b4ff;
+    --dark-purple: #693cb6;
 }
 
 /* Reset y base */
@@ -356,8 +358,8 @@ body {
 }
 
 .lecture-card[data-level="teorico"] .card-badge {
-    background: #fef3c7;
-    color: #92400e;
+    background: #d0b4ff;
+    color: #693cb6;
 }
 
 .lecture-card[data-level="avanzado"] .card-badge {
@@ -669,4 +671,278 @@ main.content {
 /* Language transition effects */
 [data-es], [data-en] {
     transition: opacity 0.2s ease-in-out;
+}
+
+/* =========================================
+   Estilos para páginas tipo Notebook (TN)
+   ========================================= */
+
+/* Contenedor principal del notebook */
+.notebook-section {
+    padding: 6rem 0 4rem 0;
+    background: var(--white);
+    min-height: 100vh;
+}
+
+/* Contenedor principal del notebook */
+.notebook-section {
+    padding: 6rem 0 4rem 0;
+    background: var(--white);
+    min-height: 100vh;
+}
+
+.notebook-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header del notebook */
+.notebook-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--primary-green);
+}
+
+.notebook-header-TR {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--lilac-tr);
+}
+
+.notebook-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.notebook-subtitle {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.notebook-meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Navegación interna */
+.notebook-nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 100px;
+    z-index: 100;
+}
+
+.nav-items {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-items a {
+    padding: 0.5rem 1rem;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.nav-items a:hover {
+    background: var(--primary-green);
+    color: white;
+}
+
+/* Celdas del notebook */
+.cell {
+    margin-bottom: 1rem; /* corregido: había un espacio extra */
+    overflow: hidden;
+}
+
+.cell-markdown {
+    background: var(--white);
+    padding: 1rem;
+}
+
+.cell-code {
+    background: var(--light-bg);
+}
+
+.cell-input {
+    background: #1e1e1e;
+    padding: 1.5rem;
+    position: relative;
+    border-radius: 12px;
+}
+
+.cell-input::before {
+    content: "Python";
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.cell-output {
+    background: var(--white);
+    padding: 0.5rem; /* corregido: había un espacio extra */
+    border-top: 1px solid #e2e8f0;
+    margin-top: 0;
+}
+
+/* Tipografía */
+.cell-markdown h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.cell-markdown h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--primary-green);
+}
+
+.cell-markdown h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--text-dark);
+}
+
+.cell-markdown p {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    text-align: justify;
+}
+
+.cell-markdown strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.cell-markdown em {
+    color: var(--accent-orange);
+    font-style: italic;
+}
+
+.cell-markdown a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.cell-markdown a:hover {
+    border-bottom-color: var(--primary-green);
+}
+
+.cell-markdown code {
+    background: var(--light-bg);
+    color: var(--primary-blue);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Código */
+.cell-input pre {
+    margin: 0;
+    color: #d4d4d4;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.cell-output pre {
+    background: #f8fafc;
+    color: var(--text-dark);
+    padding: 0.1rem; /* corregido: había un espacio extra */
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-green);
+    margin: 0;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+}
+
+/* Matemáticas */
+.math-block {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-cyan);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .notebook-section {
+        padding: 5rem 0 3rem 0;
+    }
+
+    .notebook-container {
+        padding: 0 1rem;
+    }
+
+    .notebook-title {
+        font-size: 2rem;
+    }
+
+    .cell-markdown,
+    .cell-input,
+    .cell-output {
+        padding: 0.4rem;
+    }
+
+    .nav-items {
+        gap: 0.1rem;
+    }
+
+    .nav-items a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .cell-input::before {
+        display: none;
+    }
+}
+
+.lang-comment::before {
+  content: attr(data-es);
+}
+
+html[lang="en"] .lang-comment::before {
+  content: attr(data-en);
+}
+
+.lang-block {
+display: none;
 }
