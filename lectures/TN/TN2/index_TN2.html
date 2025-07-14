@@ -94,103 +94,42 @@
                     En esta sección vamos a explorar cómo implementar simulaciones estocásticas usando el paquete <code>biocircuits</code>. Para una revisión y más detalles sobre la lógica y las matemáticas detrás del algoritmo, los autores del paquete tienen una excelente explicación que se puede consultar <a href="https://biocircuits.github.io/technical_appendices/16a_gillespie.html">aquí</a>.
                 </p>
 
-                <h2 data-es="La matriz de probabilidades (propensities)"
-                    data-en="The propensities matrix">
-                    La matriz de probabilidades (propensities)
+                <h2 data-es="Matriz de estequiometría (stoichiometry)"
+                    data-en="Stoichiometry Matrix">
+                    Matriz de estequiometría (stoichiometry)
                 </h2>
 
-                <p data-es="La <strong>matriz de probabilidades</strong>, como bien describe su nombre, representa las probabilidades de que cada reacción química ocurra en un determinado instante de tiempo. Para entender cómo escribir esta matriz, recordemos nuestro modelo de transcripción-traducción (TXTL) de un gen reportero del Technical Note #1. Si $m_{\text{gfp}}$ representa el producto de la transcripción (es decir, el ARNm), y ${\text{gfp}}$ es el producto de la traducción (es decir, la proteína), las EDOs que describen el sistema TXTL eran las siguientes:"
-                   data-en="The <strong>propensities matrix</strong> describes the probabilities of each chemical reaction to occur in a certain time step. To understand how to write this matrix, let's recall our transcription-translation (TXTL) model of a reporter gene from the Technical Note #1. If $m_{\text{gfp}}$ is the production of transcription (i.e., the mRNA), and ${\text{gfp}}$ is the product of translation (i.e., the protein), the ODEs that described the TXTL system were the following:">
-                   La <strong>matriz de probabilidades</strong>, como bien describe su nombre, representa las probabilidades de que cada reacción química ocurra en un determinado instante de tiempo. Para entender cómo escribir esta matriz, recordemos nuestro modelo de transcripción-traducción (TXTL) de un gen reportero del Technical Note #1. Si $m_{\text{gfp}}$ representa el producto de la transcripción (es decir, el ARNm), y ${\text{gfp}}$ es el producto de la traducción (es decir, la proteína), las EDOs que describen el sistema TXTL eran las siguientes: 
+                <p data-es="La <strong>matriz de estequiometría</strong> describe cómo cambia el número de moléculas de cada especie química involucrada en la reacción. Para entender cómo escribir esta matriz, recordemos nuestro modelo de transcripción-traducción (TXTL) de un gen reportero del Technical Note #1. Si $m_{\text{gfp}}$ representa el producto de la transcripción (es decir, el mRNA), y $\text{GFP}$ es el producto de la traducción (es decir, la proteína), las reacciones químicas que describen el sistema TXTL son las siguientes:"
+                   data-en="The <strong>stoichiometry matrix</strong> describes how the number of molecules of each chemical species involved in the reaction changes. To understand how to write this matrix, let’s recall our transcription-translation (TXTL) model of a reporter gene from Technical Note #1. If $m_{\text{gfp}}$ represents the transcription product (i.e., the mRNA), and $\text{GFP}$ is the translation product (i.e., the protein), the chemical reactions describing the TXTL system are as follows:">
+                   La <strong>matriz de estequiometría</strong> describe cómo cambia el número de moléculas de cada especie química involucrada en la reacción. Para entender cómo escribir esta matriz, recordemos nuestro modelo de transcripción-traducción (TXTL) de un gen reportero del Technical Note #1. Si $m_{\text{gfp}}$ representa el producto de la transcripción (es decir, el mRNA), y $\text{GFP}$ es el producto de la traducción (es decir, la proteína), las reacciones químicas que describen el sistema TXTL son las siguientes:
                 </p>
             </div>
 
             <div class="math-block">
                     $$\begin{eqnarray}
-                    \frac{d}{dt}m_{\text{gfp}} &=& \theta - \delta m_{\text{gfp}} \\
-                    \frac{d}{dt} \text{gfp} &=& \rho  m_{\text{gfp}} - \phi \text{gfp}
+                     \text{DNA} &\xrightarrow{\theta} \text{DNA} + M_{\text{gfp}} && \quad M_{\text{gfp}} \xrightarrow{\delta} \emptyset &&  \quad \text{Transcripción y degradación de mRNA}\\
+                     M_{\text{gfp}} &\xrightarrow{\rho} M_{\text{gfp}} + \text{GFP} && \text{GFP} \xrightarrow{\phi} \emptyset && \quad \text{Traducción y degradación de la proteina}
                     \end{eqnarray}$$
             </div>
             
             <div class="cell cell-markdown">    
-                <p data-es="Una buena práctica antes de escribir la matriz de propensiones es analizar la <strong>dimensionalidad</strong> de nuestras EDOs. Para el sistema TXTL, las unidades son concentración ($\mu$M)  y horas (h)."
-                data-en="A good practice before writing the propensities matrix is to analyze the <strong>dimensionality</strong> of our ODEs. For the TXTL system, the units are concentration ($\mu$M) and hours (h).">
-                    Una buena práctica antes de escribir la matriz de propensiones es analizar la <strong>dimensionalidad</strong> de nuestras EDOs. Para el sistema TXTL, las unidades son concentración ($\mu$M)  y horas (h).
+                <p data-es="Para formar nuestra matriz de estequiometría, reescribamos las reacciones químicas de modo que formen una columna. Al lado, llevaremos la cuenta si la reacción química se encuentra produciendo una molécula (para lo cual escribiremos un $+1$), o degradando una molécula (para lo cual escribiremos un $-1$). Si una especie química no participa en una reacción, le asignaremos un <strong>cero</strong> (0)."
+                data-en="To build our stoichiometry matrix, let’s rewrite the chemical reactions as a column. Next to each reaction, we’ll keep track of whether the reaction produces a molecule (in which case we write a $+1$), or degrades a molecule (in which case we write a $-1$). If a chemical species is not involved in a reaction, we assign it a <strong>zero</strong> (0).">
+                    Para formar nuestra matriz de estequiometría, reescribamos las reacciones químicas de modo que formen una columna. Al lado, llevaremos la cuenta si la reacción química se encuentra produciendo una molécula (para lo cual escribiremos un $+1$), o degradando una molécula (para lo cual escribiremos un $-1$). Si una especie química no participa en una reacción, le asignaremos un <strong>cero</strong> (0).
                 </p>
             </div>
 
             <div class="math-block">
-                    $$\begin{eqnarray}
-                    \frac{d}{dt}m_{\text{gfp}} &=& \theta \left [\frac{\mu M}{h} \right ] - \delta \left [\frac{1}{h} \right ] m_{\text{gfp}} [\mu M] \\
-                    \frac{d}{dt} \text{gfp} &=& \rho \left [\frac{1}{h} \right ] m_{\text{gfp}} [\mu M] - \phi \left [\frac{1}{h} \right ] \text{gfp} [\mu M]
-                    \end{eqnarray}$$
+                    $$\begin{align*}
+                    && M_{\text{gfp}} &&   \text{GFP} \\
+                    \text{DNA} &\xrightarrow{\theta} \text{DNA} + M_{\text{gfp}} &  +1 && 0 \\
+                    M_{\text{gfp}} & \xrightarrow{\delta} \emptyset &  -1 && 0\\
+                    M_{\text{gfp}} &\xrightarrow{\rho} M_{\text{gfp}} + \text{GFP} & 0 && +1\\
+                    \text{GFP} &\xrightarrow{\phi} \emptyset & 0 && -1
+                    \end{align*}$$
             </div>
 
-            <div class="cell cell-markdown">
-                
-                <p data-es="Cuando usamos el algoritmo de Gillespie del paquete <code>biocircuits</code>, todas las concentraciones se interpretan como número de moléculas. Esto significa que debemos asegurarnos de que los parámetros de nuestro modelo estén expresados en las unidades correctas. Las tasas de traducción, degradación del ARNm y degradación de la proteína ($\rho$, $\delta$ y $\phi$) ya tienen unidades de <em>''por tiempo''</em> ($1/h$), por lo que no necesitan convertirse. Sin embargo, la tasa de transcripción $\theta$ está definida en unidades de concentración por tiempo ($\mu M/h$), así que necesitamos convertirla a <em>''moléculas por unidad de tiempo''</em>. Para hacer esto, debemos multiplicar $\theta$ por un factor de volumen llamado $\Omega$. Su valor depende del volumen efectivo de la célula, y garantiza que la simulación estocástica sea coherente con la escala física del sistema."
-                   data-en="When we use the Gillespie algorithm from the <code>biocircuits</code> package, all concentrations are interpreted as number of molecules. This means we need to make sure our model parameters are expressed in the right units. The rates for translation, mRNA degradation, and protein degradation ($\rho$, $\delta$, and $\phi$) already have units of <em>''per time''</em> ($1/h$), so they don’t need to be converted. However, the transcription rate $\theta$ is defined in concentration units per time ($\mu M/h$), so we need to convert it into <em>''molecules per unit time''</em>. To do this, we should multiply $\theta$ by a volume factor named $\Omega$. Its value depends on the effective cell volume, and it ensures that the stochastic simulation stays consistent with the physical scale of the system.">
-                   Cuando usamos el algoritmo de Gillespie del paquete <code>biocircuits</code>, todas las concentraciones se interpretan como número de moléculas. Esto significa que debemos asegurarnos de que los parámetros de nuestro modelo estén expresados en las unidades correctas. Las tasas de traducción, degradación del ARNm y degradación de la proteína ($\rho$, $\delta$ y $\phi$) ya tienen unidades de <em>''por tiempo''</em> ($1/h$), por lo que no necesitan convertirse. Sin embargo, la tasa de transcripción $\theta$ está definida en unidades de concentración por tiempo ($\mu M/h$), así que necesitamos convertirla a <em>''moléculas por unidad de tiempo''</em>. Para hacer esto, debemos multiplicar $\theta$ por un factor de volumen llamado $\Omega$. Su valor depende del volumen efectivo de la célula, y garantiza que la simulación estocástica sea coherente con la escala física del sistema.
-                </p>
-
-                <p data-es="Para escribir su matriz de estequiometría, básicamente debemos <em>''separar''</em> cada término que produce o degrada una variable de estado en una matriz. Una buena práctica es escribir todas las reacciones que involucran una determinada variable de estado una tras otra."
-                   data-en="To write its stoichiometry matrix, we should basically <em>‘'decouple’'</em> each term that either produces or degrades each state variable into a matrix. A good practice is to write all reactions involving certain state variable one after the other.">
-                   Para escribir su matriz de estequiometría, básicamente debemos <em>''separar''</em> cada término que produce o degrada una variable de estado en una matriz. Una buena práctica es escribir todas las reacciones que involucran una determinada variable de estado una tras otra.
-                </p>
-            </div>
-                <div class="cell cell-code">
-                    <div class="cell-input">
-                        <pre><code class="language-python">
-# Propensities matrix
-def simple_propensity(propensities, population, t, th, rho, d, p, Omega):
-  mgfp, gfp = population
-
-  propensities[0] = th * Omega
-  propensities[1] = d * mgfp
-  propensities[2] = rho * mgfp
-  propensities[3] = p * gfp
-                    </code></pre>
-                    </div>
-                </div>
-            <div class="cell cell-markdown">
-                <p data-es="<strong>Importante</strong>: El <strong>orden</strong> en el que se escriben las probabilidades es relevante, ya que la matriz de estequiometría debe coincidir con las probabilidades de cada reacción y reflejar correctamente el cambio en el número de moléculas."
-                   data-en="<strong>Important</strong>: The <strong>order</strong> propensities were written is important, since the stoichiometry matrix should match the propensities of each reaction and correctly reflect the change in the number of molecules.">
-                    <strong>Importante</strong>: El <strong>orden</strong> en el que se escriben las probabilidades es relevante, ya que la matriz de estequiometría debe coincidir con las probabilidades de cada reacción y reflejar correctamente el cambio en el número de moléculas.
-                </p>
-            </div>
-
-            <div class="cell cell-markdown">
-                <h2 data-es="Matriz de estequiometría"
-                    data-en="The stoichiometry matrix">
-                    Matriz de estequiometría
-                </h2>
-
-                <p data-es="La <strong>matriz de estequiometría</strong> describe cómo cambia el número de moléculas de cada especie química involucrada en la reacción. Para escribir esta matriz, debemos recordar que cada término en el lado derecho de las EDOs nos indica cómo está cambiando la concentración de la variable de estado."
-                   data-en="The <strong>stoichiomatry matrix</strong> describes how the number of molecules of each chemical species involved in the reaction should change. To write this matrix, we should remember that each term at the right-hand side of the ODEs tell us how does the concentration of the state variable is changing.">
-                    La <strong>matriz de estequiometría</strong> describe cómo cambia el número de moléculas de cada especie química involucrada en la reacción. Para escribir esta matriz, debemos recordar que cada término en el lado derecho de las EDOs nos indica cómo está cambiando la concentración de la variable de estado.
-                </p>
-
-                <p data-es="Una buena práctica es tomar las reacciones químicas o las EDOs que usamos para describir nuestro sistema determinista y escribir un ''+1'' en las reacciones que producen, y un ''−1'' en las reacciones que degradan."
-                   data-en="A good practice is take the chemical reactions or the ODEs we used to describe our deterministic system and write a ''+1'' in the reactions that produce, and a ''-1'' is the reactions that degrade.">
-                    Una buena práctica es tomar las reacciones químicas o las EDOs que usamos para describir nuestro sistema determinista y escribir un ''+1'' en las reacciones que producen, y un ''−1'' en las reacciones que degradan.
-                </p>
-            </div>
-
-                <div class="math-block">
-                    $$\begin{eqnarray}
-                    \frac{d}{dt}m_{\text{gfp}} &=& \theta (+1) - \delta m_{\text{gfp}} (-1) \\
-                    \frac{d}{dt} \text{gfp} &=& \rho  m_{\text{gfp}} (+1) - \phi \text{gfp}(-1)
-                    \end{eqnarray}$$
-                </div>
-
-            <div class="cell cell-markdown">
-                <p data-es="No olvides que, si una especie química no participa en una reacción descrita por una función de propensión, se le asigna un <strong>cero</strong> (0) en la matriz de estequiometría."
-                   data-en="Don´t forget that, if a chemical species does not participate in a reaction describe by a propensity function, it's assigned a <strong>zero</strong> (0) in the stoichiometry matrix.">
-                    No olvides que, si una especie química no participa en una reacción descrita por una función de propensión, se le asigna un <strong>cero</strong> (0) en la matriz de estequiometría.
-                </p>
-            </div>
-
-                <div class="cell cell-code lang-block" data-lang="es">
+            <div class="cell cell-code lang-block" data-lang="es">
                     <div class="cell-input">
                         <pre><code class="language-python">
 import numpy as np
@@ -227,6 +166,85 @@ simple_update = np.array(
                     </code></pre>
                     </div>
                 </div>
+
+            <div class="cell cell-markdown">
+
+                <h2 data-es="La matriz de probabilidades (propensities)"
+                    data-en="The propensities matrix">
+                    La matriz de probabilidades (propensities)
+                </h2>
+                
+                <p data-es="La <strong>matriz de probabilidades</strong>, como bien describe su nombre, representa las probabilidades de que cada reacción química ocurra en un determinado instante de tiempo. Dicha probabilidad está dada por los elementos de la parte derecha de las ecuaciones diferenciales que escribimos para modelar las reacciones químicas. Una buena práctica antes de escribir la matriz de probabilidades es analizar la <strong>dimensionalidad</strong> de las tasas descritas en las reacciones químicas. Esto debido a que cuando usamos el algoritmo de Gillespie del paquete <code>biocircuits</code>,  todas las concentraciones se interpretan como número de moléculas. Esto significa que debemos asegurarnos de que los parámetros de nuestro modelo estén expresados en las unidades correctas."
+                   data-en="The <strong>probability matrix</strong>, as its name suggests, represents the probabilities that each chemical reaction will occur at a given point in time. These probabilities are given by the terms on the right-hand side of the differential equations we wrote to model the chemical reactions.A good practice before writing the probability matrix is to analyze the <strong>dimensionality</strong> of the reaction rate constants. This is important because, when using the Gillespie algorithm from the <code>biocircuits</code> package, all concentrations are interpreted as molecule counts. Therefore, we must ensure that the parameters in our model are expressed using the correct units.">
+                   La <strong>matriz de probabilidades</strong>, como bien describe su nombre, representa las probabilidades de que cada reacción química ocurra en un determinado instante de tiempo. Dicha probabilidad está dada por los elementos de la parte derecha de las ecuaciones diferenciales que escribimos para modelar las reacciones químicas. Una buena práctica antes de escribir la matriz de probabilidades es analizar la <strong>dimensionalidad</strong> de las tasas descritas en las reacciones químicas. Esto debido a que cuando usamos el algoritmo de Gillespie del paquete <code>biocircuits</code>,  todas las concentraciones se interpretan como número de moléculas. Esto significa que debemos asegurarnos de que los parámetros de nuestro modelo estén expresados en las unidades correctas.
+                </p>
+
+            </div>
+
+            <div class="math-block">
+                    $$\begin{align*}
+                    && M_{\text{gfp}} && \text{GFP} && \text{Tasa}\\
+                    \text{DNA} &\xrightarrow{\theta} \text{DNA} + M_{\text{gfp}} & +1 && 0 && \theta \left [\frac{\mu M}{h} \right ] \\
+                    M_{\text{gfp}} &\xrightarrow{\delta} \emptyset & -1 && 0 && \delta \left [\frac{1}{h} \right ]\\
+                    M_{\text{gfp}} &\xrightarrow{\rho} M_{\text{gfp}} + \text{GFP} & 0 && +1 && \rho \left [\frac{1}{h} \right ]\\
+                    \text{GFP} &\xrightarrow{\phi} \emptyset & 0 && -1 && \phi \left [\frac{1}{h} \right ]
+                    \end{align*}$$
+            </div>
+
+            <div class="cell cell-markdown">
+                <p data-es=" Las tasas de traducción, degradación del mRNA y degradación de la proteína ($\rho$, $\delta$ y $\phi$) ya tienen unidades de 'por tiempo' ($1/h$), por lo que no necesitan convertirse. Sin embargo, la tasa de transcripción $\theta$ está definida en unidades de concentración por tiempo ($\mu M/h$), así que necesitamos convertirla a 'moléculas por unidad de tiempo'. Para hacer esto, debemos multiplicar $\theta$ por un factor de volumen llamado $\Omega$. Su valor depende del volumen efectivo de la célula, y garantiza que la simulación estocástica sea coherente con la escala física del sistema. Por lo tanto, nuestra matriz de probabilidades será la siguiente:"
+                   data-en="The translation, mRNA degradation, and protein degradation rates ($\rho$, $\delta$, and $\phi$) already have units of ‘per time’ ($1/h$), so they don’t need to be converted. However, the transcription rate $\theta$ is defined in units of concentration per time ($\mu M/h$), so we need to convert it to ‘molecules per unit time’. To do this, we multiply $\theta$ by a volume scaling factor called $\Omega$. Its value depends on the effective volume of the cell and ensures that the stochastic simulation aligns with the physical scale of the system. Therefore, our probability matrix will be as follows:">
+                    Las tasas de traducción, degradación del mRNA y degradación de la proteína ($\rho$, $\delta$ y $\phi$) ya tienen unidades de 'por tiempo' ($1/h$), por lo que no necesitan convertirse. Sin embargo, la tasa de transcripción $\theta$ está definida en unidades de concentración por tiempo ($\mu M/h$), así que necesitamos convertirla a 'moléculas por unidad de tiempo'. Para hacer esto, debemos multiplicar $\theta$ por un factor de volumen llamado $\Omega$. Su valor depende del volumen efectivo de la célula, y garantiza que la simulación estocástica sea coherente con la escala física del sistema. Por lo tanto, nuestra matriz de probabilidades será la siguiente:
+                </p>
+            </div>
+
+            <div class="math-block">
+                    $$\begin{align*}
+                     && M_{\text{gfp}} && \text{GFP} && \text{Tasa} && \text{Probabilidad}\\
+                    \text{DNA} &\xrightarrow{\theta} \text{DNA} + M_{\text{gfp}} & +1 && 0 && \theta \left [\frac{\mu M}{h} \right ] && \theta \times \Omega\\
+                    M_{\text{gfp}} &\xrightarrow{\delta} \emptyset & -1 && 0 && \delta \left [\frac{1}{h} \right ] && \delta \times m_{\text{gfp}}\\
+                    M_{\text{gfp}} &\xrightarrow{\rho} M_{\text{gfp}} + \text{GFP} & 0 && +1 && \rho \left [\frac{1}{h} \right ] && \rho \times m_{\text{gfp}}\\
+                    \text{GFP} &\xrightarrow{\phi} \emptyset & 0 && -1 && \phi \left [\frac{1}{h} \right ] && \phi \times \text{gfp}
+                    \end{align*}$$
+            </div>
+
+            <div class="cell cell-code lang-block" data-lang="es">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+# Propensities matrix
+def simple_propensity(propensities, population, t, th, rho, d, p, Omega):
+  mgfp, gfp = population
+
+  propensities[0] = th * Omega
+  propensities[1] = d * mgfp
+  propensities[2] = rho * mgfp
+  propensities[3] = p * gfp
+                    </code></pre>
+                    </div>
+                </div>
+
+            <div class="cell cell-code lang-block" data-lang="en">
+                    <div class="cell-input">
+                        <pre><code class="language-python">
+# Propensities matrix
+def simple_propensity(propensities, population, t, th, rho, d, p, Omega):
+  mgfp, gfp = population
+
+  propensities[0] = th * Omega
+  propensities[1] = d * mgfp
+  propensities[2] = rho * mgfp
+  propensities[3] = p * gfp
+                    </code></pre>
+                    </div>
+                </div>
+            
+            <div class="cell cell-markdown">
+                <p data-es="<strong>Importante</strong>: El <strong>orden</strong> en el que se escriben las probabilidades es relevante, ya que la matriz de estequiometría debe coincidir con las probabilidades de cada reacción y reflejar correctamente el cambio en el número de moléculas."
+                   data-en="<strong>Important</strong>: The <strong>order</strong> in which the probabilities are written matters, as the stoichiometry matrix must align with the probabilities of each reaction and accurately reflect the change in the number of molecules.">
+                    <strong>Importante</strong>: El <strong>orden</strong> en el que se escriben las probabilidades es relevante, ya que la matriz de estequiometría debe coincidir con las probabilidades de cada reacción y reflejar correctamente el cambio en el número de moléculas.
+                </p>
+            </div>
+
 
             <div class="cell cell-markdown">
                 <h2 data-es="Utilizando el algoritmo Gillespie"
@@ -266,17 +284,17 @@ bokeh.io.output_notebook()
                     <div class="cell-input">
                         <pre><code class="language-python">
 # Kinetic parameters
-th = 1
-rho = 2
+th = 0.5
+rho = 4
 d = 0.1
 p = 0.05
 
 # Definir el valor de conversión a número de molécules
-Omega = 100 # e.g., 500: volumen de una célula E. Coli
+Omega = 600 # e.g., 600: volumen de una célula E. Coli
 
 # Definir el tiempo de simulación, condiciones iniciales y parámetros del sistema
 time_points = np.linspace(0, 80, 801)
-population_0 = np.zeros(2, dtype=int) # initial conditions
+population_0 = np.zeros(2, dtype=int) # condiciones iniciales
 args1 = (th, rho, d, p, Omega)
                     </code></pre>
                     </div>
@@ -286,8 +304,8 @@ args1 = (th, rho, d, p, Omega)
                     <div class="cell-input">
                         <pre><code class="language-python">
 # Kinetic parameters
-th = 1
-rho = 2
+th = 0.5
+rho = 4
 d = 0.1
 p = 0.05
 
@@ -320,8 +338,8 @@ np.save("TXTL_stochastic.npy", samples)</code></pre>
                 </div>
                 <div class="cell-output">
                     <pre>
- 100%|██████████| 20/20 [02:11<00:00,  6.58s/it]
- 100%|██████████| 20/20 [02:12<00:00,  6.61s/it] </pre>
+ 100%|██████████| 20/20 [11:35<00:00, 34.77s/it]
+ 100%|██████████| 20/20 [11:35<00:00, 34.77s/it] </pre>
                 </div>
             </div>
 
@@ -336,8 +354,8 @@ np.save("TXTL_stochastic.npy", samples)</code></pre>
                 </div>
                 <div class="cell-output">
                     <pre>
- 100%|██████████| 20/20 [02:11<00:00,  6.58s/it]
- 100%|██████████| 20/20 [02:12<00:00,  6.61s/it] </pre>
+ 100%|██████████| 20/20 [11:35<00:00, 34.77s/it]
+ 100%|██████████| 20/20 [11:35<00:00, 34.77s/it] </pre>
                 </div>
             </div>
 
@@ -352,10 +370,6 @@ np.save("TXTL_stochastic.npy", samples)</code></pre>
             <div class="cell cell-code lang-block" data-lang="es">
                 <div class="cell-input">
                     <pre><code class="language-python">
-# Colores y etiquetas
-colors = ['gray', 'orange']
-labels = ['mRNA', 'proteina']
-
 # Configuración de la visualización con bokeh
 fig_size = [320, 250]
 plots = []
@@ -364,22 +378,17 @@ for i in range(2):
   plots.append(bokeh.plotting.figure(width = fig_size[0], height = fig_size[1],
                                      x_axis_label = 'Tiempo (horas)', y_axis_label = 'Numéro de moléculas'))
 
-  # Calculamos el promedio entre trayectorias
-  y_mean = np.mean(samples[:, :, i], axis=0)
-  y_min = np.min(samples[:, :, i], axis=0)
-  y_max = np.max(samples[:, :, i], axis=0)
-
-  # Creamos un patch: resaltando la región cubierta por todas las trayectorias
-  x_patch = np.concatenate([time_points, time_points[::-1]])
-  y_patch = np.concatenate([y_max, y_min[::-1]])
-
-  # Ploteamos los resultados
-  plots[i].patch(x_patch, y_patch, color=colors[i], fill_alpha=0.2, line_alpha=0, legend_label = labels[i])
-  plots[i].line(time_points, y_mean, line_width=3, color=colors[i])
-
-  plots[i].legend.location = 'bottom_right'
+for i in range(len(samples)):
+  if i == 0:
+    plots[0].line(time_points, samples[i,:,0], line_width = 3, color = 'grey', legend_label = 'mRNA')
+    plots[1].line(time_points, samples[i,:,1], line_width = 3, color = 'orange', legend_label = 'proteina')
+  else:
+    plots[0].line(time_points, samples[i,:,0], line_width = 3, color = 'grey', legend_label = 'mRNA')
+    plots[1].line(time_points, samples[i,:,1], line_width = 3, color = 'orange', legend_label = 'proteina')
 
 # Visualización
+for i in range(2):
+  plots[i].legend.location = 'bottom_right'
 bokeh.io.show(bokeh.layouts.row(plots))
 </code></pre>
                 </div>
@@ -388,11 +397,7 @@ bokeh.io.show(bokeh.layouts.row(plots))
             <div class="cell cell-code lang-block" data-lang="en">
                 <div class="cell-input">
                     <pre><code class="language-python">
-# Colors and labels
-colors = ['gray', 'orange']
-labels = ['mRNA', 'protein']
-
-# Setting up the bokeh visualization
+# Visualization Setup with Bokeh
 fig_size = [320, 250]
 plots = []
 
@@ -400,22 +405,17 @@ for i in range(2):
   plots.append(bokeh.plotting.figure(width = fig_size[0], height = fig_size[1],
                                      x_axis_label = 'Time (hours)', y_axis_label = 'Number of molecules'))
 
-# Let's compute the average between trajectories
-  y_mean = np.mean(samples[:, :, i], axis=0)
-  y_min = np.min(samples[:, :, i], axis=0)
-  y_max = np.max(samples[:, :, i], axis=0)
-
-  # Let's create a patch: highlighting the region covered by all trajectories
-  x_patch = np.concatenate([time_points, time_points[::-1]])
-  y_patch = np.concatenate([y_max, y_min[::-1]])
-
-  # Showing the results
-  plots[i].patch(x_patch, y_patch, color=colors[i], fill_alpha=0.2, line_alpha=0, legend_label = labels[i])
-  plots[i].line(time_points, y_mean, line_width=3, color=colors[i])
-
-  plots[i].legend.location = 'bottom_right'
+for i in range(len(samples)):
+  if i == 0:
+    plots[0].line(time_points, samples[i,:,0], line_width = 3, color = 'grey', legend_label = 'mRNA')
+    plots[1].line(time_points, samples[i,:,1], line_width = 3, color = 'orange', legend_label = 'protein')
+  else:
+    plots[0].line(time_points, samples[i,:,0], line_width = 3, color = 'grey', legend_label = 'mRNA')
+    plots[1].line(time_points, samples[i,:,1], line_width = 3, color = 'orange', legend_label = 'protein')
 
 # Visualization
+for i in range(2):
+  plots[i].legend.location = 'bottom_right'
 bokeh.io.show(bokeh.layouts.row(plots))
 </code></pre>
                 </div>
