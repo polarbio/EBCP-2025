@@ -273,6 +273,187 @@
                 </p>
 
             </div>
+
+            <div class="cell cell-markdown">
+
+                <h2 style="color: var(--dark-purple);" data-es="Secuestramiento molecular"
+                    data-en="Molecular Sequestration">
+                    Secuestramiento molecular
+                </h2>
+
+                <p data-es="Otro tipo de regulación de la concentración de una especie química está dado por la reacción de secuestramiento molecular, que involucra a dos especies químicas, $Y$ y $Z$, que pueden unirse reversiblemente para formar un complejo $C$ que está inactivo. Esta reacción también se conoce como titulación estequiométrica, ya que una molécula ''secuestra'' a otra en una relación 1:1 (<a style='color: var(--dark-purple);' href='https://www.sciencedirect.com/science/article/abs/pii/S0022283608012485?via%3Dihub'>Buchler & Louis, 2008</a>.)"
+                   data-en="Another way to regulate the concentration of a chemical species is through a molecular sequestration reaction, which involves two chemical species, $Y$ and $Z$, that can reversibly bind to form an inactive complex $C$. This reaction is also known as stoichiometric titration, since one molecule ''sequesters'' another in a 1:1 ratio (<a style='color: var(--dark-purple);' href='https://www.sciencedirect.com/science/article/abs/pii/S0022283608012485?via%3Dihub'>Buchler & Louis, 2008</a>).">
+                    Otro tipo de regulación de la concentración de una especie química está dado por la reacción de secuestramiento molecular, que involucra a dos especies químicas, $Y$ y $Z$, que pueden unirse reversiblemente para formar un complejo $C$ que está inactivo. Esta reacción también se conoce como titulación estequiométrica, ya que una molécula 'secuestra' a otra en una relación 1:1 (<a style='color: var(--dark-purple);' href='https://www.sciencedirect.com/science/article/abs/pii/S0022283608012485?via%3Dihub'>Buchler & Louis, 2008</a>.)
+                </p>
+
+                <p data-es="Una única reacción química está detrás de este proceso, y se puede escribir como:"
+                   data-en="A single chemical reaction underlies this process, and it can be written as:">
+                   Una única reacción química está detrás de este proceso, y se puede escribir como: 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    Y + Z \overset{a}{\underset{d}{\leftrightarrows}} C
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="donde $a$ se conoce como la tasa de asociación y $d$ como la tasa de disociación. Ahora usemos la ley de acción de masas para derivar las EDOs:"
+                   data-en="where $a$ is known as the association rate and $d$ as the dissociation rate. Now, let’s use the law of mass action to derive the ODEs:">
+                   donde $a$ se conoce como la tasa de asociación y $d$ como la tasa de disociación. Ahora usemos la ley de acción de masas para derivar las EDOs: 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                   \frac{d}{dt}y &=& dc - ayz \\
+                    \frac{d}{dt}z &=& dc - ayz \\
+                    \frac{d}{dt}c &=& ayz - dc
+                    \end{eqnarray}$$
+                </div>
+
+            </div>
+
+            <div class="cell cell-markdown">
+                
+                <p data-es="Si ''monitoreamos'' la concentración total de cualquiera de las especies $Y$ o $Z$, notaremos que estará disponible en dos estados en cualquier momento de la reacción: libre o unida (formando el complejo $C$). Entonces, si $y^T$ representa la concentración total de la especie $Y$, entonces $y^T = y + c$. Es un caso similar para la especie $Z$: $z^T = z + c$. Estas nuevas ecuaciones se conocen como las <strong>ecuaciones de conservación de masa</strong>."
+                   data-en="If we ''monitor'' the total concentration of either species $Y$ or $Z$, we’ll notice that at any given point in the reaction, each will exist in two states: free or bound (as part of the complex $C$). So, if $y^T$ represents the total concentration of species $Y$, then $y^T = y + c$. The same applies to species $Z$: $z^T = z + c$. These new equations are known as the <strong>mass conservation equations</strong>.">
+                    Si ''monitoreamos'' la concentración total de cualquiera de las especies $Y$ o $Z$, notaremos que estará disponible en dos estados en cualquier momento de la reacción: libre o unida (formando el complejo $C$). Entonces, si $y^T$ representa la concentración total de la especie $Y$, entonces $y^T = y + c$. Es un caso similar para la especie $Z$: $z^T = z + c$. Estas nuevas ecuaciones se conocen como las <strong>ecuaciones de conservación de masa</strong>.
+                </p>
+
+                <p data-es="Considerándolas, reescribamos la EDO para la especie $Y$ en nuestra reacción química."
+                   data-en="Taking them into account, let's rewrite the ODE for species $Y$ in our chemical reaction.">
+                    Considerándolas, reescribamos la EDO para la especie $Y$ en nuestra reacción química.
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                   \frac{d}{dt} y &=& d(y^T - y) - ay(y - y^T + z^T)
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="Este es un polinomio de segundo orden que tiene dos soluciones. Sin embargo, una de ellas es negativa, lo cual no es viable ya que las concentraciones de especies químicas no pueden ser negativas. Por lo tanto, nos quedamos con una única solución (real y positiva):"
+                   data-en="This is a second-order polynomial that has two solutions. However, one of them is negative, which is not feasible since chemical species concentrations cannot be negative. Therefore, we keep only the single valid solution (real and positive):">
+                   Este es un polinomio de segundo orden que tiene dos soluciones. Sin embargo, una de ellas es negativa, lo cual no es viable ya que las concentraciones de especies químicas no pueden ser negativas. Por lo tanto, nos quedamos con una única solución (real y positiva): 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                   \bar y = \frac{1}{2} \left [ (y^T - z^T - K) + \sqrt{(y^T - z^T - K)^2 + 4Ky^T} \right ]
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="Para analizar el comportamiento de la especie $Y$, asumamos una afinidad muy fuerte entre las especies $Y$ y $Z$. Podemos modelar esta condición fijando $K$ a un valor muy pequeño."
+                   data-en="To analyze the behavior of species $Y$, let’s assume a very strong binding affinity between $Y$ and $Z$. We can model this condition by setting $K$ to a very small value.">
+                   Para analizar el comportamiento de la especie $Y$, asumamos una afinidad muy fuerte entre las especies $Y$ y $Z$. Podemos modelar esta condición fijando $K$ a un valor muy pequeño.
+                </p>
+
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 3_LN1_esp.html"
+                    width="100%" height="275"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 3_LN1_en.html"
+                    width="100%" height="275"
+                    style="border:none; display: none;"></iframe>
+            </div>
+
+            <div class="cell cell-markdown">
+                
+                <p data-es="En la Figura 3 (izquierda), podemos ver que cuando $z^T > y^T$, la salida es casi cero, ya que todas las moléculas de $Y$ son ''secuestradas'' por $Z$. Por otro lado, cuando $y^T > z^T$, la salida aumenta casi linealmente. Este comportamiento se conoce como <strong>thresholding</strong>. Si ahora observamos el mismo resultado en una escala logarítmica (Figura 3, derecha), podemos ver claramente una transición abrupta alrededor del punto umbral $y^T = z^T$. Este cambio pronunciado refleja la <strong>ultrasensibilidad</strong> del sistema cerca del umbral."
+                   data-en="In Figure 3 (left), we can see that when $z^T > y^T$, the output is nearly zero, as all $Y$ molecules are ''sequestered'' by $Z$. On the other hand, when $y^T > z^T$, the output increases almost linearly. This behavior is known as <strong>thresholding</strong>.If we now observe the same result on a logarithmic scale (Figure 3, right), we can clearly see a sharp transition around the threshold point $y^T = z^T$. This steep change reflects the system’s <strong>ultrasensitivity</strong> near the threshold.">
+                    En la Figura 3 (izquierda), podemos ver que cuando $z^T > y^T$, la salida es casi cero, ya que todas las moléculas de $Y$ son ''secuestradas'' por $Z$. Por otro lado, cuando $y^T > z^T$, la salida aumenta casi linealmente. Este comportamiento se conoce como <strong>thresholding</strong>. Si ahora observamos el mismo resultado en una escala logarítmica (Figura 3, derecha), podemos ver claramente una transición abrupta alrededor del punto umbral $y^T = z^T$. Este cambio pronunciado refleja la <strong>ultrasensibilidad</strong> del sistema cerca del umbral.
+                </p>
+
+                <h3  data-es="¿Qué tipo de operación matemática permite este mecanismo?"
+                    data-en="What type of mathematical operation does this mechanism enable?">
+                    ¿Qué tipo de operación matemática permite este mecanismo?
+                </h3>
+
+                <p data-es="Al principio puede que no sea evidente, pero el <strong>secuestramiento molecular</strong> en realidad puede llevar a cabo una operación similar a una sustracción (o resta). Para entender mejor cómo esta pequeña reacción logra realizar ese cálculo, echemos un vistazo más detallado a los dos escenarios ilustrados en la Figura 4."
+                   data-en="At first, it might not be obvious, but <strong>molecular sequestration</strong> can actually perform an operation similar to subtraction. To better understand how this simple reaction carries out such a calculation, let’s take a closer look at the two scenarios illustrated in Figure 4.">
+                    Al principio puede que no sea evidente, pero el <strong>secuestramiento molecular</strong> en realidad puede llevar a cabo una operación similar a una sustracción (o resta). Para entender mejor cómo esta pequeña reacción logra realizar ese cálculo, echemos un vistazo más detallado a los dos escenarios ilustrados en la Figura 4.
+                </p>
+
+                <div class="cell cell-markdown" style="text-align: center;">
+                    <img src="Figura4_LN1_es.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 100%; height: auto;">
+                    <img src="Figura4_LN1_es.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 100%; height: auto; display: none;">
+                </div>
+
+                <p data-es="En todos los casos, comenzamos con una concentración inicial del complejo (denotado como $c_0$) igual a cero, ya que las especies $Z$ y $Y$ aún no han interactuado. Una vez que les permitimos unirse, la especie con la mayor concentración inicial termina secuestrando todas las moléculas de la que tiene menor concentración. En el primer caso, como $y_0 = 10$ y $z_0 = 3$, las tres moléculas de $Z$ forman complejos, y las siete moléculas restantes de $Y$ permanecen libres, lo que da como resultado $z_f = 0$, $y_f = 7$ y $c_f = 3$. En el segundo caso ocurre lo contrario: $z_0 = 10$ y $y_0 = 6$, así que las seis moléculas de $Y$ son secuestradas, y quedan cuatro moléculas de $Z$ sin unirse. Esto da como resultado $z_f = 4$, $y_f = 0$ y $c_f = 6$."
+                   data-en="In all cases, we start with an initial concentration of the complex (denoted as $c_0$) equal to zero, since species $Z$ and $Y$ haven’t interacted yet. Once they’re allowed to bind, the species with the higher initial concentration ends up sequestering all the molecules of the one with the lower concentration. In the first case, since $y_0 = 10$ and $z_0 = 3$, the three $Z$ molecules form complexes, and the remaining seven $Y$ molecules stay free, resulting in $z_f = 0$, $y_f = 7$, and $c_f = 3$. In the second case, it’s the opposite: $z_0 = 10$ and $y_0 = 6$, so all six $Y$ molecules are sequestered, leaving four unbound $Z$ molecules. This results in $z_f = 4$, $y_f = 0$, and $c_f = 6$.">
+                   En todos los casos, comenzamos con una concentración inicial del complejo (denotado como $c_0$) igual a cero, ya que las especies $Z$ y $Y$ aún no han interactuado. Una vez que les permitimos unirse, la especie con la mayor concentración inicial termina secuestrando todas las moléculas de la que tiene menor concentración. En el primer caso, como $y_0 = 10$ y $z_0 = 3$, las tres moléculas de $Z$ forman complejos, y las siete moléculas restantes de $Y$ permanecen libres, lo que da como resultado $z_f = 0$, $y_f = 7$ y $c_f = 3$. En el segundo caso ocurre lo contrario: $z_0 = 10$ y $y_0 = 6$, así que las seis moléculas de $Y$ son secuestradas, y quedan cuatro moléculas de $Z$ sin unirse. Esto da como resultado $z_f = 4$, $y_f = 0$ y $c_f = 6$. 
+                </p>
+
+                <p data-es="Sin entrar en una demostración matemática formal, podemos ver de forma intuitiva que la concentración final de cada especie sigue reglas simples. Para la especie $Y$, su cantidad final está dada por:"
+                   data-en="Without going into a formal mathematical proof, we can intuitively see that the final concentration of each species follows simple rules. For species $Y$, its final amount is given by:">
+                   Sin entrar en una demostración matemática formal, podemos ver de forma intuitiva que la concentración final de cada especie sigue reglas simples. Para la especie $Y$, su cantidad final está dada por:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    y_f = \max (0, y_0 - z_0)
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="De forma similar, para la especie $Z$:"
+                   data-en="Similarly, for species $Z$, its final amount is given by:">
+                   De forma similar, para la especie $Z$:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    z_f = \max (0, z_0 - y_0)
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="Finalmente, la concentración del complejo $C$, formado cuando $Y$ y $Z$ se unen, es simplemente el menor de los dos valores iniciales:"
+                   data-en="Finally, the concentration of the complex $C$, formed when $Y$ and $Z$ bind, is simply the lesser of the two initial values:">
+                   Finalmente, la concentración del complejo $C$, formado cuando $Y$ y $Z$ se unen, es simplemente el menor de los dos valores iniciales:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    c_f = \min (y_0, z_0)
+                    \end{eqnarray}$$
+                </div>
+
+            </div>
+
+            <div class="cell cell-markdown">
+
+                <h3  data-es="Lecturas recomendadas"
+                    data-en="Recommended Readings">
+                    Lecturas recomendadas
+                </h3>
+                
+                <p data-es="<strong>[1]</strong> Del Vecchio, D. and Murray, R.M. (2017) Biomolecular Feedback Systems. Princeton: Princeton University Press."
+                   data-en="<strong>[1]</strong> Del Vecchio, D. and Murray, R.M. (2017). Biomolecular Feedback Systems. Princeton: Princeton University Press.">
+                    <strong>[1]</strong> Del Vecchio, D. and Murray, R.M. (2017) Biomolecular Feedback Systems. Princeton: Princeton University Press.
+                </p>
+
+                <p data-es="<strong>[2]</strong> Alon, U. (2020) An introduction to systems biology: Design principles of biological circuits. Boca Raton, FL: CRC Press."
+                   data-en="<strong>[2]</strong> Alon, U. (2020) An introduction to systems biology: Design principles of biological circuits. Boca Raton, FL: CRC Press.">
+                    <strong>[2]</strong> Alon, U. (2020) An introduction to systems biology: Design principles of biological circuits. Boca Raton, FL: CRC Press.
+                </p>
+
+                <p data-es="<strong>[3]</strong> Grunberg, T.W. and Del Vecchio, D. (2020) ‘Modular analysis and design of Biological Circuits’, Current Opinion in Biotechnology, 63, pp. 41–47. doi:10.1016/j.copbio.2019.11.015."
+                   data-en="<strong>[3]</strong> Grunberg, T.W. and Del Vecchio, D. (2020) ‘Modular analysis and design of Biological Circuits’, Current Opinion in Biotechnology, 63, pp. 41–47. doi:10.1016/j.copbio.2019.11.015.">
+                    <strong>[3]</strong> Grunberg, T.W. and Del Vecchio, D. (2020) ‘Modular analysis and design of Biological Circuits’, Current Opinion in Biotechnology, 63, pp. 41–47. doi:10.1016/j.copbio.2019.11.015.
+                </p>
+
+                <p data-es="<strong>[4]</strong> Samaniego, C.C. et al. (2023) ‘Building subtraction operators and controllers via molecular sequestration’, IEEE Control Systems Letters, 7, pp. 3361–3366. doi:10.1109/lcsys.2023.3294690."
+                   data-en="<strong>[4]</strong> Samaniego, C.C. et al. (2023) ‘Building subtraction operators and controllers via molecular sequestration’, IEEE Control Systems Letters, 7, pp. 3361–3366. doi:10.1109/lcsys.2023.3294690.">
+                    <strong>[4]</strong> Samaniego, C.C. et al. (2023) ‘Building subtraction operators and controllers via molecular sequestration’, IEEE Control Systems Letters, 7, pp. 3361–3366. doi:10.1109/lcsys.2023.3294690.
+                </p>
+
+
+            </div>
+
         </div>
     </section>
 
