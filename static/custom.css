@@ -362,12 +362,8 @@ body {
     color: #693cb6;
 }
 
-.lecture-card[data-level="avanzado"] .card-badge {
-    background: #fee2e2;
-    color: #991b1b;
-}
 
-.lecture-card[data-level="practico"] .card-badge {
+.lecture-card[data-level="tarea"] .card-badge {
     background: #dbeafe;
     color: #1e40af;
 }
@@ -407,7 +403,16 @@ body {
     flex-wrap: wrap;
 }
 
-.btn-card-primary, .btn-card-secondary {
+.card-actions-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+
+.btn-card-primary, .btn-card-secondary, .btn-card-third {
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     text-decoration: none;
@@ -439,6 +444,18 @@ body {
     background: #f1f5f9;
     border-color: #cbd5e1;
 }
+
+.btn-card-third {
+    background: #e1e0e1;
+    color: black;
+}
+
+.btn-card-third:hover {
+    background: #e1e0e1;
+    transform: translateY(-1px);
+}
+
+
 
 /* Footer */
 .footer {
@@ -1017,21 +1034,3 @@ table thead {
     background-color: #e0f2f1;
 }
 
-.btn-card-colab {
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    flex: 1;
-    text-align: center;
-    min-width: 120px;
-    background: var(--accent-orange);
-    color: white;
-}
-
-.btn-card-colab:hover {
-    background: #ea580c; /* versión más intensa del naranja */
-    transform: translateY(-1px);
-}
