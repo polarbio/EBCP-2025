@@ -1016,3 +1016,22 @@ table th, table td {
 table thead {
     background-color: #e0f2f1;
 }
+
+.btn-card-colab {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+    min-width: 120px;
+    background: var(--accent-orange);
+    color: white;
+}
+
+.btn-card-colab:hover {
+    background: #ea580c; /* versión más intensa del naranja */
+    transform: translateY(-1px);
+}
