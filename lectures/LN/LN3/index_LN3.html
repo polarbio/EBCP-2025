@@ -108,17 +108,17 @@
                 </div>
 
                 <p data-es="En esta clase exploraremos cómo diseñar uno de los controladores de feedback más simples basado en una reacción de secuestramiento molecular: el controlador proporcional. Utilizaremos el principio de separación de escalas de tiempo y análisis en estado estacionario para entender cómo podemos reducir el error entre el nivel deseado de expresión génica y el nivel real. También realizaremos un análisis de estabilidad local para derivar condiciones matemáticas que garanticen asintóticamente que el controlador permanezca acotado. Finalmente, examinaremos los principios de diseño para construir un controlador de feedback basado en una reacción química que exhiba ultrasensibilidad."
-                   data-en="In this class, we will explore how to design one of the simplest feedback controllers based on a molecular sequestration reaction: the proportional controller. We will use the principle of time-scale separation and steady-state analysis to understand how we can reduce the error between the desired level of gene expression and the actual level. We will also perform a local stability analysis to derive mathematical conditions that asymptotically guarantee that the controller remains bounded. Finally, we will examine the design principles for constructing a feedback controller based on a chemical reaction that exhibits ultrasensitivity.">
+                   data-en="Here we will explore how to design one of the simplest feedback controllers based on a molecular sequestration reaction: the proportional controller. We will use time-scale separation and steady-state analysis to understand how we can decrease the error between the desired gene expression level and the actual one. We will also perform local stability analysis to derive mathematical conditions that asymptotically guarantee the controller remains bounded. Finally, we will examine the design principles for building a feedback controller based on a chemical reaction that exhibits ultrasensitivity.">
                    En esta clase exploraremos cómo diseñar uno de los controladores de feedback más simples basado en una reacción de secuestramiento molecular: el controlador proporcional. Utilizaremos el principio de separación de escalas de tiempo y análisis en estado estacionario para entender cómo podemos reducir el error entre el nivel deseado de expresión génica y el nivel real. También realizaremos un análisis de estabilidad local para derivar condiciones matemáticas que garanticen asintóticamente que el controlador permanezca acotado. Finalmente, examinaremos los principios de diseño para construir un controlador de feedback basado en una reacción química que exhiba ultrasensibilidad. 
                 </p>
 
                 <h3 data-es="Fundamentos del diseño de un controlador proporcional"
-                    data-en="Fundamentals of proportional controller design">
+                    data-en="Building intuition: designing a proportional controller">
                     Fundamentos del diseño de un controlador proporcional
                 </h3>
 
-                <p data-es="El controlador proporcional es el tipo más simple de controlador de feedback, en el cual la señal de control es directamente proporcional al error entre la salida y la reference. Como ejemplo, diseñaremos un controlador basado en secuestramiento molecular, donde una especie $R$ actúa como referencia y produce $U_1$, que interactúa con $U_2$ mediante una reacción de secuestramiento. En cuanto al proceso (a veces llamado también planta), consideraremos un sistema de expresión en cascada de dos especies, donde una especie química $W$ produce una especie $Y$, la cual es luego detectada por el controlador para formar el sistema en lazo cerrado mostrado en la Figura 2 (izquierda)."
-                   data-en="">
+                <p data-es="El controlador proporcional es el tipo más simple de controlador de feedback, en el cual la señal de control es directamente proporcional al error entre la salida y la reference. Como ejemplo, diseñaremos un controlador basado en secuestramiento molecular, donde una especie $R$ actúa como referencia y produce $U_1$, que interactúa con $U_2$ mediante una reacción de secuestramiento. En cuanto al proceso (a veces llamado también ''planta''), consideraremos un sistema de expresión en cascada de dos especies, donde una especie química $W$ produce una especie $Y$, la cual es luego detectada por el controlador para formar el sistema en lazo cerrado mostrado en la Figura 2 (izquierda)."
+                   data-en="The proportional controller is the simplest type of feedback controller, in which the control signal is directly proportional to the error between the output and the target value. As an example, we will study a sequestration-based controller, where an species $R$ acts as the reference and produces $U_1$, which interacts with $U_2$ via molecular sequestration. As for the process (sometimes known as the ''plant''), we will consider a two-species cascade expression system, where a chemical species $W$ produces a species $Y$, which is then sensed by the controller to generate the closed-loop system shown in Figure 2.">
                   El controlador proporcional es el tipo más simple de controlador de feedback, en el cual la señal de control es directamente proporcional al error entre la salida y la reference. Como ejemplo, diseñaremos un controlador basado en secuestramiento molecular, donde una especie $R$ actúa como referencia y produce $U_1$, que interactúa con $U_2$ mediante una reacción de secuestramiento. En cuanto al proceso (a veces llamado también planta), consideraremos un sistema de expresión en cascada de dos especies, donde una especie química $W$ produce una especie $Y$, la cual es luego detectada por el controlador para formar el sistema en lazo cerrado mostrado en la Figura 2 (izquierda). 
                 </p>
 
@@ -128,7 +128,7 @@
                 </div>
 
                 <p data-es="Comencemos escribiendo las reacciones químicas que describen al sistema de lazo cerrado. Cabe resaltar que estamos ignorando la dinámica del complejo $C$ mostrado en la Figura 2 debido a que no afecta la dinámica del sistema completo en el régimen de secuestramiento rápido (ver Lecture Notes #1)."
-                   data-en="Let’s begin by writing the chemical reactions that describe the closed-loop system. It is worth noting that we are ignoring the dynamics of the complex $C$ shown in Figure 2 because it does not affect the dynamics of the entire system in the fast sequestration regime (see Lecture Notes #1).">
+                   data-en="Let's start by writing the chemical reactions that describe with the closed-loop system. Note that we are ignoring the dynamics of the complex $C$ shown in Figure 2 because it doesn't affect the dynamics of the whole system in the fast sequestration regime (see Lecture Notes #1).">
                     Comencemos escribiendo las reacciones químicas que describen al sistema de lazo cerrado. Cabe resaltar que estamos ignorando la dinámica del complejo $C$ mostrado en la Figura 2 debido a que no afecta la dinámica del sistema completo en el régimen de secuestramiento rápido (ver Lecture Notes #1).
                 </p>
 
@@ -142,8 +142,8 @@
                     \end{align}$$
                 </div>
 
-                <p data-es="A continuación, modelaremos estas reacciones químicas utilizando la ley de acción de masas. Sin embargo, vemos que existe un número considerable de parámetros cinéticos ($\alpha_1$, $\theta_1$, $\theta_2$, $\delta$, $\gamma$), lo cual puede dificultar nuestro análisis matemático. Por ello, utilizaremos una versión adimensional de las ecuaciones diferenciales para reducir la cantidad de parámetros involucrados en el análisis (ver Technical Note #4). Como resultado, trabajaremos con un sistema un poco más sencillo:"
-                   data-en="Next, we will model these chemical reactions using the law of mass action. However, we observe that there is a considerable number of kinetic parameters ($\alpha_1$, $\theta_1$, $\theta_2$, $\delta$, $\gamma$), which may complicate our mathematical analysis. Therefore, we will use a nondimensional version of the differential equations to reduce the number of parameters involved in the analysis (see Technical Note #4). As a result, we will work with a slightly simpler system:">
+                <p data-es="A continuación, modelaremos estas reacciones químicas utilizando la ley de acción de masas. Sin embargo, vemos que existe un número considerable de parámetros cinéticos ($\alpha_1$, $\theta_1$, $\theta_2$, $\delta$, $\gamma$), lo cual puede dificultar nuestro análisis matemático. Por ello, utilizaremos una versión <strong>adimensional</strong> de las ecuaciones diferenciales para reducir la cantidad de parámetros involucrados en el análisis (ver Technical Note #4). Como resultado, trabajaremos con un sistema un poco más sencillo:"
+                   data-en="Next, let's model the chemical reactions using the law of mass action. We notice that we have a quite large number of kinetic parameters ($\alpha_1$, $\theta_1$, $\theta_2$, $\delta$, and $\gamma$), which may difficult our mathematical analysis. Therefore, we will use a <strong>non dimensional</strong> version of the ODEs in order to reduce the number of parameters involved in our analysis (see Technical Note #4). This results in the following non dimensional ODEs:">
                    A continuación, modelaremos estas reacciones químicas utilizando la ley de acción de masas. Sin embargo, vemos que existe un número considerable de parámetros cinéticos ($\alpha_1$, $\theta_1$, $\theta_2$, $\delta$, $\gamma$), lo cual puede dificultar nuestro análisis matemático. Por ello, utilizaremos una versión adimensional de las ecuaciones diferenciales para reducir la cantidad de parámetros involucrados en el análisis (ver Technical Note #4). Como resultado, trabajaremos con un sistema un poco más sencillo:
                 </p>
 
@@ -153,72 +153,91 @@
                         \frac{d}{d\tau} u_2 &=& \alpha_1 y - u_2 - \frac{1}{\xi} u_1 u_2 \\
                     \frac{d}{d\tau} w &=& \theta_1 u_1 - w \\
                     \frac{d}{d\tau} y &=& \theta_2 w - y
-                    \end{align}$$
+                    \end{eqnarray}$$
                 </div>
 
+                <p data-es="Definamos el error en estado estacionario ($e$) como la diferencia entre la referencia, dada por la concentración (constante) de la especie $R$, y la especie $Y$, de modo que $e = r - \bar y$. Ahora exploremos el régimen cinético en el que la tasa de secuestro es extremadamente alta, es decir, cuando $\xi \to 0$. Al resolver el estadio estacionario de las ecuaciones en función del error, obtendremos la siguiente expresión para $e$:"
+                   data-en="Let's define the steady-state error ($e$) as the difference between the set-point, given by the (constant) concentration of the species $R$, and the feedback species $Y$, so that $e = r - \bar y$. We now explore the kinetic regimen where the sequestration rate is extremely fast. That is, when $\xi \to 0$. From the steady-state expression derived for the non-dimensional ODEs, we obtain the following expression for $e$ in this regimen,">
+                   Definamos el error en estado estacionario ($e$) como la diferencia entre la referencia, dada por la concentración (constante) de la especie $R$, y la especie $Y$, de modo que $e = r - \bar y$. Ahora exploremos el régimen cinético en el que la tasa de secuestro es extremadamente alta, es decir, cuando $\xi \to 0$. Al resolver el estadio estacionario de las ecuaciones en función del error, obtendremos la siguiente expresión para $e$: 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \lim_{\xi \to 0} e = \frac{r}{1 + \alpha_1 \theta_1 \theta_2}
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="En otras palabras, si aumentamos la ganancia del controlador ($\alpha_1$), podremos reducir el error en estado estacionario. Sin embargo, es importante preguntarnos: ¿cuánto podemos aumentar esta ganancia sin desestabilizar el proceso? Como un primer experimento, realicemos algunas simulaciones para observar cómo responde el sistema a medida que incrementamos $\alpha_1$, buscando el valor más alto que aún mantenga estabilidad."
+                   data-en="In other words, if we increase the gain of the controller ($\alpha_1$), we will be able to decrease the steady-state error. However, we should ask ourselves: how much can we increase this gain without destabilizing our process? As a quick experiment, we can run a few simulations and see how the system responds as we gradually increase $\alpha_1$, looking for the highest value that still exhibits stability.">
+                   En otras palabras, si aumentamos la ganancia del controlador ($\alpha_1$), podremos reducir el error en estado estacionario. Sin embargo, es importante preguntarnos: ¿cuánto podemos aumentar esta ganancia sin desestabilizar el proceso? Como un primer experimento, realicemos algunas simulaciones para observar cómo responde el sistema a medida que incrementamos $\alpha_1$, buscando el valor más alto que aún mantenga estabilidad.
+                </p>
+
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 3_LN3_esp.html"
+                    width="100%" height="225"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 3_LN3_en.html"
+                    width="100%" height="225"
+                    style="border:none; display: none;"></iframe>
             </div>
 
 
             <div class="cell cell-markdown">
-                <h2 style="color: var(--dark-purple);" data-es="Sistemas multiestables"
-                    data-en="Multistable Systems">
-                    Sistemas multiestables
-                </h2>
 
-                <h3 data-es="La biestabilidad y el toggle switch"
-                    data-en="Bistability and the Toggle Switch">
-                    La biestabilidad y el toggle switch
+                <p data-es="Mediante prueba y error, encontramos que cuando $\alpha_1$ se aproxima o supera el valor de 8, el sistema comienza a oscilar. Esto indica que el proceso ha pasado a un régimen dinámico distinto y ya no converge al valor de la referencia. Esto es un ejemplo de la compensación entre reducir el error en estado estacionario y mantener la estabilidad del sistema. Para formalizar esta observación, podemos utilizar un análisis de estabilidad local para derivar una condición que garantice estabilidad asintótica. Al operar en el régimen donde el secuestramiento es muy rápido ($\xi \to 0$), el análisis de los autovalores del polinomio característico (ver Technical Note #3 y Lecture Notes #2) nos lleva a la condición:"
+                   data-en="By trial and error, we found that when $\alpha_1$ approaches or exceeds 8, the system begins to oscillate. This means the process has shifted to a different dynamic regime and no longer converges to the desired target value. What we just observed is an example of the tradeoff between reducing steady-state error and maintaining system stability. To formalize this, we can use a local stability analysis to derive a condition that guarantees asymptotic stability. When operating in the regime where sequestration is very fast, analyzing the eigenvalues of the characteristic polynomial (see Technical Note #3 and Lecture Note #2) yields the following condition:">
+                   Mediante prueba y error, encontramos que cuando $\alpha_1$ se aproxima o supera el valor de 8, el sistema comienza a oscilar. Esto indica que el proceso ha pasado a un régimen dinámico distinto y ya no converge al valor de la referencia. Esto es un ejemplo de la compensación entre reducir el error en estado estacionario y mantener la estabilidad del sistema. Para formalizar esta observación, podemos utilizar un análisis de estabilidad local para derivar una condición que garantice estabilidad asintótica. Al operar en el régimen donde el secuestramiento es muy rápido ($\xi \to 0$), el análisis de los autovalores del polinomio característico (ver Technical Note #3 y Lecture Notes #2) nos lleva a la condición: 
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    0 < \alpha_1 \theta_1 \theta_2 < 8
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es=", que es precisamente lo que encontramos con nuestras simulaciones!"
+                   data-en="which matches exactly what we found through simulation!">
+                   , que es precisamente lo que encontramos con nuestras simulaciones!
+                </p>
+
+            </div>
+
+            <div class="cell cell-markdown">
+
+                <h3 data-es="Reduciendo el error a cero: diseñando un controlador (casi) integral"
+                    data-en="Towards reducing the error to zero: the quasi-integral controller">
+                    Reduciendo el error a cero: diseñando un controlador (casi) integral
                 </h3>
 
-                <p data-es="El <strong>toogle switch</strong> es un circuito genético basado en la represión mutua entre dos genes. Fue introducido por Gardner, Cantor y Collins en el año 2000, quienes lo construyeron artificialmente en <em>Escherichia coli</em> (<a style='color: var(--dark-purple);' href='https://www.nature.com/articles/35002131#citeas'>Gardner et al., 2000</a>). En su forma más básica, el circuito consiste en dos genes que codifican <strong>represores</strong>, cada uno de los cuales inhibe la expresión del otro, como se muestra en la Figura 2."
-                   data-en="The <strong>toggle switch</strong> is a genetic circuit based on mutual repression between two genes. It was introduced by Gardner, Cantor, and Collins in 2000, who engineered it synthetically in <em>Escherichia coli</em> (<a style='color: var(--dark-purple);' href='https://www.nature.com/articles/35002131#citeas'>Gardner et al., 2000</a>). In its simplest form, the circuit consists of two genes that encode <strong>repressors</strong>, each of which inhibits the expression of the other, as shown in Figure 2.">
-                    El <strong>toogle switch</strong> es un circuito genético basado en la represión mutua entre dos genes. Fue introducido por Gardner, Cantor y Collins en el año 2000, quienes lo construyeron artificialmente en <em>Escherichia coli</em> (<a style='color: var(--dark-purple);' href='https://www.nature.com/articles/35002131#citeas'>Gardner et al., 2000</a>). En su forma más básica, el circuito consiste en dos genes que codifican <strong>represores</strong>, cada uno de los cuales inhibe la expresión del otro, como se muestra en la Figura 2.
+                <p data-es="En 2016, Briat et al. formalizaron el mecanismo mediante el cual ciertos sistemas biológicos pueden lograr <strong>adaptación perfecta</strong>; es decir, la capacidad de ''recuperarse'' de una perturbación y volver exactamente a su estado original, sin dejar de responder a cambios posteriores. Utilizando conceptos de teoría de control, los autores propusieron el <em>controlador integral antitético</em>, un circuito basado en la reacción de secuestramiento molecular. Demostraron tanto de manera matemática (<a style='color: var(--dark-purple);' href='https://www.cell.com/fulltext/S2405-4712(16)00005-3'>Briat et al., 2016a</a>) como experimental (<a style='color: var(--dark-purple);' href='https://pubs.acs.org/doi/10.1021/acssynbio.6b00014'>Briat et al., 2016b</a>) que esta circuito puede generar un error en estado estacionario igual a cero, siempre que la degradación de las especies sea despreciable (~ 0)."
+                   data-en="In 2016, Briat et al. formalized the mechanism by which certain biological systems can achieve <strong>perfect adaptation</strong> , meaning they can ''recover'' from a perturbation and return precisely to their original state while remaining responsive to further changes. Using concepts from control theory, the authors proposed the <em>antithetic integral controller</em> , a motif based on the molecular sequestration reaction. They demonstrated both mathematically (<a style='color: var(--dark-purple);' href='https://www.cell.com/fulltext/S2405-4712(16)00005-3'>Briat et al., 2016a</a>) and experimentally (<a style='color: var(--dark-purple);' href='https://pubs.acs.org/doi/10.1021/acssynbio.6b00014'>Briat et al., 2016b</a>) how this motif is able to provide a zero steady-state error given that the degradation of species is negligible (~ 0).">
+                    En 2016, Briat et al. formalizaron el mecanismo mediante el cual ciertos sistemas biológicos pueden lograr <strong>adaptación perfecta</strong>; es decir, la capacidad de ''recuperarse'' de una perturbación y volver exactamente a su estado original, sin dejar de responder a cambios posteriores. Utilizando conceptos de teoría de control, los autores propusieron el <em>controlador integral antitético</em>, un circuito basado en la reacción de secuestramiento molecular. Demostraron tanto de manera matemática (<a style='color: var(--dark-purple);' href='https://www.cell.com/fulltext/S2405-4712(16)00005-3'>Briat et al., 2016a</a>) como experimental (<a style='color: var(--dark-purple);' href='https://pubs.acs.org/doi/10.1021/acssynbio.6b00014'>Briat et al., 2016b</a>) que esta circuito puede generar un error en estado estacionario igual a cero, siempre que la degradación de las especies sea despreciable (~ 0).
                 </p>
 
-                <p data-es="Esta configuración genera un sistema no lineal con <strong>dos puntos de equilibrio estables</strong>, lo que permite que la célula se mantenga en uno de dos posibles estados de expresión: uno en el que el primer represor está activo y suprime al segundo, y otro en el que ocurre lo contrario."
-                   data-en="This configuration gives rise to a nonlinear system with <strong>two stable equilibrium points</strong>, allowing the cell to remain in one of two possible expression states: one in which the first repressor is active and suppresses the second, and another in which the opposite occurs.">
-                   Esta configuración genera un sistema no lineal con <strong>dos puntos de equilibrio estables</strong>, lo que permite que la célula se mantenga en uno de dos posibles estados de expresión: uno en el que el primer represor está activo y suprime al segundo, y otro en el que ocurre lo contrario.
-                </p>
-
-                <div class="cell cell-markdown" style="display: flex; justify-content: center;">
-                    <img src="Figura 2_LN2_esp.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 60%; height: auto;">
-                    <img src="Figura 2_LN2_esp.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 60%; height: auto; display: none;">
-                </div>
-
-                <p data-es="Llamemos $Y$ y $X$ a los genes que codifican a los represores transcripcionales. Los eventos bioquímicos que ocurren aquí estan dados por las siguientes reacciones químicas:"
-                   data-en="Let’s denote the genes encoding the transcriptional repressors as $Y$ and $X$. The biochemical events taking place in this system are described by the following chemical reactions:">
-                   Llamemos $Y$ y $X$ a los genes que codifican a los represores transcripcionales. Los eventos bioquímicos que ocurren aquí estan dados por las siguientes reacciones químicas:
+                <p data-es="Dado que esta acción integral depende de la tasa de degradación, debemos adaptar nuestras ecuaciones anteriores para reflejar que las especies del controlador ($U_1$ y $U_2$) se degradan de manera distinta a las especies del proceso ($W$ y $Y$). Para representar esto, introducimos un parámetro adimensional $\zeta$ que multiplica los términos de degradación de $u_1$ y $u_2$, y exploramos el régimen cinético en el que $\zeta \to 0$."
+                   data-en="Since the condition for this integral action depends on the degradation rate, we must adapt our previous equations to reflect that the controller species ($U_1$ and $U_2$) degrade differently from the process species ($W$ and $Y$). To capture this, we introduce a non-dimensional parameter $\zeta$ that multiplies the degradation terms for $u_1$ and $u_2$, and we explore the kinetic regime where $\zeta \to 0$.">
+                   Dado que esta acción integral depende de la tasa de degradación, debemos adaptar nuestras ecuaciones anteriores para reflejar que las especies del controlador ($U_1$ y $U_2$) se degradan de manera distinta a las especies del proceso ($W$ y $Y$). Para representar esto, introducimos un parámetro adimensional $\zeta$ que multiplica los términos de degradación de $u_1$ y $u_2$, y exploramos el régimen cinético en el que $\zeta \to 0$.
                 </p>
 
                 <div class="math-block">
-                    $$\begin{align}
-                    \emptyset &\xrightarrow{h(Y)} X && \text{(Sintesis de $X$ dada por una funcion de hill dependiente de $Y$)}\\
-                    \emptyset &\xrightarrow{h(X)} Y && \text{(Sintesis de $Y$ dada por una funcion de hill dependiente de $X$)}\\
-                    X &\xrightarrow{\delta} \emptyset && \text{(Degradación de $X$)} \\
-                    Y &\xrightarrow{\delta} \emptyset && \text{(Degradación de $Y$)}
-                    \end{align}$$
+                    $$\begin{eqnarray}
+                    \frac{d}{d\tau} u_1 &=& \alpha_1 r - \zeta u_1 - \frac{1}{\xi} u_1 u_2 \\
+                    \frac{d}{d\tau} u_2 &=& \alpha_1 y - \zeta u_2 - \frac{1}{\xi} u_1 u_2 \\
+                    \frac{d}{d\tau} w &=& \theta_1 u_1 - w \\
+                    \frac{d}{d\tau} y &=& \theta_2 w - y
+                    \end{eqnarray}$$
                 </div>
 
-                <p data-es="Asumiendo que la unión de los represores al sitio de unión en el promotor ocurre rápido (i.e., una suposición de <em>cuasi-equilibrio</em>) y que la represión sigue una cinética tipo Hill, las ecuaciones diferenciales que gobiernan el sistema son las siguientes:"
-                   data-en="Assuming that the binding of the repressors to the promoter binding sites occurs rapidly (i.e., a <em>quasi-equilibrium</em> assumption), and that repression follows Hill-type kinetics, the differential equations governing the system are as follows:">
-                   Asumiendo que la unión de los represores al sitio de unión en el promotor ocurre rápido (i.e., una suposición de <em>cuasi-equilibrio</em>) y que la represión sigue una cinética tipo Hill, las ecuaciones diferenciales que gobiernan el sistema son las siguientes:
-                </p>
-
-                <div class="math-block">
-                    $$\begin{align}
-                    \frac{dx}{dt} &=& \alpha_x \frac{K^n}{K^n + y^n} - \delta x \\
-                    \frac{dy}{dt} &=& \alpha_y \frac{K^n}{K^n + x^n} - \delta y
-                    \end{align}$$
-                </div>
-
-                <p data-es="Donde: <br>- $\alpha$: Tasa de producción [uM/h] <br>- $n$: cooperatividad <br>- $K$: constante de disociación [uM] <br>- $\delta$: tasa de degradación [1/h]"
-                   data-en="Where: <br>- $\alpha$: Production rate [µM/h] <br>- $n$: Cooperativity <br>- $K$: Dissociation constant [µM] <br>- $\delta$: Degradation rate [1/h]">
-                   Donde: <br>- $\alpha$: Tasa de producción [uM/h] <br>- $n$: cooperatividad <br>- $K$: constante de disociación [uM] <br>- $\delta$: tasa de degradación [1/h]
-                </p>
-
-                <p data-es="A la izquierda de la Figura 3 se muestran las trayectorias del <em>toggle switch</em> donde observamos como una especie reprime la expresión de la otra. Este comportamiento depende de las <strong>condiciones iniciales</strong>. Es decir, de la concentración con la que ambas especies iniciaron la reacción. A la derecha de la Figura 2, observamos como al disminuir las condiciones iniciales de la especie $X$, el sistema pasa de converger a un nivel alto de expresión de $X$ (color azul) a converger a uno bajo (colores rojizos)."
-                   data-en="On the left side of Figure 3, we see the trajectories of the <em>toggle switch</em>, where one species represses the expression of the other. This behavior depends on the <strong>initial conditions</strong>—that is, the concentration of each species at the start of the reaction. On the right side of Figure 2, we observe how decreasing the initial conditions of species $X$ causes the system to shift from converging to a high expression level of $X$ (blue color) to converging to a low one (reddish colors).">
-                   A la izquierda de la Figura 3 se muestran las trayectorias del <em>toggle switch</em> donde observamos como una especie reprime la expresión de la otra. Este comportamiento depende de las <strong>condiciones iniciales</strong>. Es decir, de la concentración con la que ambas especies iniciaron la reacción. A la derecha de la Figura 2, observamos como al disminuir las condiciones iniciales de la especie $X$, el sistema pasa de converger a un nivel alto de expresión de $X$ (color azul) a converger a uno bajo (colores rojizos).
+                <p data-es="<strong>Nota</strong>: esta operación es equivalente  a asumir degradaciones distintas (a saber, $\delta$ para el controlador y $\phi$ para el proceso), y repetir los pasos de adimensionalización con respecto a $\phi$."
+                   data-en="<strong>Note</strong>: This will be equivalent to assuming different degradations (namely, $\delta$ for the controller, and $\phi$ for the process), and repeating the non-dimensionalization steps with respect to $\phi$.">
+                   <strong>Nota</strong>: esta operación es equivalente  a asumir degradaciones distintas (a saber, $\delta$ para el controlador y $\phi$ para el proceso), y repetir los pasos de adimensionalización con respecto a $\phi$.
                 </p>
 
             </div>
@@ -226,127 +245,22 @@
             <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
             <!-- Versión en español -->
                 <iframe class="lang-img" data-lang="es"
-                    src="Figura 3_LN2_esp.html"
-                    width="100%" height="275"
+                    src="Figura 4_LN3_esp.html"
+                    width="100%" height="225"
                     style="border:none; display: block;"></iframe>
 
                 <!-- Versión en inglés -->
                 <iframe class="lang-img" data-lang="en"
-                    src="Figura 3_LN2_en.html"
-                    width="100%" height="275"
+                    src="Figura 4_LN3_en.html"
+                    width="100%" height="225"
                     style="border:none; display: none;"></iframe>
             </div>
 
             <div class="cell cell-markdown">
 
-                <p data-es="La dinámica observada en el toggle switch sugiere que este sistema presenta <strong>biestabilidad</strong>, una propiedad fundamental en muchos sistemas no lineales. La biestabilidad se refiere a la existencia de dos estados de equilibrio estables: dependiendo del estado inicial del sistema o de perturbaciones externas, este puede estabilizarse en uno u otro estado, y permanecer allí incluso después de que la señal inicial desaparezca. Esta propiedad es esencial para comportamientos como la <strong>memoria</strong> en sistemas biológicos."
-                   data-en="The dynamics observed in the toggle switch suggest that this system exhibits <strong>bistability</strong>, a fundamental property in many nonlinear systems. Bistability refers to the existence of two stable equilibrium states: depending on the system’s initial state or external perturbations, it can stabilize in one state or the other and remain there even after the initial signal has disappeared. This property is essential for behaviors such as <strong>memory</strong> in biological systems.">
-                    La dinámica observada en el toggle switch sugiere que este sistema presenta <strong>biestabilidad</strong>, una propiedad fundamental en muchos sistemas no lineales. La biestabilidad se refiere a la existencia de dos estados de equilibrio estables: dependiendo del estado inicial del sistema o de perturbaciones externas, este puede estabilizarse en uno u otro estado, y permanecer allí incluso después de que la señal inicial desaparezca. Esta propiedad es esencial para comportamientos como la <strong>memoria</strong> en sistemas biológicos.
-                </p>
-
-                <p data-es="Una herramienta útil para estudiar la biestabilidad es el <strong>plano de fase</strong>, que nos permite visualizar cómo varía la concentración de una especie respecto a otra. En este plano, trazamos las <strong>nullclines</strong> de cada variable, es decir, las curvas donde la derivada temporal de esa variable es cero:"
-                   data-en="A useful tool for studying bistability is the <strong>phase plane</strong>, which allows us to visualize how the concentration of one species changes relative to another. In this plane, we plot the <strong>nullclines</strong> of each variable—that is, the curves where the time derivative of that variable is zero:">
-                   Una herramienta útil para estudiar la biestabilidad es el <strong>plano de fase</strong>, que nos permite visualizar cómo varía la concentración de una especie respecto a otra. En este plano, trazamos las <strong>nullclines</strong> de cada variable, es decir, las curvas donde la derivada temporal de esa variable es cero:
-                </p>
-
-                <div class="math-block">
-                    $$\begin{align}
-                    \bar x &=& \frac{\alpha}{\delta} \frac{K^n}{K^n + \bar y^n} \\
-                    \bar y &=& \frac{\alpha}{\delta} \frac{K^n}{K^n + \bar x^n}
-                    \end{align}$$
-                </div>
-
-                <p data-es="Las curvas donde $dX/dt = 0$ indica los valores de $X$ y $Y$ cuando están en equilibrio. Las intersecciones entre las nullclines corresponden a puntos de equilibrio del sistema, como se ve a la izquierda de la Figura 4. Este sistema presenta tres puntos de equilibrio, de los cuales dos son estables y uno inestable, por lo que decimos que hay biestabilidad: el sistema puede ''elegir'' entre dos estados estables dependiendo de su condición inicial.​"
-                   data-en="The curves where $dX/dt = 0$ indicate the values of $X$ and $Y$ at equilibrium. The intersections between the nullclines correspond to the system’s equilibrium points, as shown on the left side of Figure 4. This system has three equilibrium points—two of which are stable and one unstable—so we say the system is bistable: it can ''choose'' between two stable states depending on its initial condition.">
-                   Las curvas donde $dX/dt = 0$ indica los valores de $X$ y $Y$ cuando están en equilibrio. Las intersecciones entre las nullclines corresponden a puntos de equilibrio del sistema, como se ve a la izquierda de la Figura 4. Este sistema presenta tres puntos de equilibrio, de los cuales dos son estables y uno inestable, por lo que decimos que hay biestabilidad: el sistema puede ''elegir'' entre dos estados estables dependiendo de su condición inicial.
-                </p>
-            </div>
-
-            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
-            <!-- Versión en español -->
-                <iframe class="lang-img" data-lang="es"
-                    src="Figura 4_LN2_esp.html"
-                    width="100%" height="275"
-                    style="border:none; display: block;"></iframe>
-
-                <!-- Versión en inglés -->
-                <iframe class="lang-img" data-lang="en"
-                    src="Figura 4_LN2_en.html"
-                    width="100%" height="275"
-                    style="border:none; display: none;"></iframe>
-            </div>
-
-            <div class="cell cell-markdown">
-
-                <p data-es="A la derecha de la Figura 4, las líneas de colores representan las trayectorias del sistema cuando se inicia en esa condición inicial:"
-                   data-en="On the right side of Figure 4, the colored lines represent the system's trajectories when starting from those initial conditions:">
-                    A la derecha de la Figura 4, las líneas de colores representan las trayectorias del sistema cuando se inicia en esa condición inicial:
-                </p>
-
-                <p data-es="- <strong>Gris</strong>: Si se comienza en esta zona, se converge al punto de equilibrio <strong>1</strong>. <br> - <strong>Naranja</strong>: Si se inicia en esta coordenada el sistema convergerá a punto de equilibrio <strong>3</strong>. <br> - Si comenzamos exactamente en el punto de equilibrio <strong>2</strong>, o en la zona de la frontera de ambas zonas, entonces el sistema converge al <strong>segundo</strong> estado estacionario."
-                   data-en="- <strong>Gray</strong>: If the system starts in this region, it converges to equilibrium point <strong>1</strong>. <br> - <strong>Orange</strong>: If it starts from this coordinate, the system will converge to equilibrium point <strong>3</strong>. <br>- If we start exactly at equilibrium point <strong>2</strong>, or on the boundary between both regions, the system will converge to the <strong>second</strong> steady state.">
-                   - <strong>Gris</strong>: Si se comienza en esta zona, se converge al punto de equilibrio <strong>1</strong>. <br> - <strong>Naranja</strong>: Si se inicia en esta coordenada el sistema convergerá a punto de equilibrio <strong>3</strong>. <br> - Si comenzamos exactamente en el punto de equilibrio <strong>2</strong>, o en la zona de la frontera de ambas zonas, entonces el sistema converge al <strong>segundo</strong> estado estacionario.
-                </p>
-
-                <p data-es="Otra forma de entender esta propiedad es imaginándo que uno se encuentra observando una pelota sobre un paisaje montañoso, lleno de valles y cimas. La posición en la que se coloca la pelota representa la condición inicial del sistema, y el movimiento de la pelota representa cómo cambia ese estado con el tiempo (ver el dibujo de la Figura 5).​"
-                   data-en="Another way to understand this property is by imagining a ball placed on a hilly landscape filled with valleys and peaks. The position where the ball is placed represents the system’s initial condition, and the ball’s movement represents how that state evolves over time (see the illustration in Figure 5).">
-                   Otra forma de entender esta propiedad es imaginándo que uno se encuentra observando una pelota sobre un paisaje montañoso, lleno de valles y cimas. La posición en la que se coloca la pelota representa la condición inicial del sistema, y el movimiento de la pelota representa cómo cambia ese estado con el tiempo (ver el dibujo de la Figura 5).
-                </p>
-
-                <p data-es="​En esta analogía, un valle sería como un punto de equilibrio estable. Si colocamos la pelota en el fondo del valle, se quedará ahí, y aunque la empujemos ligeramente hacia un lado, regresará al fondo. Esto significa que pequeñas perturbaciones no alejarán al sistema de su estado original. Por otro lado, una cima sería como un punto de equilibrio inestable. Si se coloca la pelota justo en la cima, puede quedarse ahí, pero si se empuja, aunque sea un poco, caerá hacia uno de los lados y no volverá a la cima."
-                   data-en="In this analogy, a valley represents a stable equilibrium point. If we place the ball at the bottom of the valley, it will stay there—and even if we push it slightly to one side, it will roll back to the bottom. This means small perturbations won’t drive the system away from its original state. On the other hand, a peak represents an unstable equilibrium point. If the ball is placed right on top of the peak, it might stay momentarily, but even the slightest push will cause it to roll off to one side—and it won’t return to the peak.">
-                   En esta analogía, un valle sería como un punto de equilibrio estable. Si colocamos la pelota en el fondo del valle, se quedará ahí, y aunque la empujemos ligeramente hacia un lado, regresará al fondo. Esto significa que pequeñas perturbaciones no alejarán al sistema de su estado original. Por otro lado, una cima sería como un punto de equilibrio inestable. Si se coloca la pelota justo en la cima, puede quedarse ahí, pero si se empuja, aunque sea un poco, caerá hacia uno de los lados y no volverá a la cima.
-                </p>
-
-                <div class="cell cell-markdown" style="display: flex; justify-content: center;">
-                    <img src="Figura 5_LN2_esp.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 70%; height: auto;">
-                    <img src="Figura 5_LN2_en.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 70%; height: auto; display: none;">
-                </div>
-
-            </div>
-
-            <div class="cell cell-markdown">
-
-                <h3 data-es="¿Cómo determinar la estabilidad de un punto de equilibrio?"
-                    data-en="How to Determine the Stability of an Equilibrium Point?">
-                    ¿Cómo determinar la estabilidad de un punto de equilibrio?
-                </h3>
-
-                <p data-es="Para determinar la estabilidad de un punto de equilibrio, se utiliza la <strong>matriz jacobiana</strong> del sistema evaluada en ese punto. Los pasos son los siguientes:"
-                   data-en="To determine the stability of an equilibrium point, we use the system’s <strong>Jacobian matrix</strong> evaluated at that point. The steps are as follows:">
-                    Para determinar la estabilidad de un punto de equilibrio, se utiliza la <strong>matriz jacobiana</strong> del sistema evaluada en ese punto. Los pasos son los siguientes:
-                </p>
-
-                <p data-es="1. <strong>Definir la matriz jacobiana</strong>: Es una matriz que contiene las derivadas parciales de las ecuaciones del sistema respecto a las variables de estado. Por ejemplo, para un sistema con variables $X$ y $Y$, la matriz jacobiana $J$ está definida por"
-                   data-en="1. <strong>Define the Jacobian matrix</strong>: This matrix contains the partial derivatives of the system’s equations with respect to the state variables. For example, for a system with variables $X$ and $Y$, the Jacobian matrix $J$ is defined as:">
-                   1. <strong>Definir la matriz jacobiana</strong>: Es una matriz que contiene las derivadas parciales de las ecuaciones del sistema respecto a las variables de estado. Por ejemplo, para un sistema con variables $X$ y $Y$, la matriz jacobiana $J$ está definida por
-                </p>
-
-                <div class="math-block">
-                    $$J = \begin{bmatrix}
-                    \frac{\partial f_1}{\partial X} & \frac{\partial f_1}{\partial Y} \\
-                    \frac{\partial f_2}{\partial X} & \frac{\partial f_2}{\partial Y}
-                    \end{bmatrix}$$
-                </div>
-
-                <p data-es="Donde $f_1$ y $f_2$ son las ecuaciones diferenciales del sistema.​"
-                   data-en="Where $f_1$ and $f_2$ are the system’s differential equations.">
-                   Donde $f_1$ y $f_2$ son las ecuaciones diferenciales del sistema.
-                </p>
-
-                <p data-es="2. <strong>Evaluar la matriz jacobiana en el punto de equilibrio</strong>: Sustituir las coordenadas del punto de equilibrio ($X_0, Y_0$) en la matriz jacobiana."
-                   data-en="2. <strong>Evaluate the Jacobian matrix at the equilibrium point</strong>: Substitute the coordinates of the equilibrium point ($X_0, Y_0$) into the Jacobian matrix.">
-                   2. <strong>Evaluar la matriz jacobiana en el punto de equilibrio</strong>: Sustituir las coordenadas del punto de equilibrio ($X_0, Y_0$) en la matriz jacobiana.
-                </p>
-
-                <p data-es="3. <strong>Calcular los valores propios (eigenvalores)</strong> de la matriz jacobiana: <br>- Si todos los valores propios tienen partes reales negativas ($\text{Re}(\lambda) < 0$), el punto de equilibrio es <strong>estable</strong>. <br>- Si al menos un valor propio tiene parte real positiva ($\text{Re}(\lambda) > 0$), el punto de equilibrio es <strong>inestable</strong>."
-                   data-en="3. <strong>Compute the eigenvalues</strong> of the Jacobian matrix: <br>- If all eigenvalues have negative real parts ($\text{Re}(\lambda) < 0$), the equilibrium point is <strong>stable</strong>. <br>- If at least one eigenvalue has a positive real part ($\text{Re}(\lambda) > 0$), the equilibrium point is <strong>unstable</strong>.">
-                   3. <strong>Calcular los valores propios (eigenvalores)</strong> de la matriz jacobiana: <br>- Si todos los valores propios tienen partes reales negativas ($\text{Re}(\lambda) < 0$), el punto de equilibrio es <strong>estable</strong>. <br>- Si al menos un valor propio tiene parte real positiva ($\text{Re}(\lambda) > 0$), el punto de equilibrio es <strong>inestable</strong>.
-                </p>
-
-                <p data-es="Si aplicamos estos pasos a nuestro modelo del toggle switch, observamos que, efectivamente, encontramos dos estados estables: uno que corresponde a la alta expresión de $Y$ y la baja expresión de $X$ (Figura 6, arriba a la izquierda), y el otro que corresponde a la alta expresión de $X$ y la baja expresión de $Y$ (Figura 6, abajo a la derecha). Para ver más detalles sobre como calcular estabilidad en sistemas multiestables, ver Technical Note #3."
-                   data-en="If we apply these steps to our toggle switch model, we indeed find two stable states: one corresponding to high expression of $Y$ and low expression of $X$ (Figure 6, top left), and the other corresponding to high expression of $X$ and low expression of $Y$ (Figure 6, bottom right). For more details on how to assess stability in multistable systems, see Technical Note #3.">
-                   Si aplicamos estos pasos a nuestro modelo del toggle switch, observamos que, efectivamente, encontramos dos estados estables: uno que corresponde a la alta expresión de $Y$ y la baja expresión de $X$ (Figura 6, arriba a la izquierda), y el otro que corresponde a la alta expresión de $X$ y la baja expresión de $Y$ (Figura 6, abajo a la derecha). Para ver más detalles sobre como calcular estabilidad en sistemas multiestables, ver Technical Note #3.
+                <p data-es="Ahora que hemos confirmado las condiciones bajo las cuales el controlador integral antitético funciona correctamente, estudiaremos más de cerca dos propiedades importantes: el <em>tracking de referencia</em>, que es la capacidad del sistema para ajustarse a un nuevo valor de referencia, y la <em>robustes ante perturbaciones</em>, que es su capacidad para volver al estado anterior después de haber sido perturbado."
+                   data-en="Now that we’ve confirmed the conditions under which the antithetic integral controller works properly, we’ll take a closer look at two important properties: <em>reference tracking</em>, the system’s ability to adjust to a new set-point, and <em>disturbance rejection</em>, its capacity to return to the previous state after being perturbed.">
+                   Ahora que hemos confirmado las condiciones bajo las cuales el controlador integral antitético funciona correctamente, estudiaremos más de cerca dos propiedades importantes: el <em>tracking de referencia</em>, que es la capacidad del sistema para ajustarse a un nuevo valor de referencia, y la <em>robustes ante perturbaciones</em>, que es su capacidad para volver al estado anterior después de haber sido perturbado.
                 </p>
 
             </div>
@@ -354,166 +268,170 @@
             <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
             <!-- Versión en español -->
                 <iframe class="lang-img" data-lang="es"
-                    src="Figura 6_LN2_esp.html"
-                    width="100%" height="275"
-                    style="border:none; display: block;"></iframe>
-
-                <!-- Versión en inglés -->
-                <iframe class="lang-img" data-lang="en"
-                    src="Figura 6_LN2_en.html"
-                    width="100%" height="275"
-                    style="border:none; display: none;"></iframe>
-            </div>
-
-            <div class="cell cell-markdown">
-
-                <h3 data-es="Análisis de bifurcación"
-                    data-en="Bifurcation Analysis">
-                    Análisis de bifurcación
-                </h3>
-
-                <p data-es="En muchos sistemas biológicos no basta con conocer cómo cambia el estado del sistema con el tiempo; también es fundamental entender cómo cambia el comportamiento general del sistema al modificar uno de sus parámetros. Imaginemos de nuevo la pelota sobre un paisaje con montañas y valles. La posición de la pelota representa el estado del sistema, y el relieve determina hacia dónde se moverá. Sin embargo, al variar un parámetro del sistema, el relieve puede modificarse; con esto pueden <strong>aparecer nuevos valles</strong> (nuevos equilibrios estables), <strong>desaparecer cimas</strong> (pérdidas de equilibrios inestables) o <strong>intercambiarse los roles de valle y cima</strong> (cambios de estabilidad). Este tipo de transformaciones en la estructura del paisaje se conocen como <strong>bifurcaciones</strong>."
-                   data-en="In many biological systems, it’s not enough to know how the system’s state changes over time; it’s also crucial to understand how the system’s overall behavior changes when one of its parameters is modified. Let’s once again imagine the ball on a landscape of hills and valleys. The position of the ball represents the system’s state, and the terrain determines the direction it will move. However, when a parameter in the system is varied, the landscape itself may shift: <strong>new valleys</strong> can appear (new stable equilibria), <strong>peaks can disappear</strong> (loss of unstable equilibria), or <strong>valleys and peaks can switch roles</strong> (stability changes). These types of transformations in the structure of the landscape are known as <strong>bifurcations</strong>.">
-                    En muchos sistemas biológicos no basta con conocer cómo cambia el estado del sistema con el tiempo; también es fundamental entender cómo cambia el comportamiento general del sistema al modificar uno de sus parámetros. Imaginemos de nuevo la pelota sobre un paisaje con montañas y valles. La posición de la pelota representa el estado del sistema, y el relieve determina hacia dónde se moverá. Sin embargo, al variar un parámetro del sistema, el relieve puede modificarse; con esto pueden <strong>aparecer nuevos valles</strong> (nuevos equilibrios estables), <strong>desaparecer cimas</strong> (pérdidas de equilibrios inestables) o <strong>intercambiarse los roles de valle y cima</strong> (cambios de estabilidad). Este tipo de transformaciones en la estructura del paisaje se conocen como <strong>bifurcaciones</strong>.
-                </p>
-
-                <p data-es="​En términos más formales, una <strong>bifurcación</strong> ocurre cuando un cambio en un parámetro del sistema provoca un cambio en el número o estabilidad de los puntos de equilibrio. Para estudiar esto, se utilizan los <strong>diagramas de bifurcación</strong>. En estos diagramas se representa el valor del parámetro en el eje horizontal y el valor de la concentración de una proteína en equilibrio en el eje vertical. Las curvas resultantes muestran cómo evolucionan los puntos de equilibrio conforme se varía el parámetro. En el caso del <strong>toggle switch</strong>, al variar la tasa de síntesis de la molécula $X$, vemos que con valores pequeños solo existe un punto de equilibrio; pero al aumentar dicha tasa, <strong>surgen dos nuevos</strong> (ver Figura 7)."
-                   data-en="In more formal terms, a <strong>bifurcation</strong> occurs when a change in a system parameter causes a change in the number or stability of equilibrium points. To study this, we use <strong>bifurcation diagrams</strong>. In these diagrams, the parameter value is plotted on the horizontal axis, and the equilibrium concentration of a protein on the vertical axis. The resulting curves show how the equilibrium points evolve as the parameter varies. In the case of the <strong>toggle switch</strong>, when varying the synthesis rate of molecule $X$, we see that at low values, only one equilibrium point exists; but as the rate increases, <strong>two new equilibria emerge</strong> (see Figure 7).">
-                   ​En términos más formales, una <strong>bifurcación</strong> ocurre cuando un cambio en un parámetro del sistema provoca un cambio en el número o estabilidad de los puntos de equilibrio. Para estudiar esto, se utilizan los <strong>diagramas de bifurcación</strong>. En estos diagramas se representa el valor del parámetro en el eje horizontal y el valor de la concentración de una proteína en equilibrio en el eje vertical. Las curvas resultantes muestran cómo evolucionan los puntos de equilibrio conforme se varía el parámetro. En el caso del <strong>toggle switch</strong>, al variar la tasa de síntesis de la molécula $X$, vemos que con valores pequeños solo existe un punto de equilibrio; pero al aumentar dicha tasa, <strong>surgen dos nuevos</strong> (ver Figura 7).
-                </p>
-
-            </div>
-
-            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
-            <!-- Versión en español -->
-                <iframe class="lang-img" data-lang="es"
-                    src="Figura 7_LN2_esp.html"
-                    width="100%" height="275"
-                    style="border:none; display: block;"></iframe>
-
-                <!-- Versión en inglés -->
-                <iframe class="lang-img" data-lang="en"
-                    src="Figura 7_LN2_en.html"
-                    width="100%" height="275"
-                    style="border:none; display: none;"></iframe>
-            </div>
-
-            <div class="cell cell-markdown">
-                <h2 style="color: var(--dark-purple);" data-es="Oscilaciones"
-                    data-en="Oscillations">
-                    Oscilaciones
-                </h2>
-
-                <p data-es="El mismo año en el que se publicó el toggle switch, Michael Elowitz y Stanislas Leibler diseñaron y construyeron un circuito genético llamado <strong>repressilator</strong>. Este representa uno de los primeros ejemplos de un sistema biológico sintético programado para exhibir un comportamiento dinámico no trivial: oscilaciones autosostenidas (<a style='color: var(--dark-purple);' href='https://www.nature.com/articles/35002125'>Elowitz and Leibler, 2000</a>). El circuito está formado por tres genes que se inhiben mutuamente en un ciclo de retroalimentación negativa, como se muestra en la Figura 8. Cada gen codifica para un inhibidor transcripcional que se une al siguiente gen en la cadena. Esta arquitectura genera un ciclo cerrado de retroalimentación negativa, lo cual, bajo las condiciones adecuadas, genera oscilaciones estables en los niveles de expresión de los tres genes. En otras palabras, las concentraciones de cada molécula suben y bajan de forma cíclica, generando oscilaciones."
-                   data-en="The same year the toggle switch was published, Michael Elowitz and Stanislas Leibler designed and built a genetic circuit called the <strong>repressilator</strong>. This was one of the first examples of a synthetic biological system programmed to exhibit nontrivial dynamic behavior: self-sustained oscillations (<a style='color: var(--dark-purple);' href='https://www.nature.com/articles/35002125'>Elowitz and Leibler, 2000</a>). The circuit is composed of three genes that inhibit one another in a negative feedback loop, as shown in Figure 8. Each gene encodes a transcriptional repressor that binds to the next gene in the chain. This architecture forms a closed cycle of negative feedback, which—under the right conditions—produces stable oscillations in the expression levels of all three genes. In other words, the concentrations of each molecule rise and fall cyclically, creating oscillations.">
-                    El mismo año en el que se publicó el toggle switch, Michael Elowitz y Stanislas Leibler diseñaron y construyeron un circuito genético llamado <strong>repressilator</strong>. Este representa uno de los primeros ejemplos de un sistema biológico sintético programado para exhibir un comportamiento dinámico no trivial: oscilaciones autosostenidas (<a style='color: var(--dark-purple);' href='https://www.nature.com/articles/35002125'>Elowitz and Leibler, 2000</a>). El circuito está formado por tres genes que se inhiben mutuamente en un ciclo de retroalimentación negativa, como se muestra en la Figura 8. Cada gen codifica para un inhibidor transcripcional que se une al siguiente gen en la cadena. Esta arquitectura genera un ciclo cerrado de retroalimentación negativa, lo cual, bajo las condiciones adecuadas, genera oscilaciones estables en los niveles de expresión de los tres genes. En otras palabras, las concentraciones de cada molécula suben y bajan de forma cíclica, generando oscilaciones.
-                </p>
-
-                <div class="cell cell-markdown" style="display: flex; justify-content: center;">
-                    <img src="Figura 8_LN2_esp.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 40%; height: auto;">
-                    <img src="Figura 8_LN2_esp.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 40%; height: auto; display: none;">
-                </div>
-
-                <p data-es="Las reacciones químicas que describen al repressilator son las siguientes:"
-                   data-en="The chemical reactions that describe the repressilator are as follows:">
-                   Las reacciones químicas que describen al repressilator son las siguientes: 
-                </p>
-
-                <div class="math-block">
-                    $$\begin{align}
-                    \emptyset &\xrightarrow{f(z)} X && X \xrightarrow{\delta} \emptyset && \text{Producción y degradación de X}\\
-                    \emptyset &\xrightarrow{g(x)} Y && Y \xrightarrow{\delta} \emptyset && \text{Producción y degradación de Y}\\
-                    \emptyset &\xrightarrow{h(y)} Z && Z \xrightarrow{\delta} \emptyset && \text{Producción y degradación de Z}
-                    \end{align}$$
-                </div>
-
-                <p data-es="donde $f(z)$, $g(x)$ y $h(y)$ son las expresiones de Hill que dependen de la especie química dentro del paréntesis. Por simplicidad, estaremos asumiendo que todas las especies se degradan a la misma tasa $\delta$. De este modo, utilizando la ley de acción de masas, modelamos las reacciones químicas con las siguientes ecuaciones diferenciales:"
-                   data-en="where $f(z)$, $g(x)$, and $h(y)$ are Hill functions that depend on the chemical species inside the parentheses. For simplicity, we assume that all species degrade at the same rate $\delta$. With this assumption, and applying the law of mass action, we model the chemical reactions with the following differential equations:">
-                   donde $f(z)$, $g(x)$ y $h(y)$ son las expresiones de Hill que dependen de la especie química dentro del paréntesis. Por simplicidad, estaremos asumiendo que todas las especies se degradan a la misma tasa $\delta$. De este modo, utilizando la ley de acción de masas, modelamos las reacciones químicas con las siguientes ecuaciones diferenciales:
-                </p>
-
-                <div class="math-block">
-                    $$\begin{align}
-                    \frac{dx}{dt} &=& \alpha \frac{K^n}{K^n + z^n} - \delta x \\
-                    \frac{dy}{dt} &=& \alpha \frac{K^n}{K^n + x^n} - \delta y \\
-                    \frac{dz}{dt} &=& \alpha \frac{K^n}{K^n + y^n} - \delta z \\
-                    \end{align}$$
-                </div>
-
-                <p data-es="Finalmente, si resolvemos las ecuaciones, observamos en la Figura 9 como las trayectorias de cada especie exhiben periodicidad."
-                   data-en="Finally, if we solve the equations, we observe in Figure 9 that the trajectories of each species exhibit periodic behavior.">
-                  Finalmente, si resolvemos las ecuaciones, observamos en la Figura 9 como las trayectorias de cada especie exhiben periodicidad. 
-                </p>
-
-            </div>
-
-            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
-            <!-- Versión en español -->
-                <iframe class="lang-img" data-lang="es"
-                    src="Figura 9_LN2_esp.html"
-                    width="100%" height="275"
-                    style="border:none; display: block;"></iframe>
-
-                <!-- Versión en inglés -->
-                <iframe class="lang-img" data-lang="en"
-                    src="Figura 9_LN2_en.html"
-                    width="100%" height="275"
-                    style="border:none; display: none;"></iframe>
-            </div>
-
-            <div class="cell cell-markdown">
-                <p data-es="Ahora que hemos confirmado la presencia de oscilaciones, podemos preguntarnos si es posible manipular las propiedades de esta señal. En particular, su amplitud y su frecuencia. Para ello, exploraremos el efecto de la tasa de producción ($\alpha$), el valor de cooperatividad (i.e., el coeficiente $n$ de la función de Hill) y la tasa de degradación ($\delta$)."
-                   data-en="Now that we've confirmed the presence of oscillations, we can ask whether it's possible to manipulate the properties of this signal—specifically, its amplitude and frequency. To do so, we’ll explore the effects of the production rate ($\alpha$), the cooperativity value (i.e., the Hill coefficient $n$), and the degradation rate ($\delta$).">
-                  Ahora que hemos confirmado la presencia de oscilaciones, podemos preguntarnos si es posible manipular las propiedades de esta señal. En particular, su amplitud y su frecuencia. Para ello, exploraremos el efecto de la tasa de producción ($\alpha$), el valor de cooperatividad (i.e., el coeficiente $n$ de la función de Hill) y la tasa de degradación ($\delta$).
-                </p>
-            </div>
-
-            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
-            <!-- Versión en español -->
-                <iframe class="lang-img" data-lang="es"
-                    src="Figura 10_LN2_esp.html"
+                    src="Figura 5_LN3_esp.html"
                     width="100%" height="250"
                     style="border:none; display: block;"></iframe>
 
                 <!-- Versión en inglés -->
                 <iframe class="lang-img" data-lang="en"
-                    src="Figura 10_LN2_en.html"
+                    src="Figura 5_LN3_en.html"
                     width="100%" height="250"
                     style="border:none; display: none;"></iframe>
             </div>
 
             <div class="cell cell-markdown">
-                <p data-es="Como se puede observar en la Figura 10, es posible ajustar la amplitud de las oscilaciones cambiando la tasa máxima de producción ($\alpha$), así como la frecuencia, cambiando la degradación de las especies químicas ($\delta$). Por otro lado, observamos que la cooperatividad ($n$) es necesario para generar oscilaciones. Si este es muy bajo, las oscilaciones resultan inestables y desaparecen con el tiempo; por el contrario, cuando es alto, las oscilaciones se estabilizan, formando un <strong>ciclo límite</strong> que puede observase en el plano de fase."
-                   data-en="As shown in Figure 10, it's possible to adjust the amplitude of the oscillations by changing the maximum production rate ($\alpha$), and to tune the frequency by modifying the degradation rate of the chemical species ($\delta$). On the other hand, we observe that cooperativity ($n$) is essential for generating oscillations. If $n$ is too low, the oscillations become unstable and eventually fade away. In contrast, when $n$ is high, the oscillations stabilize, forming a <strong>limit cycle</strong> that can be observed in the phase plane.">
-                  Como se puede observar en la Figura 10, es posible ajustar la amplitud de las oscilaciones cambiando la tasa máxima de producción ($\alpha$), así como la frecuencia, cambiando la degradación de las especies químicas ($\delta$). Por otro lado, observamos que la cooperatividad ($n$) es necesario para generar oscilaciones. Si este es muy bajo, las oscilaciones resultan inestables y desaparecen con el tiempo; por el contrario, cuando es alto, las oscilaciones se estabilizan, formando un <strong>ciclo límite</strong> que puede observase en el plano de fase.
+
+                <h2 style="color: var(--dark-purple);" data-es="Control adaptativo"
+                    data-en="Adaptive control">
+                    Control adaptativo
+                </h2>
+                
+                <p data-es="Al diseñar controladores de feedback, uno de los desafíos más importantes es que generalmente necesitamos entender cómo se comporta el sistema. En la práctica, esto significa utilizar ecuaciones que describen el proceso que queremos controlar (a esto también se le denomina tener un <em>entendimiento mecanístico</em> del sistema). Sin embargo, la mayoría de las vías de señalización en biología aún no se entienden por completo. Por ello, puede resultar difícil elegir una buena señal de referencia o ajustar correctamente los parámetros del controlador, lo que lleva a ciclos iterativos de prueba y error. Esto nos plantea una pregunta: ¿es posible construir un controlador de feedback incluso cuando solo conocemos parcialmente el comportamiento del sistema? Los controladores adaptativos son una forma de hacerlo. En lugar de depender de una referencia externa, este tipo de controladores son capaces de estimarla a partir de la propia dinámica del sistema, ajustándose a medida que el sistema cambia (ver Figura 3)."
+                   data-en="When designing feedback controllers, one important challenge is that we usually need to understand how the system behaves. In practice, this means relying on the equations behind the process we want to control, that is, having a <em>mechanistic understanding</em> of the system. However, most native signaling pathways are still not fully understood. Because of this, it can be hard to choose a good reference signal or to tune the controller’s parameters correctly, resulting in iterative cycles of trial and error. This leads to a natural question: is it possible to build a feedback controller even when we only know part of how the system behaves? Adaptive controllers are one way to do this. Instead of depending on an external reference, they estimate it from the behavior of the system itself, adjusting as the system changes.">
+                   Al diseñar controladores de feedback, uno de los desafíos más importantes es que generalmente necesitamos entender cómo se comporta el sistema. En la práctica, esto significa utilizar ecuaciones que describen el proceso que queremos controlar (a esto también se le denomina tener un <em>entendimiento mecanístico</em> del sistema). Sin embargo, la mayoría de las vías de señalización en biología aún no se entienden por completo. Por ello, puede resultar difícil elegir una buena señal de referencia o ajustar correctamente los parámetros del controlador, lo que lleva a ciclos iterativos de prueba y error. Esto nos plantea una pregunta: ¿es posible construir un controlador de feedback incluso cuando solo conocemos parcialmente el comportamiento del sistema? Los controladores adaptativos son una forma de hacerlo. En lugar de depender de una referencia externa, este tipo de controladores son capaces de estimarla a partir de la propia dinámica del sistema, ajustándose a medida que el sistema cambia (ver Figura 3).
                 </p>
 
-                <p data-es="Formalmente, este es una trayectoria cerrada en el plano de fase hacia la cual tienden las soluciones de un sistema dinámico con el tiempo. Es decir, en vez de que las trayectorias terminen convergiendo a un valor constante, el sistema entra en un comportamiento <strong>periódico sostenido</strong>, donde las variables oscilan de manera regular y continua, sin necesidad de una señal externa."
-                   data-en="Formally, this is a closed trajectory in the phase plane toward which the solutions of a dynamical system tend over time. In other words, instead of the trajectories converging to a constant value, the system enters a state of <strong>sustained periodic</strong> behavior, where the variables oscillate regularly and continuously—without the need for any external signal.">
-                  Formalmente, este es una trayectoria cerrada en el plano de fase hacia la cual tienden las soluciones de un sistema dinámico con el tiempo. Es decir, en vez de que las trayectorias terminen convergiendo a un valor constante, el sistema entra en un comportamiento <strong>periódico sostenido</strong>, donde las variables oscilan de manera regular y continua, sin necesidad de una señal externa.
+                <div class="cell cell-markdown" style="display: flex; justify-content: center;">
+                    <img src="Figura 6_LN3_esp.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 100%; height: auto;">
+                    <img src="Figura 6_LN3_en.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 100%; height: auto; display: none;">
+                </div>
+
+            </div>
+
+            <div class="cell cell-markdown">
+
+                <h2 style="color: var(--dark-purple);" data-es="Diseño de un controlador adaptativo biomolecular usando el motivo incoherent feedforward loop (IFFL)"
+                    data-en="Design on a biomolecular adaptive controller using the incoherent feedforward loop (IFFL)">
+                    Diseño de un controlador adaptativo biomolecular usando el motivo incoherent feedforward loop (IFFL)
+                </h2>
+
+                <p data-es="Una de las estrategias más directas para implementar control adaptativo se basa en la acción derivativa. En 2004, Pyragas et al. implementaron un controlador adaptativo (electrónico) basado en un filtro pasa-bajas y un operador derivativo. Esta estrategia no afecta el equilibrio del sistema, ya que, si la salida del controlador es proporcional a la derivada del proceso, cuanto más cerca se encuentra del estado estacionario, menor será la acción del controlador. Una vez que el sistema alcanza su estado estacionario, la acción del controlador desaparece, ya que la derivada converge a cero (<a style='color: var(--dark-purple);' href='https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.026215'>Pyragas et al., 2004</a>)."
+                   data-en="One of the most straighforward strategies to implement adaptive control is based on the derivative action. In 2004, Pyragas et al implemented an electronic adaptive controller based on a low-pass filter and a derivative operator. This strategy doesn't affect the equilibrium of the system: since the output of the controller is proportional to the derivative of the process, the closer it gets to its steady-state, the lesser the action of the controller. Once the system reaches its steady-state, the controller's action vanishes since the derivative fades away (<a style='color: var(--dark-purple);' href='https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.026215'>Pyragas et al., 2004</a>).">
+                   Una de las estrategias más directas para implementar control adaptativo se basa en la acción derivativa. En 2004, Pyragas et al. implementaron un controlador adaptativo (electrónico) basado en un filtro pasa-bajas y un operador derivativo. Esta estrategia no afecta el equilibrio del sistema, ya que, si la salida del controlador es proporcional a la derivada del proceso, cuanto más cerca se encuentra del estado estacionario, menor será la acción del controlador. Una vez que el sistema alcanza su estado estacionario, la acción del controlador desaparece, ya que la derivada converge a cero (<a style='color: var(--dark-purple);' href='https://journals.aps.org/pre/abstract/10.1103/PhysRevE.70.026215'>Pyragas et al., 2004</a>).
+                </p>
+
+                <p data-es="Ahora estudiaremos cómo implementar un diseño similar utilizando reacciones químicas. Para lograr un funcionamiento análogo, consideramos el motivo conocido como *incoherent feedforward loop* (IFFL), en el que una entrada $Y$ produce simultáneamente las especies $U_1$ y $U_2$, y donde $U_2$ inhibe la acción de $U_1$. Consideremos ahora una reacción de secuestro molecular entre las especies $U_1$ y $U_2$. Supongamos además que otra especie intermedia $X$ produce $U_1$, y que tanto $X$ como $U_2$ son producidas por la entrada $Y$ (ver Figura x). Esta estrategia implementa esencialmente una topología del tipo IFFL, la cual podemos modelar mediante el siguiente sistema de ecuaciones diferenciales ordinarias:"
+                   data-en="Here, we will explore how to implement a similar design using chemical reactions. To obtain a similar operation, we consider the incoherent feedforward loop (IFFL) motif, where an input $Y$ produces simultaneously the species $U_1$ and $U_2$, and where $U_2$ inhibits the action of $U_1$. Let's consider now a molecular sequestration reaction between the species $U_1$ and $U_2$. Let also another intermediate specie $X$ to produce $U_1$, and let $X$ and $U_2$ be produced by an input $Y$ (see Figure). This strategy essentially implements an IFFL-like topology, which we can model this motif with the following ODEs:">
+                   Ahora estudiaremos cómo implementar un diseño similar utilizando reacciones químicas. Para lograr un funcionamiento análogo, consideramos el motivo conocido como *incoherent feedforward loop* (IFFL), en el que una entrada $Y$ produce simultáneamente las especies $U_1$ y $U_2$, y donde $U_2$ inhibe la acción de $U_1$. Consideremos ahora una reacción de secuestro molecular entre las especies $U_1$ y $U_2$. Supongamos además que otra especie intermedia $X$ produce $U_1$, y que tanto $X$ como $U_2$ son producidas por la entrada $Y$ (ver Figura x). Esta estrategia implementa esencialmente una topología del tipo IFFL, la cual podemos modelar mediante el siguiente sistema de ecuaciones diferenciales ordinarias:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{du_1}{dt} &=& kx - \delta u_1 - \gamma u_1 u_2 \\
+                    \frac{du_2}{dt} &=& \rho y - \delta u_2 - \gamma u_1 u_2 \\
+                    \frac{dx}{dt} &=& kx - \delta x
+                    \end{eqnarray}$$
+                </div>
+
+                <div class="cell cell-markdown" style="display: flex; justify-content: center;">
+                    <img src="Figura 7_LN3_esp.png" alt="Figura ES" class="lang-img" data-lang="es" style="max-width: 100%; height: auto;">
+                    <img src="Figura 7_LN3_esp.png" alt="Figure EN" class="lang-img" data-lang="en" style="max-width: 100%; height: auto; display: none;">
+                </div>
+
+                <p data-es="Para nuestro análisis, consideremos el complejo $C$ que se forma cuando $U_1$ y $U_2$ interactúan mediante secuestramiento, pero que usualmente ignoramos ya que no juega un rol en la dinámica del sistema de lazo cerrado cuando el secuestramiento es muy rápido. Podemos modelar la dinámica de $C$ con la siguiente ecuación diferencial:"
+                   data-en="For our analysis, let's consider the complex $C$ that is formed when $U_1$ and $U_2$ interact through sequestration, but we usually ignore since it doesn't play a role in the system's dynamics during fast sequestration. We can model the dynamics of $C$ with the following ODE:">
+                  Para nuestro análisis, consideremos el complejo $C$ que se forma cuando $U_1$ y $U_2$ interactúan mediante secuestramiento, pero que usualmente ignoramos ya que no juega un rol en la dinámica del sistema de lazo cerrado cuando el secuestramiento es muy rápido. Podemos modelar la dinámica de $C$ con la siguiente ecuación diferencial:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{dc}{dt} &=& \gamma u_1 u_2 - \delta c
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="Ahora, consideremos las ecuaciones de conservación de masa para $u_1$ y $u_2$. Sea $u_1^T$ la concentración total de $u_1$ (ya sea libre o unida a $U_2$ formando el complejo), de modo que $u_1^T = u_1 + c$. Lo mismo para la especie $U_2$: sea $u_2^T = u_2 + c$. Si reescribimos nuestras ecuaciones diferenciales anteriores en términos de $u_1^T$ y $u_2^T$, notaremos que son lineales!"
+                   data-en="Now, let's consider the mass conservation equations for $u_1$ and $u_2$. Let $u_1^T$ be the total concentration of $u_1$ (either free or in the complex), so that $u_1^T = u_1 + c$. The same idea for the species $U_2$: let $u_2^T = u_2 + c$. If we replace our rewrite our previous ODEs in terms of $u_1^T$ and $u_2^T$, we will notice that they are linear!">
+                  Ahora, consideremos las ecuaciones de conservación de masa para $u_1$ y $u_2$. Sea $u_1^T$ la concentración total de $u_1$ (ya sea libre o unida a $U_2$ formando el complejo), de modo que $u_1^T = u_1 + c$. Lo mismo para la especie $U_2$: sea $u_2^T = u_2 + c$. Si reescribimos nuestras ecuaciones diferenciales anteriores en términos de $u_1^T$ y $u_2^T$, notaremos que son lineales!
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{d u_1^T}{dt} &=& kx - \delta u_1^T \\
+                    \frac{d u_2^T}{dt} &=& \rho y - \delta u_2^T \\
+                    \frac{d x}{dt} &=& \theta y - \delta x
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="De nuestro Lecture Note #1, recordamos que podemos escribir la dinámica de $u_1(t)$ como $\max (0, u_1^T - u_2^T)$ en el régimen de secuestramiento rápido. Podemos reescribir esta expresión como $u_1(t) \approx \max \{ 0, \mathcal{L}^{-1} [U_1^T(s) - U_2^T(s)] \}$, donde $\mathcal{L}^{-1}$ es la transformada inversa de Laplace, y $U_1^T(s)$ y $U_2^T(s)$ son las transformadas de Laplace de $u_1^T(t)$ y $u_2^T(t)$, respectivamente. Ahora, al aplicar la transformada de Laplace a nuestras ecuaciones diferenciales anteriores y reorganizar los términos, encontramos que"
+                   data-en="From our Lecture Note #1, we remember that we can write the dynamics of $u_1(t)$ as $\max (0, u_1^T - u_2^T)$ in the fast sequestration regime. We can rewrite this expression as $u_1(t) \approx \max \{ 0, \mathcal{L}^{-1} [U_1^T(s) - U_2^T(s)] \}$, where $\mathcal{L}^{-1}$ is the inverse Laplace transform, and $U_1^T(s)$ and $U_2^T(s)$ are the Laplace transforms or $u_1^T(t)$ and $u_2^T(t)$, respectively. Now, by taking the Laplace transform to our previous ODEs and rearranging the terms, we find  that">
+                  De nuestro Lecture Note #1, recordamos que podemos escribir la dinámica de $u_1(t)$ como $\max (0, u_1^T - u_2^T)$ en el régimen de secuestramiento rápido. Podemos reescribir esta expresión como $u_1(t) \approx \max \{ 0, \mathcal{L}^{-1} [U_1^T(s) - U_2^T(s)] \}$, donde $\mathcal{L}^{-1}$ es la transformada inversa de Laplace, y $U_1^T(s)$ y $U_2^T(s)$ son las transformadas de Laplace de $u_1^T(t)$ y $u_2^T(t)$, respectivamente. Ahora, al aplicar la transformada de Laplace a nuestras ecuaciones diferenciales anteriores y reorganizar los términos, encontramos que
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    u_1(t) \approx \max \left \{ 0, \mathcal{L}^{-1} \left ( \frac{k \theta}{(s+\delta)^2} \left [1 - \frac{\rho \delta}{k \theta} - \frac{\rho}{k \theta}s \right ] Y(s) \right) \right \}
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="A partir de esta expresión para la dinámica aproximada de $u_1(t)$, definamos la métrica $r = \rho \delta / k \theta$. Cuando $r = 1$, notamos que el término $1 - r$ desaparece de la ecuación. Por lo tanto, nos queda $k \theta / (s + \delta)^2$, que representa un filtro pasa-bajas, y $- \rho/k \theta \, s$, que representa un operador derivativo que responde a gradientes negativos; exactamente los dos operadores que necesitábamos para el controlador adaptativo! Por esta razón, llamaremos a $r$ la <strong>métrica adaptativa ideal</strong> y exploraremos sus propiedades mediante algunas simulaciones."
+                   data-en="From this expression for the approximated dynamics of $u_1(t)$, let's define the metric $r = \rho \delta / k \theta$. When $r = 1$, we note that the term $1 - r$ vanishes from the equation. Therefore, we are left with $k \theta / (s + \delta)^2$, which represents a low-pass filter, and with $- \rho/k \theta s$, which represents a derivative that responds to negative gradients; exactly the two operators that we needed for the adaptive controller! For this reason, let's refer to $r$ as the <strong>ideal adaptive metric</strong> and explore its properties through some simulations.">
+                  A partir de esta expresión para la dinámica aproximada de $u_1(t)$, definamos la métrica $r = \rho \delta / k \theta$. Cuando $r = 1$, notamos que el término $1 - r$ desaparece de la ecuación. Por lo tanto, nos queda $k \theta / (s + \delta)^2$, que representa un filtro pasa-bajas, y $- \rho/k \theta \, s$, que representa un operador derivativo que responde a gradientes negativos; exactamente los dos operadores que necesitábamos para el controlador adaptativo! Por esta razón, llamaremos a $r$ la <strong>métrica adaptativa ideal</strong> y exploraremos sus propiedades mediante algunas simulaciones.
+                </p>
+            </div>
+
+
+            <div class="cell cell-markdown">
+                <h2 style="color: var(--dark-purple);" data-es="Desestabilización del estado estacionario de un gen auto-inhibidor"
+                    data-en="Destabilizing the steady-state of a self-inhibiting gene">
+                    Desestabilización del estado estacionario de un gen auto-inhibidor
+                </h2>
+
+                <p data-es="Como ejemplo, consideremos un gen que expresa un represor transcripcional que inhibe su propia transcripción. Si asumimos una dinámica sin ningún retraso adicional, tendremos un modelo simple que representa un sistema biológico que ha perdido su comportamiento oscilatorio debido a una enfermedad, como ocurre con la disrupción de los ritmos circadianos en el cáncer (<a style='color: var(--dark-purple);' href='https://elifesciences.org/articles/09100'>Zambrano et al., 2016</a>)  y en enfermedades metabólicas (<a style='color: var(--dark-purple);' href='https://www.science.org/doi/10.1126/sciadv.abi9654'>Gabriel et al., 2021</a>). Volvamos a adimensionalizar el sistema, lo que nos lleva al siguiente conjunto de ecuaciones diferenciales para el gen que inhibe su propia transcripción conectado al controlador adaptativo:"
+                   data-en="As a case study, let’s consider a self-inhibiting gene without any additional delay, representing a system that has lost its oscillatory behavior due to disease, such as the disruption of circadian rhythms in cancer (<a style='color: var(--dark-purple);' href='https://elifesciences.org/articles/09100'>Zambrano et al., 2016</a>) and metabolic diseases (<a style='color: var(--dark-purple);' href='https://www.science.org/doi/10.1126/sciadv.abi9654'>Gabriel et al., 2021</a>). Let's non dimensionalize once again, resulting in the following ODEs for the self-inhibiting gene connected to the adaptive controller:">
+                    Como ejemplo, consideremos un gen que expresa un represor transcripcional que inhibe su propia transcripción. Si asumimos una dinámica sin ningún retraso adicional, tendremos un modelo simple que representa un sistema biológico que ha perdido su comportamiento oscilatorio debido a una enfermedad, como ocurre con la disrupción de los ritmos circadianos en el cáncer (<a style='color: var(--dark-purple);' href='https://elifesciences.org/articles/09100'>Zambrano et al., 2016</a>)  y en enfermedades metabólicas (<a style='color: var(--dark-purple);' href='https://www.science.org/doi/10.1126/sciadv.abi9654'>Gabriel et al., 2021</a>). Volvamos a adimensionalizar el sistema, lo que nos lleva al siguiente conjunto de ecuaciones diferenciales para el gen que inhibe su propia transcripción conectado al controlador adaptativo:
+                </p>
+
+                <div class="math-block">
+                    $$\begin{eqnarray}
+                    \frac{dy}{dt} &=& \alpha \frac{1}{1 + y^m} -  y + \beta u_1 \\
+                    \frac{du_1}{dt} &=& kx -  u_1 - \frac{1}{\xi} u_1 u_2 \\
+                    \frac{du_2}{dt} &=& \rho \frac{1}{1 + y^m} -  u_2 - \frac{1}{\xi} u_1 u_2 \\
+                    \frac{dx}{dt} &=& kx -  x
+                    \end{eqnarray}$$
+                </div>
+
+                <p data-es="donde el término $\beta u_1$ representa la señal de control del controlador adaptativo."
+                   data-en="where the term $\beta u_1$ is the control signal of the adaptive controller.">
+                   donde el término $\beta u_1$ representa la señal de control del controlador adaptativo.
+                </p>
+
+            </div>
+
+            <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
+            <!-- Versión en español -->
+                <iframe class="lang-img" data-lang="es"
+                    src="Figura 8_LN3_esp.html"
+                    width="100%" height="225"
+                    style="border:none; display: block;"></iframe>
+
+                <!-- Versión en inglés -->
+                <iframe class="lang-img" data-lang="en"
+                    src="Figura 8_LN3_en.html"
+                    width="100%" height="225"
+                    style="border:none; display: none;"></iframe>
+            </div>
+
+            <div class="cell cell-markdown">
+                <p data-es="Dado que el controlador adaptativo es capaz de generar oscilaciones sostenidas, surge una pregunta natural: ¿son esas oscilaciones robustas frente a perturbaciones? O, de forma aún más interesante, ¿son las <em>propiedades dinámicas</em> de esas oscilaciones, como su frecuencia y amplitud, robustas frente a perturbaciones? Antes de explorar estas preguntas mediante simulaciones, definamos el período como el inverso de la frecuencia, calculado como el intervalo promedio entre picos consecutivos. De manera similar, definamos la amplitud como la diferencia promedio entre los valores de esos picos."
+                   data-en="Since the adaptive controller is able to generate sustained oscillations, a natural question arises: are those oscillations robust to perturbations? Or, more interestingly, are the <em>dynamical properties</em> of the oscillations, such as their frequency and amplitude, robust to perturbations? Before exploring these questions using simulations, let's define the period as the inverse of the frequency, calculated as the mean interval between consecutive peaks. Similarly, let's define the amplitude as the mean difference between the values of those peaks.">
+                  Dado que el controlador adaptativo es capaz de generar oscilaciones sostenidas, surge una pregunta natural: ¿son esas oscilaciones robustas frente a perturbaciones? O, de forma aún más interesante, ¿son las <em>propiedades dinámicas</em> de esas oscilaciones, como su frecuencia y amplitud, robustas frente a perturbaciones? Antes de explorar estas preguntas mediante simulaciones, definamos el período como el inverso de la frecuencia, calculado como el intervalo promedio entre picos consecutivos. De manera similar, definamos la amplitud como la diferencia promedio entre los valores de esos picos.
                 </p>
             </div>
 
             <div class="cell cell-output" style="margin-bottom: 0.5rem; text-align: center;">
             <!-- Versión en español -->
                 <iframe class="lang-img" data-lang="es"
-                    src="Figura 11_LN2_esp.html"
-                    width="100%" height="275"
+                    src="Figura 9_LN3_esp.html"
+                    width="100%" height="225"
                     style="border:none; display: block;"></iframe>
 
                 <!-- Versión en inglés -->
                 <iframe class="lang-img" data-lang="en"
-                    src="Figura 11_LN2_en.html"
-                    width="100%" height="275"
+                    src="Figura 9_LN3_en.html"
+                    width="100%" height="225"
                     style="border:none; display: none;"></iframe>
             </div>
 
-            <div class="cell cell-markdown">
-                <p data-es="En la Figura 11 observamos el plano de fase del repressilator. Existe un solo punto de equilibrio, alrededor del cual las trayectorias del sistema para diferentes condiciones iniciales giran. Si realizamos un análisis de estabilidad local, veremos que este tipo de comportamiento suele darse cuando encontramos eigenvalores ($\lambda$) complejos conjugados. Es decir, aquellos que tienen la siguiente forma: $\lambda = r \pm jw$, donde $r$ es la parte real, y $jw$ es la parte imaginario."
-                   data-en="In Figure 11, we observe the phase plane of the repressilator. There is a single equilibrium point around which the system’s trajectories rotate for different initial conditions. If we perform a local stability analysis, we’ll see that this type of behavior typically occurs when the system has complex conjugate eigenvalues ($\lambda$). That is, eigenvalues of the form $\lambda = r \pm jw$, where $r$ is the real part and $jw$ is the imaginary part.">
-                  En la Figura 11 observamos el plano de fase del repressilator. Existe un solo punto de equilibrio, alrededor del cual las trayectorias del sistema para diferentes condiciones iniciales giran. Si realizamos un análisis de estabilidad local, veremos que este tipo de comportamiento suele darse cuando encontramos eigenvalores ($\lambda$) complejos conjugados. Es decir, aquellos que tienen la siguiente forma: $\lambda = r \pm jw$, donde $r$ es la parte real, y $jw$ es la parte imaginario.
-                </p>
-            </div>
 
             <div class="cell cell-markdown">
 
@@ -522,24 +440,24 @@
                     Lecturas recomendadas
                 </h3>
                 
-                <p data-es="<strong>[1]</strong> Gardner, T.S., Cantor, C.R. and Collins, J.J. (2000) ‘Construction of a genetic toggle switch in escherichia coli’, Nature, 403(6767), pp. 339–342. doi:10.1038/35002131."
-                   data-en="<strong>[1]</strong> Gardner, T.S., Cantor, C.R. and Collins, J.J. (2000) ‘Construction of a genetic toggle switch in escherichia coli’, Nature, 403(6767), pp. 339–342. doi:10.1038/35002131.">
-                    <strong>[1]</strong> Gardner, T.S., Cantor, C.R. and Collins, J.J. (2000) ‘Construction of a genetic toggle switch in escherichia coli’, Nature, 403(6767), pp. 339–342. doi:10.1038/35002131.
+                <p data-es="<strong>[1]</strong> Del Vecchio, D., Dy, A.J. and Qian, Y. (2016) ‘Control theory meets synthetic biology’, Journal of The Royal Society Interface, 13(120), p. 20160380. doi:10.1098/rsif.2016.0380."
+                   data-en="<strong>[1]</strong> Del Vecchio, D., Dy, A.J. and Qian, Y. (2016) ‘Control theory meets synthetic biology’, Journal of The Royal Society Interface, 13(120), p. 20160380. doi:10.1098/rsif.2016.0380.">
+                    <strong>[1]</strong> Del Vecchio, D., Dy, A.J. and Qian, Y. (2016) ‘Control theory meets synthetic biology’, Journal of The Royal Society Interface, 13(120), p. 20160380. doi:10.1098/rsif.2016.0380.
                 </p>
 
-                <p data-es="<strong>[2]</strong>  Elowitz, M.B. and Leibler, S. (2000) ‘A synthetic oscillatory network of transcriptional regulators’, Nature, 403(6767), pp. 335–338. doi:10.1038/35002125."
-                   data-en="<strong>[2]</strong>  Elowitz, M.B. and Leibler, S. (2000) ‘A synthetic oscillatory network of transcriptional regulators’, Nature, 403(6767), pp. 335–338. doi:10.1038/35002125.">
-                    <strong>[2]</strong>  Elowitz, M.B. and Leibler, S. (2000) ‘A synthetic oscillatory network of transcriptional regulators’, Nature, 403(6767), pp. 335–338. doi:10.1038/35002125.
+                <p data-es="<strong>[2]</strong>  Cuba Samaniego, C. and Franco, E. (2021) ‘Ultrasensitive molecular controllers for quasi-integral feedback’, Cell Systems, 12(3). doi:10.1016/j.cels.2021.01.001."
+                   data-en="<strong>[2]</strong>  Cuba Samaniego, C. and Franco, E. (2021) ‘Ultrasensitive molecular controllers for quasi-integral feedback’, Cell Systems, 12(3). doi:10.1016/j.cels.2021.01.001.">
+                    <strong>[2]</strong>  Cuba Samaniego, C. and Franco, E. (2021) ‘Ultrasensitive molecular controllers for quasi-integral feedback’, Cell Systems, 12(3). doi:10.1016/j.cels.2021.01.001.
                 </p>
 
-                <p data-es="<strong>[3]</strong> Potvin-Trottier, L. et al. (2016) ‘Synchronous long-term oscillations in a synthetic gene circuit’, Nature, 538(7626), pp. 514–517. doi:10.1038/nature19841."
-                   data-en="<strong>[3]</strong> Potvin-Trottier, L. et al. (2016) ‘Synchronous long-term oscillations in a synthetic gene circuit’, Nature, 538(7626), pp. 514–517. doi:10.1038/nature19841.">
-                    <strong>[3]</strong> Potvin-Trottier, L. et al. (2016) ‘Synchronous long-term oscillations in a synthetic gene circuit’, Nature, 538(7626), pp. 514–517. doi:10.1038/nature19841.
+                <p data-es="<strong>[3]</strong> Filo, M., Kumar, S. and Khammash, M. (2022) ‘A hierarchy of biomolecular proportional-integral-derivative feedback controllers for robust perfect adaptation and dynamic performance’, Nature Communications, 13(1). doi:10.1038/s41467-022-29640-7."
+                   data-en="<strong>[3]</strong> Filo, M., Kumar, S. and Khammash, M. (2022) ‘A hierarchy of biomolecular proportional-integral-derivative feedback controllers for robust perfect adaptation and dynamic performance’, Nature Communications, 13(1). doi:10.1038/s41467-022-29640-7.">
+                    <strong>[3]</strong> Filo, M., Kumar, S. and Khammash, M. (2022) ‘A hierarchy of biomolecular proportional-integral-derivative feedback controllers for robust perfect adaptation and dynamic performance’, Nature Communications, 13(1). doi:10.1038/s41467-022-29640-7.
                 </p>
 
-                <p data-es="<strong>[4]</strong> Strogatz, S.H. (2019) Nonlinear Dynamics and Chaos: With applications to physics, biology, chemistry, and engineering. Taylor & Francis Ltd."
-                   data-en="<strong>[4]</strong> Strogatz, S.H. (2019) Nonlinear Dynamics and Chaos: With applications to physics, biology, chemistry, and engineering. Taylor & Francis Ltd.">
-                    <strong>[4]</strong> Strogatz, S.H. (2019) Nonlinear Dynamics and Chaos: With applications to physics, biology, chemistry, and engineering. Taylor & Francis Ltd.
+                <p data-es="<strong>[4]</strong> Britto Bisso, F. et al. (2024) Design of a biomolecular adaptive controller to restore sustained periodic behavior [Preprint]. doi:10.1101/2024.10.11.617962."
+                   data-en="<strong>[4]</strong> Britto Bisso, F. et al. (2024) Design of a biomolecular adaptive controller to restore sustained periodic behavior [Preprint]. doi:10.1101/2024.10.11.617962.">
+                    <strong>[4]</strong> Britto Bisso, F. et al. (2024) Design of a biomolecular adaptive controller to restore sustained periodic behavior [Preprint]. doi:10.1101/2024.10.11.617962.
                 </p>
 
 
