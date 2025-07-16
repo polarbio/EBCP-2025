@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea Día 4 - EBCP Latam 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../../images/bacteria favicon.svg">
+
+    <link rel="stylesheet" href="../../../static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax para matemáticas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Prism.js para sintaxis highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- Header - exactamente igual a tu index -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../../../images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+                <span class="brand-text">EBCP Latam 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../index.html" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="../../../lectures.html" data-es="Lectures" data-en="Lectures">Lectures</a>
+                <a href="../../../about.html" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Notebook Section -->
+    <section class="notebook-section">
+        <div class="notebook-container">
+
+            <!-- Header del notebook -->
+            <div class="notebook-header-TA">
+                <h1 class="notebook-title"
+                    data-es="Redes neuronales biomoleculares"
+                    data-en="Biomolecular neural networks">
+                    Redes neuronales biomoleculares
+                </h1>
+                <p class="notebook-subtitle"
+                   data-es="2025 Workshop en Modelamiento de Sistemas Biológicos"
+                   data-en="2025 Workshop on Biological Systems Modeling">
+                    2025 Workshop en Modelamiento de Sistemas Biológicos
+                </p>
+                <div class="notebook-meta">
+                    <div data-es="Autores: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego"
+                         data-en="Authors: Bsc. Frank Britto Bisso | Reviewed by: PhD. Christian Cuba Samaniego">
+                        Autores: Bsc. Frank Britto Bisso | Revisado por: PhD. Christian Cuba Samaniego
+                    </div>
+                    <div data-es="Última fecha de modificación: 12 de Julio, 2025"
+                         data-en="Last modified: July 12, 2025">
+                        Última fecha de modificación: 12 de Julio, 2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del notebook -->
+            
+            <div class="cell cell-markdown">
+                <h2 style="color: var(--dark-blue);" data-es="Simulaciones recomendadas"
+                    data-en="Recommended simulations">
+                    Simulaciones recomendadas
+                </h2>
+
+                <h3 data-es="D4_1. Redes neuronales biomoleculares utilizando otras reacciones químicas"
+                    data-en="D4_1. Biomolecular neural networks using other chemical reactions">
+                    D4_1. Redes neuronales biomoleculares utilizando otras reacciones químicas
+                </h3>
+                
+                <p data-es="Para esta tarea, escriba las ecuaciones químicas, encuentre las ecuaciones de nullclines (de ser posible; caso contrario, mencionar por qué no se pudieron encontrar), simule las trayectorias en el tiempo de <strong>uno</strong> de los siguientes modelos:"
+                   data-en="For this assignment, write the chemical equations, find the nullcline equations (if possible; otherwise, mention why they could not be found), simulate the time trajectories of <strong>one</strong> of the following models:">
+                    Para esta tarea, escriba las ecuaciones químicas, encuentre las ecuaciones de nullclines (de ser posible; caso contrario, mencionar por qué no se pudieron encontrar), simule las trayectorias en el tiempo de <strong>uno</strong> de los siguientes modelos:
+                </p>
+
+                <p data-es="• <strong>Degradación catalítica</strong>: Replique la Figura 3 del siguiente artículo: <a style='color: var(--dark-blue);' href='https://www.biorxiv.org/content/10.1101/2024.03.23.586372v1.full.pdf' target='_blank'>entra aquí</a>."
+                   data-en="• <strong>Catalytic degradation</strong>: Replicate Figure 3 from the following article: <a style='color: var(--dark-blue);' href='https://www.biorxiv.org/content/10.1101/2024.03.23.586372v1.full.pdf' target='_blank'>click here</a>.">
+                   • <strong>Degradación catalítica</strong>: Replique la Figura 3 del siguiente artículo: <a style='color: var(--dark-blue);' href='https://www.biorxiv.org/content/10.1101/2024.03.23.586372v1.full.pdf' target='_blank'>entra aquí</a>.
+                </p>
+
+                <p data-es="• <strong>Ciclo de fosforilación y desfosforilación</strong>: Replique la Figura 6 del siguiente artículo: <a style='color: var(--dark-blue);' href='https://www.biorxiv.org/content/10.1101/2020.11.10.377077v1.full.pdf' target='_blank'>click aquí</a>."
+                   data-en="• <strong>Phosphorylation and dephosphorylation cycle</strong>: Replicate Figure 6 from the following article: <a style='color: var(--dark-blue);' href='https://www.biorxiv.org/content/10.1101/2020.11.10.377077v1.full.pdf' target='_blank'>click here</a>.">
+                    <strong>Ciclo de fosforilación y desfosforilación</strong>: Replique la Figura 6 del siguiente artículo: <a style='color: var(--dark-blue);' href='https://www.biorxiv.org/content/10.1101/2020.11.10.377077v1.full.pdf' target='_blank'>click aquí</a>.
+                </p>
+
+            </div>
+
+            <div class="cell cell-markdown">
+                <h2 style="color: var(--dark-blue);" data-es="Simulaciones opcionales"
+                    data-en="Optional Simulations">
+                    Simulaciones opcionales
+                </h2>
+
+                <h3 data-es="D4_2. Demostración de la función de activación"
+                    data-en="D4_2. Demonstration of the activation function">
+                    D4_2. Demostración de la función de activación
+                </h3>
+                
+                <p data-es="Demuestre que la expresión en estado estacionario del <strong>sustrato</strong> en la reacción de degradación catalítica se aproxima a una función de activación ReLU cuando el secuestramiento es muy alto (i.e., en el límite cuando $\gamma \to 0$, o equivalentemente, cuando $K \to 0$)."
+                   data-en="Demonstrate that the steady-state expression of the <strong>substrate</strong> in the catalytic degradation reaction approximates a ReLU activation function when sequestration is very high (i.e., in the limit when $\gamma \to 0$, or equivalently, when $K \to 0$).">
+                    Demuestre que la expresión en estado estacionario del <strong>sustrato</strong> en la reacción de degradación catalítica se aproxima a una función de activación ReLU cuando el secuestramiento es muy alto (i.e., en el límite cuando $\gamma \to 0$, o equivalentemente, cuando $K \to 0$).
+                </p>
+
+                <h3 data-es="D4_3. Aplicaciones"
+                    data-en="D4_3. Applications">
+                    D4_3. Aplicaciones
+                </h3>
+
+                <p data-es="Proponga aplicaciones tecnológicas (e.g., en salud, ambiente, manufactura) donde puedan aplicarse las redes neuronales biomoleculares. <strong>Nota</strong>: La aplicación no debe ser necesariamente una tarea de clasificación."
+                   data-en="Propose technological applications (e.g., in health, environment, manufacturing) where biomolecular neural networks could be applied. <strong>Note</strong>: The application does not necessarily have to be a classification task.">
+                   Proponga aplicaciones tecnológicas (e.g., en salud, ambiente, manufactura) donde puedan aplicarse las redes neuronales biomoleculares. <strong>Nota</strong>: La aplicación no debe ser necesariamente una tarea de clasificación.
+                </p>
+
+            </div>
+
+
+            <div class="card-actions" style="display: flex; justify-content: center; margin-top: 2rem;">
+                <a href="https://forms.gle/UqjiGXGDs33R3JjU9" target="_blank" class="btn-homework">
+                <span data-es="Entregar tarea" data-en="Submit Assignment">Entregar tarea</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer - exactamente igual a tu index -->
+    <footer class="footer">
+        <div class="container">
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+               &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- JavaScript exactamente igual a tu index -->
+    <script>
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem('selectedLanguage') || 'es';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setLanguage(this.currentLang);
+            }
+
+            setupEventListeners() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang');
+                        this.setLanguage(lang);
+                    });
+                });
+            }
+
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem('selectedLanguage', lang);
+                
+                document.getElementById('html-root').setAttribute('lang', lang);
+                
+                const elements = document.querySelectorAll('[data-es][data-en]');
+                elements.forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`);
+                    if (text) {
+                        element.innerHTML = text;
+                    }
+                });
+
+
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Mostrar/ocultar bloques de código por idioma
+                document.querySelectorAll('.lang-block').forEach(block => {
+                    const blockLang = block.getAttribute('data-lang');
+                    block.style.display = (blockLang === lang) ? 'block' : 'none';
+                });
+
+                // Mostrar/ocultar imágenes según idioma
+                document.querySelectorAll('.lang-img').forEach(img => {
+                    const imgLang = img.getAttribute('data-lang');
+                    img.style.display = (imgLang === lang) ? 'block' : 'none';
+                });
+
+                const titles = {
+                    es: 'Tarea Día 4 - EBCP Latam 2025',
+                    en: 'Assignment Day 4 - EBCP Latam 2025'
+                };
+                document.title = titles[lang];
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new LanguageManager();
+        });
+
+    </script>
+    <script>
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    </script>
+</body>
+</html>
