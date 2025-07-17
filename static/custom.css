@@ -1063,3 +1063,11 @@ table thead {
     background-color: #e0f2f1;
 }
 
+.course-dates {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #333;
+}
