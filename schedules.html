@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBCP Latam 2025</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./images/bacteria favicon.svg">
+
+    <link rel="stylesheet" href="./static/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="./images/logobacteria.svg" alt="EBCP Latam Logo" class="nav-logo">
+                <span class="brand-text">EBCP Latam 2025</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+                <a href="workshop2025.html" data-es="Workshop 2025" data-en="Workshop 2025">Workshop 2025</a>
+                <a href="https://github.com/polarbio/wsynbio-2025" target="_blank">GitHub</a>
+
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ESP</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="course-dates">
+                <h1 data-es="Horarios por país" data-en="Schedules by country">Horarios por país</h1>
+                <p data-es="Las clases se transmitirán en los siguientes horarios según tu país:"
+                   data-en="The lessons will be broadcast at the following times by country:">
+                   Las clases se transmitirán en los siguientes horarios según tu país:
+                </p>
+            </div>
+
+            <div id="schedule-list" class="schedule-grid"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-es="&copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego"
+               data-en="&copy; 2025 EBCP Latam. Prepared by Dr. Christian Cuba Samaniego's Laboratory">
+                &copy; 2025 EBCP Latam. Preparado por el Laboratorio del Dr. Christian Cuba Samaniego
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ================== GESTOR DE IDIOMA ==================
+        class LanguageManager {
+            constructor() {
+                this.currentLang = localStorage.getItem("selectedLanguage") || "es";
+                this.init();
+            }
+            init() {
+                this.setupEventListeners();
+                this.setLanguage(this.currentLang);
+            }
+            setupEventListeners() {
+                document.querySelectorAll(".lang-btn").forEach(btn => {
+                    btn.addEventListener("click", e => {
+                        this.setLanguage(e.target.dataset.lang);
+                    });
+                });
+            }
+            setLanguage(lang) {
+                this.currentLang = lang;
+                localStorage.setItem("selectedLanguage", lang);
+                document.getElementById("html-root").lang = lang;
+
+                // Cambiar textos generales
+                document.querySelectorAll("[data-es][data-en]").forEach(el => {
+                    const text = el.getAttribute(`data-${lang}`);
+                    if (text) el.innerHTML = text;
+                });
+
+                // Botón activo
+                document.querySelectorAll(".lang-btn").forEach(btn => {
+                    btn.classList.toggle("active", btn.dataset.lang === lang);
+                });
+
+                // Actualizar horarios y título
+                renderSchedules(lang);
+                document.title = lang === "es"
+                    ? "EBCP Latam 2026 - Workshop SynBio"
+                    : "EBCP Latam 2026 - SynBio Workshop";
+            }
+        }
+
+        // ================== HORARIOS DINÁMICOS ==================
+        const baseStart = new Date("2026-07-13T11:00:00-04:00"); // 11:00 Boston (EDT)
+        const baseEnd   = new Date("2026-07-13T13:00:00-04:00"); // 13:00 Boston (EDT)
+
+        const countries = [
+            { es: "Boston", en: "Boston", tz: "America/New_York" },
+            { es: "México", en: "Mexico", tz: "America/Mexico_City" },
+            { es: "Guatemala", en: "Guatemala", tz: "America/Guatemala" },
+            { es: "Honduras", en: "Honduras", tz: "America/Tegucigalpa" },
+            { es: "El Salvador", en: "El Salvador", tz: "America/El_Salvador" },
+            { es: "Costa Rica", en: "Costa Rica", tz: "America/Costa_Rica" },
+            { es: "Panamá", en: "Panama", tz: "America/Panama" },
+            { es: "Cuba", en: "Cuba", tz: "America/Havana" },
+            { es: "República Dominicana", en: "Dominican Republic", tz: "America/Santo_Domingo" },
+            { es: "Puerto Rico", en: "Puerto Rico", tz: "America/Puerto_Rico" },
+            { es: "Colombia", en: "Colombia", tz: "America/Bogota" },
+            { es: "Ecuador", en: "Ecuador", tz: "America/Guayaquil" },
+            { es: "Perú", en: "Peru", tz: "America/Lima" },
+            { es: "Venezuela", en: "Venezuela", tz: "America/Caracas" },
+            { es: "Bolivia", en: "Bolivia", tz: "America/La_Paz" },
+            { es: "Chile", en: "Chile", tz: "America/Santiago" },
+            { es: "Paraguay", en: "Paraguay", tz: "America/Asuncion" },
+            { es: "Argentina", en: "Argentina", tz: "America/Argentina/Buenos_Aires" },
+            { es: "Uruguay", en: "Uruguay", tz: "America/Montevideo" },
+            { es: "España", en: "Spain", tz: "Europe/Madrid" }
+        ];
+
+        function formatTime(date, tz, lang) {
+            return new Intl.DateTimeFormat(lang === "es" ? "es-ES" : "en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: (lang === "en"), // AM/PM en inglés, 24h en español
+                timeZone: tz
+            }).format(date);
+        }
+
+        function renderSchedules(lang) {
+            const container = document.getElementById("schedule-list");
+            container.innerHTML = ""; // limpiar
+
+            countries.forEach(c => {
+                const start = formatTime(baseStart, c.tz, lang);
+                const end   = formatTime(baseEnd, c.tz, lang);
+
+                const div = document.createElement("div");
+                div.classList.add("schedule-card");
+                div.innerHTML = `<strong>${c[lang]}:</strong> ${start} – ${end}`;
+                container.appendChild(div);
+            });
+        }
+
+        // ================== INICIO ==================
+        const langManager = new LanguageManager();
+        document.addEventListener("DOMContentLoaded", () => {
+            renderSchedules(langManager.currentLang);
+        });
+    </script>
+</body>
+</html>

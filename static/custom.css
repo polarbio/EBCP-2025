@@ -1071,3 +1071,123 @@ table thead {
     font-size: 1.1rem;
     color: #333;
 }
+
+/* Countdown mejorado */
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.timer div {
+  background: linear-gradient(135deg, #111 0%, #333 100%);
+  color: #fff;
+  padding: 25px 20px;
+  border-radius: 14px;
+  min-width: 110px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease;
+}
+
+.timer div:hover {
+  transform: translateY(-4px);
+}
+
+.timer span {
+  font-size: 2.8rem;
+  font-weight: bold;
+  display: block;
+}
+
+.timer small {
+  font-size: 1rem;
+  color: #d1d5db;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Dropdown horarios mejorado */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  color: #fff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.dropbtn:hover {
+  background: linear-gradient(135deg, #111 0%, #444 100%);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  background-color: #111;
+  min-width: 220px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.dropdown-content span {
+  color: #f1f1f1;
+  padding: 12px 16px;
+  display: block;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.dropdown-content span:hover {
+  background-color: #222;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Contenedor de la grilla */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Tarjetas de horarios */
+.schedule-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schedule-card strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #111827;
+}
+
+.schedule-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
